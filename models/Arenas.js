@@ -1,3 +1,3 @@
 // model items
-    // location name
-    // location image/setting
+    // location name: string
+    // location image/setting: string (img url?)

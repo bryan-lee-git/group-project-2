@@ -1,7 +1,7 @@
 // model items
-    // name
-    // wallet
-    // strength
-    // speed
-    // stamina
-    // skill
+    // name: string
+    // wallet: integer (float?)
+    // strength: integer
+    // speed: integer
+    // stamina: integer
+    // skill: integer

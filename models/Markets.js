@@ -1,5 +1,6 @@
 // model items
-    // item name
-    // strength+
-    // armor+
-    // skill+?
+    // item name: string
+    // strength+: integer
+    // armor+: integer
+    // skill+ (?): integer
+    // purchased: boolean

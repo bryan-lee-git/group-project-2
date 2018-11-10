@@ -1,7 +1,7 @@
 // model items
-    // name
-    // strength
-    // speed
-    // stamina
-    // skill
-    // class: light, medium, heavy
+    // name: string
+    // strength: integer
+    // speed: integer
+    // stamina: integer
+    // skill: integer
+    // class (light, medium, heavy): string
