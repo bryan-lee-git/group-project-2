@@ -3,20 +3,32 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
+    db.Home.findAll({}).then(function(dbHome) {
+      res.render("home");
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.render("example", {
-        example: dbExample
-      });
+  app.get("/character-create", function(req, res) {
+    db.Character.findAll({}).then(function(dbUser) {
+      res.render("character-create");
+    });
+  });
+
+  app.get("/marketplace", function(req, res) {
+    db.Market.findAll({}).then(function(dbMarkets) {
+      res.render("marketplace");
+    });
+  });
+
+  app.get("/training", function(req, res) {
+    db.Training.findAll({}).then(function(dbTraining) {
+      res.render("training");
+    });
+  });
+
+  app.get("/arenas", function(req, res) {
+    db.Arenas.findAll({}).then(function(dbArenas) {
+      res.render("character-create");
     });
   });
 
