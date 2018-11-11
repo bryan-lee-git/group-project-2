@@ -2,14 +2,14 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "",
+    "database": "road_to_rome_db",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": "root",
-    "database": "",
+    "database": "road_to_rome_db",
     "host": "localhost",
     "dialect": "mysql",
     "logging": false

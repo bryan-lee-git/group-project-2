@@ -39,4 +39,25 @@ Object.keys(db).forEach(function(modelName) {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.User = require("./User")(sequelize, Sequelize);
+db.NPC = require("./NPC")(sequelize, Sequelize);
+db.Weapons = require("./Weapons")(sequelize, Sequelize);
+db.Armor = require("./Armor")(sequelize, Sequelize);
+db.Battle = require("./Battles")(sequelize, Sequelize);
+db.Markets = require("./Markets")(sequelize, Sequelize);
+db.Arenas = require("./Arenas")(sequelize, Sequelize);
+
+db.User.hasMany(db.Weapons);
+db.User.hasMany(db.Armor);
+db.User.hasMany(db.Battle);
+
+db.NPC.hasMany(db.Battle);
+db.NPC.hasMany(db.Weapons);
+db.NPC.hasMany(db.Armor);
+
+db.Markets.hasOne(db.Weapons);
+db.Markets.hasOne(db.Armor);
+
+db.Arenas.hasMany(db.Battle);
+
 module.exports = db;
