@@ -1,0 +1,128 @@
+<!-- {{!-- header --}} -->
+<header></header>
+
+
+<main>
+  {{!-- implementation of the nav bar --}}
+  <div class="nav-div">
+    <nav>
+      <div class="container">
+        <div class="row">
+          <div class="col s12">
+            <div class="nav-wrapper">
+              <ul id="nav-mobile" class="right">
+                <li><a title = "Portfolio" id="portfolio-nav-link"  href="portfolio.html"><i class="material-icons">photo_library</i></a></li>
+                <li><a title = "Contact" id="contact-nav-link"  href="contact.html"><i class="material-icons">phonelink_ring</i></a></li>
+                <li><a title = "About" id="about-nav-link"  href="about.html"><i class="material-icons">person</i></a></li>
+              </ul>
+            </div>
+          </div>    
+        </div>
+      </div>            
+    </nav>
+  </div>
+
+     {{!-- marketplace title --}}
+  <div class="container">
+    <div class="row center-align">
+      <div class="col s12">
+        <h1>Marketplace</h1>
+      </div>
+    </div>
+    
+    {{!-- displays players currency --}}
+    <div class="row center-align">
+      <div class="col-s6 offset-3">
+        <h3>Lira: <span id="lira-display">$$$$</span></h3>
+      </div>
+    </div>
+
+    {{!-- the drop down buttons for the different thing the user can buy. Not fully fleshed out, will have custom amount of items or actions depending on
+    which button the user press. Would also like to put images in the buttons --}}
+    {{!-- first row is weapons and armour --}}
+    <div class="row">
+      <div class="col s4 center-align">
+        <a class='dropdown-trigger btn' href='#' data-target='dropdown-heavy'>Heavy Weapons</a>
+
+        <ul id='dropdown-heavy' class='dropdown-content'>
+          <li><a href="#!">one</a></li>
+          <li><a href="#!">two</a></li>
+        </ul>
+      </div>
+
+      <div class="col s4 center-align">
+        <a class='dropdown-trigger btn' href='#' data-target='dropdown-light'>Light Weapons</a>
+
+        <ul id='dropdown-light' class='dropdown-content'>
+          <li><a href="#!">one</a></li>
+          <li><a href="#!">two</a></li>
+        </ul>
+      </div>
+
+      <div class="col s4 center-align">
+        <a class='dropdown-trigger btn' href='#' data-target='dropdown-armour'>Armour</a>
+
+        <ul id='dropdown-armour' class='dropdown-content'>
+          <li><a href="#!">one</a></li>
+          <li><a href="#!">two</a></li>
+        </ul>
+      </div>
+    </div>
+    </br>
+    </br>
+    </br>
+    
+    {{!-- next row is training the user can do to improve thier stats --}}
+    <div class="row">
+      <div class="col s4 center-align">
+        <a class='dropdown-trigger btn' href='#' data-target='dropdown-strength'>Strenght</a>
+
+        <ul id='dropdown-strength' class='dropdown-content'>
+          <li><a href="#!">one</a></li>
+          <li><a href="#!">two</a></li>
+        </ul>
+      </div>
+
+      <div class="col s4 center-align">
+        <a class='dropdown-trigger btn' href='#' data-target='dropdown-speed'>Speed</a>
+
+        <ul id='dropdown-speed' class='dropdown-content'>
+          <li><a href="#!">one</a></li>
+          <li><a href="#!">two</a></li>
+        </ul>
+      </div>
+
+      <div class="col s4 center-align">
+        <a class='dropdown-trigger btn' href='#' data-target='dropdown-stamina'>Stamina</a>
+
+        <ul id='dropdown-stamina' class='dropdown-content'>
+          <li><a href="#!">one</a></li>
+          <li><a href="#!">two</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
+   
+    <!-- {{!-- sticky footer --}} -->
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <h5 class="white-text">Road to Roam</h5>
+        <p class="grey-text text-lighten-4">Panda Warriors Development Group</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    © 2018 Copyright Text
+    <a class="grey-text text-lighten-4 right" href="#!">Home</a>
+    </div>
+  </div>
+</footer>
+
+<!-- {{!-- script cdns and files --}} -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../public/js/front-end-JS.js"></script>

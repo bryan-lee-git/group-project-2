@@ -1,0 +1,144 @@
+<!-- {{!-- header --}} -->
+<header></header>
+
+
+<main>
+  {{!-- navbar implements here --}}
+  <div class="nav-div">
+    <nav>
+      <div class="container">
+        <div class="row">
+          <div class="col s12">
+            <div class="nav-wrapper">
+              <ul id="nav-mobile" class="right">
+                <li><a title = "Portfolio" id="portfolio-nav-link"  href="portfolio.html"><i class="material-icons">photo_library</i></a></li>
+                <li><a title = "Contact" id="contact-nav-link"  href="contact.html"><i class="material-icons">phonelink_ring</i></a></li>
+                <li><a title = "About" id="about-nav-link"  href="about.html"><i class="material-icons">person</i></a></li>
+              </ul>
+            </div>
+          </div>    
+        </div>
+      </div>            
+    </nav>
+  </div>
+    
+    {{!--the top symbols used to represent the user and the opponent  --}}
+  <div class="row">
+    <div class="col s6">
+      <img src="../public/img/erics-images/images.png" alt="user_image" class="circle responsive-img" id="user-img">
+    </div>
+
+    <div class="col s6 right-align">
+      <img src="../public/img/erics-images/images.png" alt="opponent-img" class="circle responsive-img" id="opponent-img">
+    </div>
+  </div>
+  
+  {{!-- users stats display table --}}
+  <div class="row">
+    <div class="col s4">
+      <table id="user-table">
+        <thead>
+          <tr>
+            <th><span id="username-span">Username</span></th>
+            <th></th>                           
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Health</td>
+            <td><span id="user-health-span">#</span></td>
+          </tr>
+          <tr>
+            <td>Strength</td>
+            <td><span id="user-strength-span">#</span></td>
+          </tr>
+          <tr>
+            <td>Speed</td>
+            <td><span id="user-speed-span">#</span></td>
+          </tr>
+          <tr>
+            <td>Stamina</td>
+            <td><span id="user-stamina-span">#</span></td>
+          </tr>
+          <tr>
+            <td>Skill</td>
+            <td><span id="user-slill-span">#</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    {{!-- opponents stats display table --}}
+    <div class="col s4 offset-s4 right-align">
+      <table id="opponent-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="right-align"><span id="opponent-name-span">Opponent</span></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td class="right-align">Health</td>
+            <td class="right-align"><span id="opponent-health-span">#</span></td>                            
+          </tr>
+          <tr>
+            <td class="right-align">Strength</td>
+            <td class="right-align"><span id="opponent-strength-span">#</span></td>
+          </tr>
+          <tr>
+            <td class="right-align">Speed</td>
+            <td class="right-align"><span id="opponent-speed-span">#</span></td>
+          </tr>
+          <tr>
+            <td class="right-align">Stamina</td>
+            <td class="right-align"><span id="opponent-stamina-span">#</span></td>                            
+          </tr>
+          <tr>
+            <td class="right-align">Skill</td>
+            <td class="right-align"><span id="opponent-slill-span">#</span></td>                           
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  {{!-- the arena battle ground where the images of the user and opponent duke it out --}}
+  <div class="row">
+    <div class="col s3 offset-s3 center-align">
+      <img src="../public/img/erics-images/user.png" alt="user-combatant" class="responsive-img" id="user-combatant-img">
+    </div>
+
+    <div class="col s3 center-align">
+      <img src="../public/img/erics-images/opponent.png" alt="opponent-combatant" class="responsive-img" id="opponent-combatant-img">
+    </div>
+  </div>
+
+  {{!-- Fix action button, where the user will impliment their strategy in between turns --}}
+  <div class="fixed-action-btn" title="attack options">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+  </div>   
+</main>
+    <!-- {{!-- sticky footer --}} -->
+<footer class="page-footer">
+  <div class="footer-copyright">
+    <div class="container">
+    © 2018 Copyright Text
+    <a class="grey-text text-lighten-4 right" href="#!">Home</a>
+    </div>
+  </div>
+</footer>
+<!-- {{!-- script cdns and files --}} -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../public/js/front-end-JS.js"></script>

@@ -1,0 +1,97 @@
+<!-- {{!-- header --}} -->
+<header></header>
+
+
+<main>
+
+  {{!-- implementation of the nav bar --}}
+  <div class="nav-div">
+    <nav>
+      <div class="container">
+        <div class="row">
+          <div class="col s12">
+            <div class="nav-wrapper">
+              <ul id="nav-mobile" class="right">
+                <li><a title = "Portfolio" id="portfolio-nav-link"  href="portfolio.html"><i class="material-icons">photo_library</i></a></li>
+                <li><a title = "Contact" id="contact-nav-link"  href="contact.html"><i class="material-icons">phonelink_ring</i></a></li>
+                <li><a title = "About" id="about-nav-link"  href="about.html"><i class="material-icons">person</i></a></li>
+              </ul>
+            </div>
+          </div>    
+        </div>
+      </div>            
+    </nav>
+  </div>
+    
+  {{!-- Title of the create page --}}
+  <div class="container">
+    <div class="row center-align">
+      <div class="col s12">
+        <h1>Create a New Gladiator</h1>
+      </div>
+    </div>
+  </div>
+
+{{!-- the carousel where the user can choose thier hero --}}
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><a href="#"target = "blank">
+        <img class="responsive-img" src="./Assests/Images/A1GuitarLearner.PNG" alt="A1 Guitar Learner"></div>
+      <div class="swiper-slide"><a href="#"target = "blank">
+        <img class="responsive-img" src="./Assests/Images/r6SiegeImg.PNG"  alt="Rainbow6 RPG"></div>
+      <div class="swiper-slide"><a href="#"target = "blank">
+        <img class="responsive-img" src="./Assests/Images/crystalCollector.PNG"  alt="Crystal Collector"></div>
+      <div class="swiper-slide"><a href="#"target = "blank">
+        <img class="responsive-img" src="./Assests/Images/railroad.PNG"  alt="Railroad Moment & Firebase"></div>
+      <div class="swiper-slide"><a href="#"target = "blank">
+        <img class="responsive-img" src="./Assests/Images/f40.PNG"  alt="Car Trivia"></div>
+      <div class="swiper-slide"><a href="#"target = "blank">
+        <img class="responsive-img" src="./Assests/Images/psychic.jpg" alt="Crystal Collector"></div>
+    </div>
+  </div>
+
+   {{!-- where the user can choose the stats of their character --}}
+  <div class="container">
+    <div class="row center-align">
+      <div class="col s6 offset-s3">
+        <form action="#">
+          <h5>Strength</h5>
+          <p class="range-field" id="strength-range">
+            <input type="range" id="test5" min="0" max="100" />
+          </p>
+          <h5>Speed</h5>
+          <p class="range-field" id="speed-range">
+            <input type="range" id="test5" min="0" max="100" />
+          </p>
+          <h5>Stamina</h5>
+          <p class="range-field" id="stamina-range">
+            <input type="range" id="test5" min="0" max="100" />
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- {{!-- sticky footer --}} -->
+<<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <h5 class="white-text">Road to Roam</h5>
+        <p class="grey-text text-lighten-4">Panda Warriors Development Group</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    © 2018 Copyright Text
+    <a class="grey-text text-lighten-4 right" href="#!">Home</a>
+    </div>
+  </div>
+</footer>
+    <!-- {{!-- script cdns and files --}} -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/js/swiper.js"></script>
+<script src="../public/js/front-end-JS.js"></script>
