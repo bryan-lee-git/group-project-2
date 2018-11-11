@@ -1,2 +1,3 @@
 # group-project-2
-Will change later.
+
+Our new project is an RPG called Road to Rome. You play a gladiator who must fight his way from the "minor leagues" up to the ultimate glory in Rome. Gladiators must choose their weapons and armor wisely to match their own abilities the fighting style of their opponent. Gladiators will be able to scout their opponent before they face off, including seeing their opponent's win/loss record, previous weapon/armor configurations, and an estimate of the opponent's abilities. Winners of matches get a victory purse with which to upgrade gear and invest in training. Advancement to better Arenas brings contact with better opponents and bigger purses. Combat in the arena requires balancing tactics to take advantage of an opponent's weakness while minimizing your own. Prepare wisely and fight bravely, for the reward for victory is great fame and wealth but the price of failure is your life! 
