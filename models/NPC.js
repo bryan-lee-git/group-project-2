@@ -1,23 +1,19 @@
 // model items
 // name: string
-// wallet: integer (float?)
 // strength: integer
 // speed: integer
 // stamina: integer
 // skill: integer
+// class (light, medium, heavy): string
 
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define("User", {
+  var NPC = sequelize.define("NPC", {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1, 30]
       }
-    },
-    wallet: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0
     },
     strength: {
       type: DataTypes.INTEGER,
@@ -47,5 +43,5 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER
     }
   });
-  return User;
+  return NPC;
 };
