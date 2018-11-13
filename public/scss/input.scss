@@ -16,32 +16,32 @@ main {
   margin-left: 3%; 
 }
 .fixed-action-btn{
-position: absolute;
-bottom: 10%;
+  position: absolute;
+  bottom: 10%;
 }
 
 //is what is used to get the back ground image to be translucent 
 body::after {
-content: "";
-background-image: url("../img/erics-images/ave.jpg");
-opacity: 0.5;
-top: 0;
-left: 0;
-bottom: 0;
-right: 0;
-position: absolute;
-z-index: -1;   
+  content: "";
+  background-image: url("../img/erics-images/ave.jpg");
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
 }
 
 // swiper css stuff
 .swiper-container {
-width: 100%;
-padding-top: 50px;
-padding-bottom: 50px;
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 .swiper-slide {
-background-position: center;
-background-size: cover;
-width: 300px;
-height: 300px;
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
 }
