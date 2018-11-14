@@ -1,11 +1,24 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Load index page
   app.get("/", function(req, res) {
-    db.Home.findAll({}).then(function(dbHome) {
-      res.render("home");
-    });
+    if (req.isAuthenticated()) {
+      var user = {
+        id: req.session.passport.user,
+        isloggedin: req.isAuthenticated()
+      };
+      res.render("landing", user);
+    } else {
+      res.render("landing");
+    }
+  });
+
+  app.get("/signup", function(req, res) {
+    if (req.isAuthenticated()) {
+      res.redirect("/accounts/view");
+    } else {
+      res.render("accounts");
+    }
   });
 
   app.get("/character-create", function(req, res) {

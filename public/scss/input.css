@@ -1,0 +1,54 @@
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  /* // changes Font here, not part of the req for sticky footer */
+  font-family: 'Merriweather', serif;
+}
+
+main {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+}
+
+.fixed-action-btn {
+  right: auto;
+  margin-left: 3%;
+}
+
+.fixed-action-btn {
+  position: absolute;
+  bottom: 10%;
+}
+
+body::after {
+  content: "";
+  background-image: url("../img/erics-images/ave.jpg");
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.swiper-container {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+}
+/*# sourceMappingURL=input.css.map */

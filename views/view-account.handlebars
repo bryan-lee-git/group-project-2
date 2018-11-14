@@ -1,0 +1,72 @@
+{{ > Navigation/nav-block search=false post=false account=true signup=false }}
+
+<div class="container">
+  <header align="center" class="header-wrap">
+    <h1>View or update your account</h1>
+    <div class="accountID">
+      <h3>Welcome, {{userInfo.firstName}}</h3>
+      <h5 id="account-number" data-accountemail="{{userInfo.email}}">Account email: {{userInfo.email}}</h5>
+    </div>
+    <h3 id="update-err-msg"></h3>
+  </header>
+
+  <form id="account-form">
+    <div class="form-row">
+      <div class="form-group col m6">
+        <label for="inputFirst">First Name</label>
+        <input type="text" class="form-control" id="inputFirst" value="{{userInfo.first_name}}" placeholder="John">
+      </div>
+
+      <div class="form-group col m6">
+        <label for="inputLast">Last Name</label>
+        <input type="text" class="form-control" id="inputLast" value="{{userInfo.last_name}}" placeholder="Doe">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col m6">
+        <label for="inputPassword">Password</label>
+        <input type="password" class="form-control" id="inputPassword" value="{{userInfo.accountKey}}">
+      </div>
+    </div>
+
+    <div>
+      <button type="submit" id="update-account" class="btn btn-primary">UPDATE</button>
+      <button type="submit" id="delete-account" class="btn btn-primary">DELETE</button>
+      <button type="submit" id="view-account" class="btn btn-primary">REFRESH</button>
+    </div>
+
+  </form>
+  <div class="modal" id="delete-account-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Re-Enter Credentials to delete account</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <h3 id="err-msg"></h3>
+          <form>
+            <div class="form-group">
+              <label for="inputAccount">Account#</label>
+              <input type="text" class="form-control" id="account_id">
+            </div>
+            <div class="form-group">
+              <label for="inputAccount">Password#</label>
+              <input type="password" class="form-control" id="account_password">
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button id="confirm-delete" type="button" class="btn btn-primary">Confirm Delete</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Nah I'll stay</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
