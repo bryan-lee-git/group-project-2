@@ -1,48 +1,34 @@
-<header></header>
-
 <main>  
-  <div class="container">
-    
-    {{!-- welcoming header --}}
-    <div class="row center-align">
-      <div class="col s12">
-        <h1>Welcome to the Road to Rome</h1>
-      </div>
-    </div>
-    
-    {{!-- Hook to draw in players --}}
-    <div class="row center-align">
-      <div class="col s12">
-        <h3>Do you have what it takes to defeat the Empire's greatest champions?</h3>
-      </div>
-    </div>
-    </br>
-    </br>
-    {{!-- A little lore to kind of spice up the landing page --}}
+  <div class="container center-align">
+
     <div class="row">
-      <div class="col s12 center-align">
-        <h5>The Year is 117 AD and the Empire is at its peak size. In order to celebrate his latest conquest the Emperor has announced gladitorial
-          games across the Empire. One aspiring hero dreams of fame, glory and freedom. It is time now to grab your weapons, don your armour and 
-          hone your skills. Welcome to the Road to Rome. Hail, Emperor, those who are about to die salute you.
-        </h5>
+      <h1 id="landing-title" class="col s12 page-title">ROAD TO ROME</h1>
+    </div>
+
+    <div class="rounded-content-box">
+
+      <div class="row">
+        <h5 id="landing-subheader" class="col s12">Do you have what it takes to defeat the Empire's greatest champions?</h5>
+        <div class="col s12">
+          <p>
+            The time is Third Century A.D. and the Roman Empire is at its greatest extent. To celebrate his latest conquest, the Emperor Trajan has announced the most glorious gladitorial games to date set to take place over more than 100 days. Aspiring heroes dream of riches, fame, glory and freedom. Sharpen your weapons, don your armor and hone your skills. Hail, Emperor! Those about to die salute you. Welcome to the Road to Rome.
+          </p>
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        {{#if isloggedin}}
+          <a href="/account/views"><button class="btn btn-large">Your Account</button></a>
+          <a href="/character"><button id="search-item" class="btn btn-large">Create A Character</button></a>
+          <a href="/ludus-magnus"><button id="post-item" class="btn btn-large">Ludus Magnus</button></a>
+          <a href="/marketplace"><button id="post-item" class="btn btn-large">óplo Forum</button></a>
+          <a href="/logout"><button type="btn" class="btn btn-large">Save + Exit</button></a>
+        {{else}}
+          <button class="btn btn-large modal-trigger" href="#account-info">SIGN-IN</button>
+          <button id="sign-up" class="btn btn-large">SIGN-UP</button>
+        {{/if}}
       </div>
     </div>
   </div>
-  <br><br>
-
-  <div class="row">
-      {{#if isloggedin}}
-          <button id="search-item" class="btn">Search For Item</button>
-          <button id="post-item" class="btn">Post an Item</button>
-          <a href="/logout"> <button type="btn" class="btn">Logout</button></a>
-      {{else}}
-          <button class="btn col s2 offset-s3 modal-trigger" href="#account-info">Sign In!</button>
-          <button id="sign-up" class="col s2 offset-s2 btn">Sign Up!</button>
-      {{/if}}
-  </div>
-
-  {{> Modal/signin-block}}
 </main>
-
-{{!-- maybe well want a similar footer to the arena --}}
-<footer></footer> 

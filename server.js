@@ -37,9 +37,9 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash());
 
 // Routes
+require("./routes/accountRoutes")(app, passport);
 require("./routes/apiRoutes")(app, passport);
 require("./routes/htmlRoutes")(app, passport);
-require("./routes/accountRoutes")(app, passport);
 
 var syncOptions = { force: false };
 
