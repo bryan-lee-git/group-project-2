@@ -29,7 +29,7 @@
     </br>
     {{!-- A little lore to kind of spice up the landing page --}}
     <div class="row">
-      <div class="col s6 offset-s3 center-align">
+      <div class="col s12 center-align">
         <h5>The Year is 117 AD and the Empire is at its peak size. In order to celebrate his latest conquest the Emperor has announced gladitorial
           games across the Empire. One aspiring hero dreams of fame, glory and freedom. It is time now to grab your weapons, don your armour and 
           hone your skills. Welcome to the Road to Rome. Hail, Emperor, those who are about to die salute you.
@@ -37,23 +37,23 @@
       </div>
     </div>
   </div>
+
+  <div id="main-container" class="container center-align">
+      <div>
+          {{#if isloggedin}}
+              <button id="search-item" class="btn">Search For Item</button>
+              <button id="post-item" class="btn">Post an Item</button>
+              <a href="/logout"> <button type="btn" class="btn">Logout</button></a>
+          {{else}}
+              <button class="btn modal-trigger" href="#account-info">Sign In!</button>
+              <button id="sign-up" class="btn">Sign Up!</button>
+          {{/if}}
+          
+      </div>
+  </div>
+
+  {{> Modal/signin-block}}
 </main>
-
-<div id="main-container" class="container center-align">
-    <div>
-        {{#if isloggedin}}
-            <button id="search-item" class="btn">Search For Item</button>
-            <button id="post-item" class="btn">Post an Item</button>
-            <a href="/logout"> <button type="btn" class="btn">Logout</button></a>
-        {{else}}
-            <button class="btn modal-trigger" href="#account-info">Sign In!</button>
-            <button id="sign-up" class="btn">Sign Up!</button>
-        {{/if}}
-        
-    </div>
-</div>
-
-{{> Modal/signin-block}}
 
 {{!-- maybe well want a similar footer to the arena --}}
 <footer></footer> 
