@@ -27,7 +27,7 @@ module.exports = function(app) {
 				id: null,
 				isloggedin: req.isAuthenticated()
 			}
-			res.redirect("/");
+			res.render("landing");
 		}
 	});
 
