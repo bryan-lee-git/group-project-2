@@ -1,44 +1,59 @@
-// dropdown trigger initialization
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.dropdown-trigger');
-  var instances = M.Dropdown.init(elems);
+$(".modal").modal();
+
+$("#sign-up").on("click", function(event) {
+  event.preventDefault();
+  window.location.href = "/signup";
 });
-// Floating Action Button initialization
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.fixed-action-btn');
-  var instances = M.FloatingActionButton.init(elems, {
-    direction: 'Right'
+
+$("#sign-in").on("click", function(event) {
+  event.preventDefault();
+  var user = {
+    email: $("#email").val(),
+    accountKey: $("#account_password").val()
+  };
+  $.post("/login", user, function(results) {
+    if (results) {
+      $(location).attr("href", "/accounts/view");
+    } else {
+      $("#account-info").modal("close");
+      alert("oops something went wrong, please try again!");
+    }
   });
 });
 
-$(document).ready(function () {
-  
-  
-  // carousel functionality (Swiper)
-  var swiper = new Swiper('.swiper-container', {
-      effect: 'coverflow',
-      grabCursor: true,
-      centeredSlides: true,
-      slidesPerView: 'auto',
-      coverflowEffect: {
-        rotate: 50,
-        stretch: 0,
-        depth: 100,
-        modifier: 1,
-        slideShadows : true,
-      },
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
-    });
+// dropdown trigger initialization
+document.addEventListener("DOMContentLoaded", function() {
+  var elems = document.querySelectorAll(".dropdown-trigger");
+  var instances = M.Dropdown.init(elems);
+});
+// Floating Action Button initialization
+document.addEventListener("DOMContentLoaded", function() {
+  var elems = document.querySelectorAll(".fixed-action-btn");
+  var instances = M.FloatingActionButton.init(elems, {
+    direction: "Right"
+  });
 });
 
-
-
-
-
-
+$(document).ready(function() {
+  // carousel functionality (Swiper)
+  var swiper = new Swiper(".swiper-container", {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    coverflowEffect: {
+      rotate: 50,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: true
+    },
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false
+    }
+  });
+});
 
 // Get references to page elements
 var $exampleText = $("#example-text");
@@ -46,7 +61,7 @@ var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
-// The API object contains methods for each kind of request we'll make
+// The API object contains methods for each kind of request we"ll make
 var API = {
   saveExample: function(example) {
     return $.ajax({
@@ -124,7 +139,7 @@ var handleFormSubmit = function(event) {
   $exampleDescription.val("");
 };
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
+// handleDeleteBtnClick is called when an example"s delete button is clicked
 // Remove the example from the db and refresh the list
 var handleDeleteBtnClick = function() {
   var idToDelete = $(this)
