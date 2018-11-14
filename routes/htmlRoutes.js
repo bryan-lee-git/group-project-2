@@ -22,14 +22,14 @@ module.exports = function(app) {
   });
 
   app.get("/character-create", function(req, res) {
-    db.Character.findAll({}).then(function(dbUser) {
-      res.render("character-create");
+    db.User.findAll({}).then(function(dbUser) {
+      res.render("character");
     });
   });
 
   app.get("/marketplace", function(req, res) {
     db.Market.findAll({}).then(function(dbMarkets) {
-      res.render("marketplace");
+      res.render("market");
     });
   });
 
