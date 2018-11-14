@@ -1,47 +1,246 @@
-// sticky footer
+// FONT IMPORTS -----------------------------------------------
+
+@import url("https://fonts.googleapis.com/css?family=Cinzel|Cinzel+Decorative|Oswald");
+
+// SASS VARIABLES -----------------------------------------------
+
+$fonts: (
+	decorative-main: "Cinzel Decorative",
+  decorative-secondary: "Cinzel",
+  regular: "Oswald"
+);
+
+$colors: (
+	primary: #b71c1c,
+	primary-light: lighten(#b71c1c, 10%),
+	primary-dark: darken(#b71c1c, 40%),
+	accent: #ff5252
+);
+
+$padding: 50px;
+$line-height: 1.5;
+$text-shadow: 2px 2px 2px white;
+$paragraph: 18px;
+$half: 50%;
+$full: 100%;
+$large-text: 900%;
+$medium-text: 550%;
+
+// SASS FUNCTIONS -----------------------------------------------
+
+@function font($font-name) {
+	@return map-get($fonts, $font-name);
+}
+
+@function color($color-name) {
+	@return map-get($colors, $color-name);
+}
+
+// SASS MIXINS -----------------------------------------------
+
+$large-desktop: 1550px;
+
+@mixin large-desktop {
+	@media (max-width: #{$large-desktop}) {
+		@content;
+	}
+}
+
+$reg-desktop: 1250px;
+
+@mixin reg-desktop {
+	@media (max-width: #{$reg-desktop}) {
+		@content;
+	}
+}
+
+$tab: 680px;
+
+@mixin tab {
+	@media (max-width: #{$tab}) {
+		@content;
+	}
+}
+
+$mobile: 450px;
+
+@mixin mobile {
+	@media (max-width: #{$mobile}) {
+		@content;
+	}
+}
+
+// GENERAL ELEMENT STYLES -----------------------------------------------
+
+p {
+  font-size: $paragraph;
+  font-family: font(regular);
+
+  @include mobile {
+    font-size: 15px;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: font(decorative-main);
+}
+
 body {
+  color: color(primary-dark);
+  font-weight: bolder;
+  line-height: $line-height;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  /* // changes Font here, not part of the req for sticky footer */
-  font-family: 'Merriweather', serif;
-}
-main {
-  flex: 1 0 auto;
-}
-
-// changes the stock location of the FAB
-.fixed-action-btn{
-  right: auto; 
-  margin-left: 3%; 
-}
-.fixed-action-btn{
-  position: absolute;
-  bottom: 10%;
-}
-
-//is what is used to get the back ground image to be translucent 
-body::after {
-  content: "";
-  background-image: url("../img/erics-images/ave.jpg");
-  opacity: 0.5;
+  font-family: font(regular);
+  background: url("../img/erics-images/roman-empire.png") no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;   
+  z-index: -1;  
 }
 
-// swiper css stuff
-.swiper-container {
+main {
+  flex: 1 0 auto;
+}
+
+// FORM STYLES -----------------------------------------------
+
+::-webkit-input-placeholder {
+  color: black;
+  opacity: 1.0 !important;
+}
+
+.input-field label {
+  color: #000 !important;
+}
+
+.input-field input:focus + label {
+  color: color(primary) !important;
+}
+
+.input-field input:focus {
+  border-bottom: 1px solid color(primary) !important;
+  box-shadow: 0 1px 0 0 color(primary) !important;
+}
+
+.input-field input.valid {
+  border-bottom: 1px solid color(primary) !important;
+  box-shadow: 0 1px 0 0 color(primary) !important;
+}
+
+.input-field input.invalid {
+  border-bottom: 1px solid color(primary) !important;
+  box-shadow: 0 1px 0 0 color(primary) !important;
+}
+
+.input-field .prefix.active {
+  color: color(primary) !important;
+}
+
+// NAV STYLES -----------------------------------------------
+
+nav {
+  background-color: color(primary);
+  font-family: font(decorative-secondary);
+}
+
+#nav-secondary {
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
   width: 100%;
-  padding-top: 50px;
-  padding-bottom: 50px;
+}
+
+#nav-equip {
+  max-height: 64px;
+}
+
+// SWIPER STYLES -----------------------------------------------
+
+.swiper-container {
+  width: $full;
+  padding-top: $padding;
+  padding-bottom: $padding;
 }
 .swiper-slide {
   background-position: center;
   background-size: cover;
   width: 300px;
   height: 300px;
+}
+
+// BUTTON STYLES -----------------------------------------------
+
+.btn {
+  background-color: color(primary);
+}
+
+.btn:hover {
+    background-color: color(primary-light);
+}
+
+// FIXED ACTION BUTTON STYLES -----------------------------------------------
+
+.fixed-action-btn{
+  right: auto; 
+  margin-left: 3%; 
+}
+
+.fixed-action-btn{
+  position: absolute;
+  bottom: 10%;
+}
+
+// ID STYLES -----------------------------------------------
+
+#landing-title {
+  font-size: $large-text;
+  text-shadow: $text-shadow;
+  font-family: font(decorative-main);
+
+  @include large-desktop {
+    font-size: 700%;
+  }
+  @include reg-desktop {
+    font-size: 500%;
+  }
+  @include tab {
+    font-size: 250%;
+  }
+}
+
+// CLASS STYLES -----------------------------------------------
+
+.page-title {
+  text-shadow: $text-shadow;
+  font-size: $medium-text;
+  font-family: font(decorative-main);
+
+  @include reg-desktop {
+    font-size: 400%;
+  }
+  @include tab {
+    font-size: 300%;
+  }
+  @include mobile {
+    font-size: 250%;
+  }
+}
+
+.rounded-content-box {
+  color: black;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.brand-logo {
+  margin-left: 10px;
 }

@@ -1,34 +1,82 @@
 {{!-- <span class="sr-only">(current)</span> --}}
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-  <!-- Brand/logo -->
-  <a class="navbar-brand" href="/">  Road To Rome</a>
-  
-  <!-- Links -->
-  <ul class="nav navbar-nav ml-auto">
-    <li class="nav-item">
-      <a class="nav-link" href="/search" data-search={{search}}>SEARCH </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/post-items/new" data-post={{post}}>POST</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/accounts/view" data-account={{account}}>ACCOUNT</a>
-    </li>
-    {{#if isloggedin}}
-      <li class="nav-item">
-        <a class="nav-link" href="/logout">LOGOUT</a>
-      </li>
-    {{else}}
-      <li class="nav-item">
-        <a class="nav-link" href="#" id="sign-in-modal">SIGNIN</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/signup" data-signup={{signup}}>SIGNUP</a>
-      </li>
-    {{/if}}
-  </ul>
+<nav class="navbar">
+  <div class="nav-wrapper">
+    <div class="container">
+      <!-- Brand/logo -->
+      <a class="brand-logo hide-on-med-and-down" href="/">Road To Rome</a>
+      
+      <!-- Links -->
+      <ul id="nav-mobile" class="right">
+        {{#if isloggedin}}
+        <li class="nav-item">
+          <a href="/marketplace"><i class="material-icons">shopping_cart</i></a>
+        </li>
+        <li class="nav-item">
+          <a id="nav-equip" href="/ludus-magnus"><img src="/img/erics-images/nav-equipment.png"></a>
+        </li>
+        <li class="nav-item">
+          <a href="/accounts/view"><i class="material-icons">person</i></a>
+        </li>
+        <li class="nav-item">
+          <a href="/instructions"><i class="material-icons">contact_support</i></a>
+        </li>
+        <li class="nav-item">
+          <a href="/"><i class="material-icons">home</i></a>
+        </li>
+        <li class="nav-item">
+          <a href="/logout" alt="logout"><i class="material-icons">exit_to_app</i></a>
+        </li>
+        {{else}}
+          <li class="nav-item">
+            <a class="modal-trigger" href="#account-info">SIGN-IN</a>
+          </li>
+          <li class="nav-item">
+            <a href="/signup">SIGN-UP</a>
+          </li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
 </nav>
 
+<nav id="nav-secondary" class="navbar hide-on-med-and-down">
+  <div class="nav-wrapper">
+    <div class="container">
+      <a class="footer-copyright" href="/">Panda Warriors Dev Group © 2018</a>
+      
+      <!-- Links -->
+      <ul class="right">
+        {{#if isloggedin}}
+        <li class="nav-item">
+          <a href="/marketplace"><i class="material-icons">shopping_cart</i></a>
+        </li>
+        <li class="nav-item">
+          <a id="nav-equip" href="/ludus-magnus"><img src="/img/erics-images/nav-equipment.png"></a>
+        </li>
+        <li class="nav-item">
+          <a href="/accounts/view"><i class="material-icons">person</i></a>
+        </li>
+        <li class="nav-item">
+          <a href="/instructions"><i class="material-icons">contact_support</i></a>
+        </li>
+        <li class="nav-item">
+          <a href="/"><i class="material-icons">home</i></a>
+        </li>
+        <li class="nav-item">
+          <a href="/logout" alt="logout"><i class="material-icons">exit_to_app</i></a>
+        </li>
+        {{else}}
+          <li class="nav-item">
+            <a class="modal-trigger" href="#account-info">SIGN-IN</a>
+          </li>
+          <li class="nav-item">
+            <a href="/signup">SIGN-UP</a>
+          </li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+</nav>
 
 {{> Modal/signin-block}}

@@ -1,121 +1,74 @@
-<!-- {{!-- header --}} -->
-<header></header>
-
-
 <main>
-  {{!-- implementation of the nav bar --}}
-  <div class="nav-div">
-    <nav>
-      <div class="container">
-        <div class="row">
-          <div class="col s12">
-            <div class="nav-wrapper">
-              <ul id="nav-mobile" class="right">
-                <li><a title = "Portfolio" id="portfolio-nav-link"  href="portfolio.html"><i class="material-icons">photo_library</i></a></li>
-                <li><a title = "Contact" id="contact-nav-link"  href="contact.html"><i class="material-icons">phonelink_ring</i></a></li>
-                <li><a title = "About" id="about-nav-link"  href="about.html"><i class="material-icons">person</i></a></li>
-              </ul>
-            </div>
-          </div>    
-        </div>
-      </div>            
-    </nav>
-  </div>
 
-     {{!-- marketplace title --}}
+  {{!-- marketplace title --}}
   <div class="container">
     <div class="row center-align">
-      <div class="col s12">
-        <h1>Marketplace</h1>
-      </div>
+      <h1 class="page-title col s12">óPLO FORUM</h1>
     </div>
-    
+
     {{!-- displays players currency --}}
     <div class="row center-align">
       <div class="col-s6 offset-3">
         <h3>Lira: <span id="lira-display">$$$$</span></h3>
       </div>
     </div>
- 
+
     <div class="row">
       <div class="col s6">
-          <ul class="collapsible">
-            <li>
-              <div class="collapsible-header"><i class="material-icons">filter_drama</i>Heavy Weapons</div>
-              <div class="collapsible-body">
-                <table id="heavy-weapon-table">
-                  <thead>
+        <ul class="collapsible">
+          <li>
+            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Heavy Weapons</div>
+            <div class="collapsible-body">
+              <table id="heavy-weapon-table">
+                <thead>
+                  <th>Weapon</th>
+                  <th>Damage</th>
+                  <th>Price</th>
+                </thead>
+
+              </table>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">place</i>Light Weapons</div>
+            <div class="collapsible-body">
+              <table id="opponent-table">
+                <thead>
+                  <tr>
                     <th>Weapon</th>
                     <th>Damage</th>
                     <th>Price</th>
-                  </thead>
+                  </tr>
+                </thead>
 
-                </table>
-              </div>
-            </li>
-            <li>
-              <div class="collapsible-header"><i class="material-icons">place</i>Light Weapons</div>
-              <div class="collapsible-body">
-                  <table id="opponent-table">
-                      <thead>
-                        <tr>
-                          <th>Weapon</th>
-                          <th>Damage</th>
-                          <th>Price</th>
-                        </tr>
-                      </thead>
-              
-                     
-                    </table>
-              </div>
-            </li>
-            <li>
-              <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-            </li>
-          </ul>
+
+              </table>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+          </li>
+        </ul>
       </div>
 
       <div class="col s6">
-          <ul class="collapsible">
-            <li>
-              <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-            </li>
-            <li>
-              <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-            </li>
-            <li>
-              <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-            </li>
-          </ul>
+        <ul class="collapsible">
+          <li>
+            <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+          </li>
+        </ul>
       </div>
     </div>
 
   </div>
 </main>
-   
-    <!-- {{!-- sticky footer --}} -->
-<footer class="page-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col s12">
-        <h5 class="white-text">Road to Roam</h5>
-        <p class="grey-text text-lighten-4">Panda Warriors Development Group</p>
-      </div>
-    </div>
-  </div>
-  <div class="footer-copyright">
-    <div class="container">
-    © 2018 Copyright Text
-    <a class="grey-text text-lighten-4 right" href="#!">Home</a>
-    </div>
-  </div>
-</footer>
-
-<!-- {{!-- script cdns and files --}} -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="script-test-bed.js"></script>
