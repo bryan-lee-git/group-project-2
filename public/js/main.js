@@ -21,18 +21,15 @@ $("#sign-in").on("click", function(event) {
   });
 });
 
-// dropdown trigger initialization
-document.addEventListener("DOMContentLoaded", function() {
-  var elems = document.querySelectorAll(".dropdown-trigger");
-  var instances = M.Dropdown.init(elems);
+// collapsable initialization
+$(document).ready(function(){
+  $('.collapsible').collapsible();
 });
 // Floating Action Button initialization
-document.addEventListener("DOMContentLoaded", function() {
-  var elems = document.querySelectorAll(".fixed-action-btn");
-  var instances = M.FloatingActionButton.init(elems, {
-    direction: "Right"
-  });
+$(document).ready(function(){
+  $('.fixed-action-btn').floatingActionButton();
 });
+
 
 $(document).ready(function() {
   // carousel functionality (Swiper)
