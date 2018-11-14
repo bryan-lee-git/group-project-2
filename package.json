@@ -35,5 +35,17 @@
     "eslint-plugin-prettier": "^2.6.2",
     "mocha": "^5.2.0",
     "prettier": "^1.13.7"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bryan-lee-git/group-project-2.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/bryan-lee-git/group-project-2/issues"
+  },
+  "homepage": "https://github.com/bryan-lee-git/group-project-2#readme"
 }
