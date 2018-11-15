@@ -46,6 +46,7 @@ db.Armor = require("./Armor")(sequelize, Sequelize);
 db.Battle = require("./Battles")(sequelize, Sequelize);
 db.Markets = require("./Markets")(sequelize, Sequelize);
 db.Arenas = require("./Arenas")(sequelize, Sequelize);
+db.Accounts = require("./Account")(sequelize, Sequelize);
 
 db.User.hasMany(db.Weapons);
 db.User.hasMany(db.Armor);
@@ -59,5 +60,9 @@ db.Markets.hasOne(db.Weapons);
 db.Markets.hasOne(db.Armor);
 
 db.Arenas.hasMany(db.Battle);
+db.Arenas.hasMany(db.NPC);
+db.Arenas.hasOne(db.Markets);
+
+db.Accounts.hasMany(db.User);
 
 module.exports = db;

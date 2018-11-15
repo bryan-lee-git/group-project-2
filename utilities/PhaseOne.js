@@ -1,4 +1,4 @@
-export default function phaseOne(Arena, playerOne, PlayerTwo) {
+module.exports = function phaseOne(Arena, playerOne, PlayerTwo) {
   // This function takes objects as parameters. These objects will have been constructed using data from the appropriate tables of the database. We need the route to the Combat page to come from whatever page on which the player preps for battle. On the prep page, the player chooses armor and weapons and assigns them to primary and secondary. We can then pass the constructed player to the combat page in the req.body. When arriving at the combat page, we pull the two players out by assigning them to variable and then pass those variables into the Combat function,
   //
   //  The player object properties are a bit different from the table columns in the database.
@@ -66,4 +66,4 @@ export default function phaseOne(Arena, playerOne, PlayerTwo) {
   // 4. Call setStamina for each player and place return value in the appropriate place.
   // 5. Call setSpeed for each player and place value in the appropriate place.
   // 6. Once everything is set up, display button for human players to agree to start combat rounds. Acceptance allows the Combat function to continue.
-}
+};

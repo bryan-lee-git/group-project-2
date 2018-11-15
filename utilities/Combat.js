@@ -1,9 +1,9 @@
-import { phaseOne } from "./PhaseOne";
-import { phaseTwo } from "./PhaseTwo";
-import { phaseThree } from "./PhaseThree";
-import { phaseFour } from "./PhaseFour";
-import { phaseFive } from "./PhaseFive";
-import { phaseSix } from "./PhaseSix";
+var phaseOne = require("./PhaseOne");
+var phaseTwo = require("./PhaseTwo");
+var phaseThree = require("./PhaseThree");
+var phaseFour = require("./PhaseFour");
+var phaseFive = require("./PhaseFive");
+var phaseSix = require("./PhaseSix");
 
 module.exports = combat = (Arena, playerOne, playerTwo) => {
   var battleResults = {

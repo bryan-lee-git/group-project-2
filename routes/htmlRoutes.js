@@ -33,6 +33,17 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/ludus-magnus", function(req, res) {
+    db.Weapons.findAll({}).then(results => {
+      //console.log(`here's the results: `, results);
+      var hbsObject = {
+        weapons: results
+      };
+      console.log("Here's the hbsObject datavalues", hbsObject.weapons[0].name);
+      res.render("ludus-magnus", hbsObject);
+    });
+  });
+
   app.get("/training", function(req, res) {
     db.Training.findAll({}).then(function(dbTraining) {
       res.render("training");
@@ -42,6 +53,19 @@ module.exports = function(app) {
   app.get("/arenas", function(req, res) {
     db.Arenas.findAll({}).then(function(dbArenas) {
       res.render("character-create");
+    });
+  });
+
+  app.get("/arenas/:id", (req, res) => {
+    db.User.findAll({
+      where: {
+        id: req.params.id
+      }
+    }).then(results => {
+      var hbsObject = {
+        user: results
+      };
+      res.render("arena", hbsObject);
     });
   });
 

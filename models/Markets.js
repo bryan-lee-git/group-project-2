@@ -29,6 +29,9 @@ module.exports = function(sequelize, DataTypes) {
     bonus: {
       type: DataTypes.INTEGER
     },
+    weight: {
+      type: DataTypes.INTEGER
+    },
     purchased: {
       type: DataTypes.BOOLEAN,
       defaultValue: false

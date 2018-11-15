@@ -45,8 +45,20 @@ module.exports = function(app) {
   });
 
   // Create a new NPC
+  // Post route takes a Player object. Must parse out only the datato be saved to the NPC table: name, image, male, strength, speed, stamina, skill.
   app.post("/api/npcs", (req, res) => {
-    db.User.create(req.body).then(results => {
+    db.User.create({
+      name: req.body.name,
+      image: req.body.image,
+      male: req.body.male,
+      strength: req.body.strength,
+      speed: req.body.speed,
+      stamina: req.body.stamina,
+      skill: req.body.skill
+    }).then(results => {
+      console.log(
+        `${results.name} added to the NPC table on row ${results.id}.`
+      );
       res.json(results);
     });
   });

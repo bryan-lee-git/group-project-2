@@ -1,4 +1,4 @@
-export default function phaseFive(playerOne, playerTwo) {
+module.exports = function phaseFive(playerOne, playerTwo) {
   //
   //  Resolve Attacks
   //
