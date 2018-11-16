@@ -1,9 +1,11 @@
 // how many begining skill points the user gets
 var globalStatPoints = 5;
 // begining location of the slider, set globally and will be changed
-var speedLocation = 0;
-var strengthLocation = 0;
-var staminaLocation = 0;
+var speedLocation = 3;
+var strengthLocation = 12;
+var staminaLocation = 12;
+// used to ensure that the user has selected an avatar
+var avatarSelect = false;
 
 // displays stat point alotment
 $("#skill-points-display").html(globalStatPoints);
@@ -19,7 +21,7 @@ $("#create-speed-slide").change(function() {
   if (globalStatPoints > 0 || speedDiff > 0) {
     // finds the difference between the users points left and how much the slide was moved...
     // ...assigns that a variable
-    var checker = globalStatPoints + speedDiff;
+    let checker = globalStatPoints + speedDiff;
     // another if statement that checks to see if the user has enough points to complete their action
     if (checker >= 0) {
       // if they have pionts it updates the global skill points to the difference between the old skill points...
@@ -42,8 +44,10 @@ $("#create-speed-slide").change(function() {
     // should the user try to move the slide negative with 0 points returns it to its last value
     $("#create-speed-slide").val(speedLocation);
   }
+  // runs a validation check
+  validation();
 });
-
+// strength slider functions the same as speed slider
 $("#create-strength-slide").change(function() {
   var newStrengthLocation = $("#create-strength-slide").val();
   var strengthDiff = strengthLocation - newStrengthLocation;  
@@ -69,10 +73,12 @@ $("#create-strength-slide").change(function() {
     
     $("#create-strength-slide").val(strengthLocation);
   }
+  validation();
 });
 
+// stamina slider funtions the same as the other sliders
 $("#create-stamina-slide").change(function() {
-  var newStaminaLocation = $("#create-strength-slide").val();
+  var newStaminaLocation = $("#create-stamina-slide").val();
   var staminaDiff = staminaLocation - newStaminaLocation;  
   
   if(globalStatPoints > 0 || staminaDiff > 0) {
@@ -82,7 +88,7 @@ $("#create-stamina-slide").change(function() {
     if(checker >= 0) {
      
       globalStatPoints = checker;
-      staminaLocation = newSttaminaocation;
+      staminaLocation = newStaminaLocation;
       $("#skill-points-display").html(globalStatPoints);
       
     } else if (checker < 0) {
@@ -96,12 +102,38 @@ $("#create-stamina-slide").change(function() {
     
     $("#create-stamina-slide").val(staminaLocation);
   }
+  validation();
 });
 
 // how the user gets the avatar they want, pushes that image down to the selected-avatar-img
 $(".swiper-slide").on("click", function(event) {
   event.preventDefault();
-
+  
   var slideSource = $(this).children("img").attr("src");
   $("#selected-avatar-img").attr("src", slideSource);
+  // sets the avatarSelect to true and runs validaton
+  avatarSelect = true;
+  validation();
 });
+
+// listens for a click on the create character button but the button is disabled until the...
+// ... validation conditions are met
+$("#create-button").on("click", function(event) {
+  event.preventDefault();
+// creates a new character object and grabs its info from the form the user filled out
+  var newCharcter = {
+    gender : $("#gender-form").val(),
+    strength :  $("#create-strength-slide").val(),
+    speed : $("#create-speed-slide").val(),
+    stamina : $("#create-stamina-slider").val(),
+    skill : 1,
+    img : $("#selected-avatar-img").attr("src"),
+  }
+});
+
+// runs a validaton check to make sure the entire form has been filled out before the user can submit
+function validation () {
+  if (globalStatPoints === 0 && avatarSelect) {
+    $("#create-button").removeClass("disabled");
+  }
+};
