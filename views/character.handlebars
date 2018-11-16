@@ -116,8 +116,22 @@
     <div class="row">
       <div class="col s3">
         <img src="" class="responsive-img" id="selected-avatar-img">
+        <form action="#" id="gender-form">
+          <p>
+            <label>
+              <input name="gender" type="radio" checked/>
+              <span>Male</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="gender" type="radio" />
+              <span>Female</span>
+            </label>
+          </p>
+        </form>
       </div>
-
+      {{!-- where the user can choose the stats of their character --}}
       <div class="col s6 center-align">
         <h4>Skill Points to Spend</h4>
         <br>
@@ -126,17 +140,21 @@
         <form action="#">
           <h5>Speed</h5>
           <p class="range-field">
-            <input type="range" id="create-speed-slide" min="0" max="5" value="0"/>
+            <input type="range" id="create-speed-slide" min="3" max="10" value="0"/>
           </p>
           <h5>Strength</h5>
           <p class="range-field">
-            <input type="range" id="create-strength-slide" min="0" max="5" value="0"/>
+            <input type="range" id="create-strength-slide" min="12" max="20" value="0"/>
           </p>
           <h5>Stamina</h5>
           <p class="range-field">
-            <input type="range" id="create-stamina-slide" min="0" max="5" value="0"/>
+            <input type="range" id="create-stamina-slide" min="12" max="20" value="0"/>
           </p>
         </form>
+      </div>
+      {{!-- creates a submit button that is disabled until the requisit portions of the form are complete --}}
+      <div class="col s3">
+        <a class="btn-floating btn-large waves-effect waves-light red disabled" id="create-button"><i class="material-icons">add</i></a>
       </div>
     </div>
   </div>
