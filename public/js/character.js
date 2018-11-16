@@ -122,13 +122,23 @@ $("#create-button").on("click", function(event) {
   event.preventDefault();
 // creates a new character object and grabs its info from the form the user filled out
   var newCharcter = {
-    gender : $("#gender-form").val(),
-    strength :  $("#create-strength-slide").val(),
-    speed : $("#create-speed-slide").val(),
-    stamina : $("#create-stamina-slider").val(),
-    skill : 1,
-    img : $("#selected-avatar-img").attr("src"),
-  }
+    name: "username", 
+    gender: $("input[name='gender']:checked").val(),
+    strength:  $("#create-strength-slide").val(),
+    speed: $("#create-speed-slide").val(),
+    stamina: $("#create-stamina-slide").val(),
+    // gives a default skill and wallet to 1 and 500 respectively
+    skill: 1,
+    wallet: 500,
+    image: $("#selected-avatar-img").attr("src"),
+  };
+  // ajax POST requests passes the newCharacter object as data
+  $.ajax({
+    method: "POST",
+    url: "/api/users",
+    data: newCharcter
+  });
+  console.log(newCharcter);
 });
 
 // runs a validaton check to make sure the entire form has been filled out before the user can submit

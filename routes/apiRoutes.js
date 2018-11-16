@@ -21,11 +21,12 @@ module.exports = function(app) {
     db.User.create({
       name: req.body.name,
       image: req.body.image,
-      male: req.body.male,
+      male: req.body.gender,
       strength: req.body.strength,
       speed: req.body.speed,
       stamina: req.body.stamina,
       skill: req.body.skill,
+      wallet: req.body.wallet,
       AccountUuid: req.body.accountuuid
     }).then(results => {
       res.json(results);
@@ -323,3 +324,4 @@ module.exports = function(app) {
     });
   });
 };
+

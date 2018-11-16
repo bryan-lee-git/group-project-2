@@ -17,8 +17,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     image: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        isUrl: true
+        len: [1, 60]
       }
     },
     male: {
