@@ -180,10 +180,14 @@ nav {
   padding: 30px;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 80px;
 }
 
 .brand-logo {
   margin-left: 10px;
+}
+
+.ludus-btn {
+  height: 250px;
 }
 /*# sourceMappingURL=input.css.map */
