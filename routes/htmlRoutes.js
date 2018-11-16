@@ -92,21 +92,24 @@ module.exports = function(app) {
     }
   });
   // arena/battle page
-  app.get("/arenas", function(req, res) {
+  app.get("/arena", function(req, res) {
     if (req.isAuthenticated()) {
       db.Accounts.findOne({
         where: { uuid: req.session.passport.user }
       }).then(function(dbUser) {
         db.User.findAll({
-          where: { id: req.params.id }
-        }).then(results => {
-          var user = {
-            user: results,
-            userInfo: dbUser.dataValues,
-            id: req.session.passport.user,
-            isloggedin: req.isAuthenticated()
-          };
-          res.render("arena", user);
+          where: { name: "Bobby" }
+        }).then(dbChar => {
+          db.NPC.findAll({where: {id: 2}}).then(dbNPC => {
+            var battle = {
+              user: dbChar[0].dataValues,
+              npc: dbNPC[0].dataValues,
+              userInfo: dbUser.dataValues,
+              id: req.session.passport.user,
+              isloggedin: req.isAuthenticated()
+            };
+            res.render("arena", battle);
+          });
         });
       });
     } else {

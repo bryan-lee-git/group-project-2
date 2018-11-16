@@ -2,10 +2,10 @@ var db = require("../models");
 var buildMarketClasses = require("./buildMarketGearClasses");
 var prepNPCForBattle = require("./prepNPCForBattle");
 
-module.exports = function equipNPC(id) {
+// module.exports = function equipNPC(id) {
   db.NPC.findAll({
     where: {
-      ArenaId: id
+      ArenaId: 3
     }
   }).then(npcResults => {
     var characters = JSON.parse(JSON.stringify(npcResults));
@@ -25,4 +25,4 @@ module.exports = function equipNPC(id) {
       });
     });
   });
-};
+// };
