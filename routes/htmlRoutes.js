@@ -62,6 +62,7 @@ module.exports = function(app) {
             isloggedin: req.isAuthenticated()
           };
           res.render("ludus-magnus", user);
+        });
       });
     } else {
       res.redirect("/");
@@ -106,6 +107,7 @@ module.exports = function(app) {
             isloggedin: req.isAuthenticated()
           };
           res.render("arena", user);
+        });
       });
     } else {
       res.redirect("/");
