@@ -93,21 +93,6 @@
       {{!-- Training collapsable --}}
       <div class="col s6">
           <ul class="collapsible">
-            {{!-- strenght training collapsable --}}
-            <li>
-              <div class="collapsible-header">Strength</div>
-                <div class="collapsible-body">
-                  <div class="row center-align">
-                    <div class="col s6 offset-s3">
-                      <form action="#">
-                        <h5>Strength</h5>
-                        <p class="range-field" id="strength-range-market">
-                        <input type="range" id="test5" min="0" max="100" />
-                      </form>
-                    </div>
-                  </div>
-                </div>
-            </li>
             {{!-- speed training collapsable --}}
             <li>
               <div class="collapsible-header">Speed</div>
@@ -117,7 +102,22 @@
                       <form action="#">
                         <h5>Speed</h5>
                         <p class="range-field" id="speed-range-market">
-                        <input type="range" id="test5" min="0" max="100" />
+                        <input type="range" id="market-speed-slide" min="0" max="10" value=""/>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+            </li>
+            {{!-- strenght training collapsable --}}
+            <li>
+              <div class="collapsible-header">Strength</div>
+                <div class="collapsible-body">
+                  <div class="row center-align">
+                    <div class="col s6 offset-s3">
+                      <form action="#">
+                        <h5>Strength</h5>
+                        <p class="range-field" id="strength-range-market">
+                        <input type="range" id="market-strenght-slide" min="0" max="20" value=""/>
                       </form>
                     </div>
                   </div>
@@ -132,7 +132,7 @@
                       <form action="#">
                         <h5>Stamina</h5>
                         <p class="range-field" id="stamina-range-market">
-                        <input type="range" id="test5" min="0" max="100" />
+                        <input type="range" id="market-stamina-slide" min="0" max="20" value=""/>
                       </form>
                     </div>
                   </div>
