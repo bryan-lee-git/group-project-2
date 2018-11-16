@@ -13,9 +13,16 @@ module.exports = function(sequelize, DataTypes) {
     },
     image: {
       type: DataTypes.STRING,
-      validaqte: {
+      validate: {
         isUrl: true
       }
+    },
+    frequency: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    quantity: {
+      type: DataTypes.INTEGER
     }
   });
   return Arena;

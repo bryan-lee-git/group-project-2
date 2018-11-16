@@ -12,8 +12,19 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1, 30]
+        len: [1, 60]
       }
+    },
+    image: {
+      type: DataTypes.STRING,
+      validate: {
+        isUrl: true
+      }
+    },
+    male: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
     },
     wallet: {
       type: DataTypes.INTEGER,
@@ -44,7 +55,10 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     skill: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      validate: {
+        min: 1
+      }
     }
   });
   return User;

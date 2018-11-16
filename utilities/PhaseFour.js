@@ -1,4 +1,4 @@
-export default function phaseFour(playerOne, playerTwo) {
+module.exports = function phaseFour(playerOne, playerTwo) {
   // Need a dropdown or other input on the page for both Attack and Defense. The initial number of items = this.setSpeed().
   // Players can see their own speed displayed either just on the input or ideally also in a div or span whose content changes based on making selections.
   //

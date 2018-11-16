@@ -13,9 +13,15 @@ module.exports = function(sequelize, DataTypes) {
         len: [1, 30]
       }
     },
+    playerOne: {
+      type: DataTypes.INTEGER
+    },
+    playerTwo: {
+      type: DataTypes.INTEGER
+    },
 
     victor: {
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     }
   });
   return Battle;

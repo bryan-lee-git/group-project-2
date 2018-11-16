@@ -15,6 +15,14 @@ module.exports = function(sequelize, DataTypes) {
         len: [1, 30]
       }
     },
+    image: {
+      type: DataTypes.STRING
+    },
+    male: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    },
     strength: {
       type: DataTypes.INTEGER,
       allNull: false,
@@ -40,7 +48,10 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     skill: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      validate: {
+        min: 1
+      }
     }
   });
   return NPC;

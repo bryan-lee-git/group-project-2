@@ -1,4 +1,4 @@
-export default function phaseSix(playerOne, playerTwo) {
+module.exports = function phaseSix(playerOne, playerTwo) {
   // Fatigue
   //
   // foreach player ...
