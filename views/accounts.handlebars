@@ -1,30 +1,32 @@
-{{> Navigation/nav-block search=false post=false account=false signup=true}}
-
 <div class="center-align container">
   <header>
-    <h1>Create Your Account</h1>
+    <h1 class="page-title">New Account</h1>
     <h3 id="create-err-msg"></h3>
   </header>
 
   <h3 id="err-msg"></h3>
 
-  <form id="create-form">
+  <form id="create-form" class="rounded-content-box">
     <div class="row">
-      <div class="form-group col m6">
-        <input type="text" class="form-control" id="firstName" placeholder="First Name">
+      <div class="input-field col s12 m6">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName">
       </div>
 
-      <div class="form-group col m6">
-        <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+      <div class="input-field col s12 m6">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName">
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group col m6">
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+      <div class="input-field col s12 m6">
+        <label for="inputEmail">Email</label>
+        <input type="email" id="inputEmail">
       </div>
-      <div class="form-group col m6">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+      <div class="input-field col s12 m6">
+        <label for="inputPassword">Password</label>
+        <input type="password" id="inputPassword">
       </div>
     </div>
 
@@ -32,6 +34,6 @@
       <h2 id="message"></h2>
     </div>
 
-    <button type="submit" id="add-account" class="btn btn-primary">Submit</button>
+    <button type="submit" id="add-account" class="btn btn-primary">Create Account</button>
   </form>
 </div>

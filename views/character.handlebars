@@ -1,205 +1,161 @@
-<!-- {{!-- header --}} -->
-<header></header>
-
-
 <main>
 
-  {{!-- implementation of the nav bar --}}
-  <div class="nav-div">
-    <nav>
-      <div class="container">
-        <div class="row">
-          <div class="col s12">
-            <div class="nav-wrapper">
-              <ul id="nav-mobile" class="right">
-                <li><a title = "Portfolio" id="portfolio-nav-link"  href="portfolio.html"><i class="material-icons">photo_library</i></a></li>
-                <li><a title = "Contact" id="contact-nav-link"  href="contact.html"><i class="material-icons">phonelink_ring</i></a></li>
-                <li><a title = "About" id="about-nav-link"  href="about.html"><i class="material-icons">person</i></a></li>
-              </ul>
-            </div>
-          </div>    
-        </div>
-      </div>            
-    </nav>
-  </div>
-    
   {{!-- Title of the create page --}}
   <div class="container">
     <div class="row center-align">
       <div class="col s12">
-        <h1>Create a New Gladiator</h1>
+        <h1 class="page-title">CREATE A GLADIATOR</h1>
       </div>
     </div>
   </div>
 
-{{!-- the carousel where the user can choose thier hero --}}
-    <div class="swiper-container">
+  {{!-- the carousel where the user can choose thier hero --}}
+  <div class="swiper-container">
     <div class="swiper-wrapper">
         <!-- Slide 1 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-            <img class="responsive-img" src="../public/img/game-character-images/Sparticus.svg" alt="Sparticus">
-            <p class="swiper-character-title center-align">Sparticus</p>
+        <div class="swiper-slide" id="sparticus-avatar">
+            <img class="responsive-img" src="/img/game-character-images/Sparticus.svg" alt="Sparticus">            
         </div>
        <!-- Slide 2 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-            <img class="responsive-img" src="../public/img/game-character-images/Miyamoto.png" alt="Miyamoto">
-            <p class="swiper-character-title center-align">Miyamoto</p>
+        <div class="swiper-slide" id="miyamoto-avatar"><a href="#"target = "blank">
+            <img class="responsive-img" src="/img/game-character-images/Miyamoto.png" alt="Miyamoto">
         </div>
         <!-- Slide 3 -->
-         <div class="swiper-slide"><a href="#"target = "blank">
-            <img class="responsive-img" src="../public/img/game-character-images/Hittori.jpg" alt="Hittori">
-            <p class="swiper-character-title center-align">Hittori</p>
+         <div class="swiper-slide" id="hittori-avatar"><a href="#"target = "blank">
+            <img class="responsive-img" src="/img/game-character-images/Hittori.jpg" alt="Hittori">
         </div>
         <!-- Slide 4 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-            <img class="responsive-img" src="../public/img/game-character-images/Matilda.svg" alt="Matilda">
-            <p class="swiper-character-title center-align">Matilda</p>
+        <div class="swiper-slide" id="matilda-avatar"><a href="#"target = "blank">
+            <img class="responsive-img" src="/img/game-character-images/Matilda.svg" alt="Matilda">
         </div>
         <!-- Slide 5 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-            <img class="responsive-img" src="../public/img/game-character-images/Caterina.svg" alt="Caterina">
-            <p class="swiper-character-title center-align">Caterina</p>
+        <div class="swiper-slide" id="caterina-avatar"><a href="#"target = "blank">
+            <img class="responsive-img" src="/img/game-character-images/Caterina.svg" alt="Caterina">
         </div>
         <!-- Slide 6 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-            <img class="responsive-img" src="../public/img/game-character-images/Hachette.svg" alt="Hachette">
-            <p class="swiper-character-title center-align">Hachette</p>
+        <div class="swiper-slide" id="hachette-avatar"><a href="#"target = "blank">
+            <img class="responsive-img" src="/img/game-character-images/Hachette.svg" alt="Hachette">
         </div>
         <!-- Slide 7 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-            <img class="responsive-img" src="../public/img/game-character-images/Crixus.svg" alt="Crixus">
-            <p class="swiper-character-title center-align">Crixus</p>
+        <div class="swiper-slide" id="crixus-avatar"><a href="#"target = "blank">
+            <img class="responsive-img" src="/img/game-character-images/Crixus.svg" alt="Crixus">
         </div>
         <!-- Slide 8 -->
-         <div class="swiper-slide"><a href="#"target = "blank">
-            <img class="responsive-img" src="../public/img/game-character-images/Joan-two.svg" alt="Joan">
-            <p class="swiper-character-title center-align">Joan</p>
+         <div class="swiper-slide" id="joan-avatar"><a href="#"target = "blank">
+            <img class="responsive-img" src="/img/game-character-images/Joan-two.svg" alt="Joan">
         </div>
         <!-- Slide 9 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-          <img class="responsive-img" src="../public/img/game-character-images/Alexander.svg" alt="Alexander">
-            <p class="swiper-character-title center-align">Alexander</p>
+        <div class="swiper-slide" id="alexander-avatar"><a href="#"target = "blank">
+          <img class="responsive-img" src="/img/game-character-images/Alexander.svg" alt="Alexander">
         </div>
         <!-- Slide 10 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-          <img class="responsive-img" src="../public/img/game-character-images/Arthur.svg" alt="Arthur">
-          <p class="swiper-character-title center-align">Arthur</p>
+        <div class="swiper-slide" id="arthur-avatar"><a href="#"target = "blank">
+          <img class="responsive-img" src="/img/game-character-images/Arthur.svg" alt="Arthur">
         </div>
         <!-- Slide 11 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-          <img class="responsive-img" src="../public/img/game-character-images/Attila.svg" alt="Attila">
-          <p class="swiper-character-title center-align">Attila</p>
+        <div class="swiper-slide" id="attila-avatar"><a href="#"target = "blank">
+          <img class="responsive-img" src="/img/game-character-images/Attila.svg" alt="Attila">
         </div>
         <!-- Slide 12 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-          <img class="responsive-img" src="../public/img/game-character-images/Brynhild.svg" alt="Brynhild">
-          <p class="swiper-character-title center-align">Brynhild</p>
+        <div class="swiper-slide" id="brynhild-avatar"><a href="#"target = "blank">
+          <img class="responsive-img" src="/img/game-character-images/Brynhild.svg" alt="Brynhild">
         </div>
         <!-- Slide 13 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-          <img class="responsive-img" src="../public/img/game-character-images/Ciniod.svg" alt="Ciniod">
-          <p class="swiper-character-title center-align">Ciniod</p>
+        <div class="swiper-slide" id="ciniod-avatar"><a href="#"target = "blank">
+          <img class="responsive-img" src="/img/game-character-images/Ciniod.svg" alt="Ciniod">
         </div>
         <!-- Slide 14 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-          <img class="responsive-img" src="../public/img/game-character-images/Hilde.svg" alt="Hilde">
-          <p class="swiper-character-title center-align">Hilde</p>
+        <div class="swiper-slide" id="hilde-avatar"><a href="#"target = "blank">
+          <img class="responsive-img" src="/img/game-character-images/Hilde.svg" alt="Hilde">
         </div>
         <!-- Slide 15 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-          <img class="responsive-img" src="../public/img/game-character-images/Lagertha.svg" alt="Lagertha">
-          <p class="swiper-character-title center-align">Lagertha</p>
+        <div class="swiper-slide" id="lagertha-avatar"><a href="#"target = "blank">
+          <img class="responsive-img" src="/img/game-character-images/Lagertha.svg" alt="Lagertha">
         </div>
         <!-- Slide 16 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-          <img class="responsive-img" src="../public/img/game-character-images/Lancelot.svg" alt="Lancelot">
-          <p class="swiper-character-title center-align">Lancelot</p>
+        <div class="swiper-slide" id="lancelot-avatar"><a href="#"target = "blank">
+          <img class="responsive-img" src="/img/game-character-images/Lancelot.svg" alt="Lancelot">
         </div>
         <!-- Slide 17 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-          <img class="responsive-img" src="../public/img/game-character-images/Lee-Jun-fan.svg" alt="Lee-Jun-fan">
-          <p class="swiper-character-title center-align">Lee Jun-fan</p>
+        <div class="swiper-slide" id="lee-avatar"><a href="#"target = "blank">
+          <img class="responsive-img" src="/img/game-character-images/Lee-Jun-fan.svg" alt="Lee-Jun-fan">
         </div>
         <!-- Slide 18 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-          <img class="responsive-img" src="../public/img/game-character-images/Liberius.svg">
-          <p class="swiper-character-title center-align"Liberius</p>
+        <div class="swiper-slide" id="liberius-avatar"><a href="#"target = "blank">
+          <img class="responsive-img" src="/img/game-character-images/Liberius.svg">
         </div>
         <!-- Slide 19 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-          <img class="responsive-img" src="../public/img/game-character-images/Maximus.svg" alt="Maximus">
-          <p class="swiper-character-title center-align">Maximus</p>
+        <div class="swiper-slide" id="maximus-avatar"><a href="#"target = "blank">
+          <img class="responsive-img" src="/img/game-character-images/Maximus.svg" alt="Maximus">
         </div>
         <!-- Slide 20 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-          <img class="responsive-img" src="../public/img/game-character-images/Nagato.svg" alt="Nagato">
-          <p class="swiper-character-title center-align">Nagato</p>
+        <div class="swiper-slide" id="nagato-avatar"><a href="#"target = "blank">
+          <img class="responsive-img" src="/img/game-character-images/Nagato.svg" alt="Nagato">
         </div>
         <!-- Slide 21 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-          <img class="responsive-img" src="../public/img/game-character-images/Narcissus.svg" alt="Narcissus">
-          <p class="swiper-character-title center-align">Narcissus</p>
+        <div class="swiper-slide" id="narcissus-avatar"><a href="#"target = "blank">
+          <img class="responsive-img" src="/img/game-character-images/Narcissus.svg" alt="Narcissus">
         </div>
         <!-- Slide 22 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-          <img class="responsive-img" src="../public/img/game-character-images/Nesdahlia.svg" alt="Nesdahlia">
-          <p class="swiper-character-title center-align">Nesdahlia</p>
+        <div class="swiper-slide" id="nesdahlia-avatar"><a href="#"target = "blank">
+          <img class="responsive-img" src="/img/game-character-images/Nesdahlia.svg" alt="Nesdahlia">
         </div>
         <!-- Slide 23 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-          <img class="responsive-img" src="../public/img/game-character-images/Quin.svg" alt="Quin">
-          <p class="swiper-character-title center-align">Quin</p>
+        <div class="swiper-slide" id="quin-avatar"><a href="#"target = "blank">
+          <img class="responsive-img" src="/img/game-character-images/Quin.svg" alt="Quin">
         </div>
         <!-- Slide 24 -->
-        <div class="swiper-slide"><a href="#"target = "blank">
-          <img class="responsive-img" src="../public/img/game-character-images/Tigris-of-Gaul.svg" alt="Tigris-of-Gaul">
-          <p class="swiper-character-title center-align">Tigris of Gaul</p>
+        <div class="swiper-slide" id="tigris-avatar"><a href="#"target = "blank">
+          <img class="responsive-img" src="/img/game-character-images/Tigris-of-Gaul.svg" alt="Tigris-of-Gaul">
         </div>
     </div>
   </div>
 
    {{!-- where the user can choose the stats of their character --}}
   <div class="container">
-    <div class="row center-align">
-      <div class="col s6 offset-s3">
+    <div class="row">
+      <div class="col s3 id="selected-avatar-div"">
+        <img src="" alt="user avatar" id="#selected-avatar-img">
+      </div>
+
+      <div class="col s6 center-align">
         <form action="#">
           <h5>Strength</h5>
-          <p class="range-field" id="strength-range">
+          <p class="range-field" id="strength-range-character">
             <input type="range" id="test5" min="0" max="100" />
           </p>
           <h5>Speed</h5>
-          <p class="range-field" id="speed-range">
+          <p class="range-field" id="speed-range-character">
             <input type="range" id="test5" min="0" max="100" />
           </p>
           <h5>Stamina</h5>
-          <p class="range-field" id="stamina-range">
+          <p class="range-field" id="stamina-range-character">
             <input type="range" id="test5" min="0" max="100" />
           </p>
         </form>
       </div>
     </div>
-  </div>
-</main>
 
-<!-- {{!-- sticky footer --}} -->
-<<footer class="page-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col s12">
-        <h5 class="white-text">Road to Roam</h5>
-        <p class="grey-text text-lighten-4">Panda Warriors Development Group</p>
+    {{!-- where the user can choose the stats of their character --}}
+    <div class="container">
+      <div class="row center-align">
+        <div class="col s6 offset-s3">
+          <form action="#">
+            <h5>Strength</h5>
+            <p class="range-field" id="strength-range">
+              <input type="range" id="test5" min="0" max="100" />
+            </p>
+            <h5>Speed</h5>
+            <p class="range-field" id="speed-range">
+              <input type="range" id="test5" min="0" max="100" />
+            </p>
+            <h5>Stamina</h5>
+            <p class="range-field" id="stamina-range">
+              <input type="range" id="test5" min="0" max="100" />
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-  <div class="footer-copyright">
-    <div class="container">
-    © 2018 Copyright Text
-    <a class="grey-text text-lighten-4 right" href="#!">Home</a>
-    </div>
-  </div>
-</footer>
-    <!-- {{!-- script cdns and files --}} -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/js/swiper.js"></script>
-<script src="../public/js/front-end-JS.js"></script>
+</main>

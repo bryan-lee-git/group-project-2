@@ -1,4 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Cinzel|Cinzel+Decorative|Oswald");
+p {
+  font-size: 18px;
+  font-family: "Oswald";
+}
+
+@media (max-width: 450px) {
+  p {
+    font-size: 15px;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Cinzel Decorative";
+}
+
 body {
+  color: #060101;
+  font-weight: bolder;
+  line-height: 1.5;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -7,8 +26,17 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  /* // changes Font here, not part of the req for sticky footer */
-  font-family: 'Merriweather', serif;
+  font-family: "Oswald";
+  background: url("../img/erics-images/roman-empire.png") no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
 }
 
 main {
@@ -17,26 +45,55 @@ main {
           flex: 1 0 auto;
 }
 
-.fixed-action-btn {
-  right: auto;
-  margin-left: 3%;
+::-webkit-input-placeholder {
+  color: black;
+  opacity: 1.0 !important;
 }
 
-.fixed-action-btn {
-  position: absolute;
-  bottom: 10%;
+.input-field label {
+  color: #000 !important;
 }
 
-body::after {
-  content: "";
-  background-image: url("../img/erics-images/ave.jpg");
-  opacity: 0.5;
-  top: 0;
-  left: 0;
+.input-field input:focus + label {
+  color: #b71c1c !important;
+}
+
+.input-field input:focus {
+  border-bottom: 1px solid #b71c1c !important;
+  -webkit-box-shadow: 0 1px 0 0 #b71c1c !important;
+          box-shadow: 0 1px 0 0 #b71c1c !important;
+}
+
+.input-field input.valid {
+  border-bottom: 1px solid #b71c1c !important;
+  -webkit-box-shadow: 0 1px 0 0 #b71c1c !important;
+          box-shadow: 0 1px 0 0 #b71c1c !important;
+}
+
+.input-field input.invalid {
+  border-bottom: 1px solid #b71c1c !important;
+  -webkit-box-shadow: 0 1px 0 0 #b71c1c !important;
+          box-shadow: 0 1px 0 0 #b71c1c !important;
+}
+
+.input-field .prefix.active {
+  color: #b71c1c !important;
+}
+
+nav {
+  background-color: #b71c1c;
+  font-family: "Cinzel";
+}
+
+#nav-secondary {
+  overflow: hidden;
+  position: fixed;
   bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
+  width: 100%;
+}
+
+#nav-equip {
+  max-height: 64px;
 }
 
 .swiper-container {
@@ -50,5 +107,83 @@ body::after {
   background-size: cover;
   width: 300px;
   height: 300px;
+}
+
+.btn {
+  background-color: #b71c1c;
+}
+
+.btn:hover {
+  background-color: #de2828;
+}
+
+.fixed-action-btn {
+  right: auto;
+  margin-left: 3%;
+}
+
+.fixed-action-btn {
+  position: absolute;
+  bottom: 10%;
+}
+
+#landing-title {
+  font-size: 900%;
+  text-shadow: 2px 2px 2px white;
+  font-family: "Cinzel Decorative";
+}
+
+@media (max-width: 1550px) {
+  #landing-title {
+    font-size: 700%;
+  }
+}
+
+@media (max-width: 1250px) {
+  #landing-title {
+    font-size: 500%;
+  }
+}
+
+@media (max-width: 680px) {
+  #landing-title {
+    font-size: 250%;
+  }
+}
+
+.page-title {
+  text-shadow: 2px 2px 2px white;
+  font-size: 550%;
+  font-family: "Cinzel Decorative";
+}
+
+@media (max-width: 1250px) {
+  .page-title {
+    font-size: 400%;
+  }
+}
+
+@media (max-width: 680px) {
+  .page-title {
+    font-size: 300%;
+  }
+}
+
+@media (max-width: 450px) {
+  .page-title {
+    font-size: 250%;
+  }
+}
+
+.rounded-content-box {
+  color: black;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.brand-logo {
+  margin-left: 10px;
 }
 /*# sourceMappingURL=input.css.map */

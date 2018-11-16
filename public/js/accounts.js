@@ -33,19 +33,18 @@ $("#update-account").on("click", function(event) {
   event.preventDefault();
   // capture All changes
   var changeAccount = {
-    firstName: $("#firstName").val(),
-    lastName: $("#lastName").val(),
+    firstName: $("#inputFirst").val(),
+    lastName: $("#inputLast").val(),
     email: $("#inputEmail").val(),
     accountKey: $("#inputPassword").val(),
-    accountId: $("#account-number").attr("data-accountid")
   };
   $("#err-msg").empty("");
   console.log(changeAccount);
 
-  if (changeAccount.accountId.length > 0 && changeAccount.accountKey.length > 0 && changeAccount.email.length > 0 && changeAccount.lastName.length > 0 && changeAccount.firstName.length > 0) {
+  if (changeAccount.accountKey.length > 0 && changeAccount.email.length > 0 && changeAccount.lastName.length > 0 && changeAccount.firstName.length > 0) {
     $.ajax({
       type: "PUT",
-      url: `/accounts/${changeAccount.accountId}/${changeAccount.accountKey}`,
+      url: `/accounts/${changeAccount.accountKey}`,
       data: changeAccount
     }).then(function() {
       console.log("Updated account", changeAccount);
@@ -67,15 +66,14 @@ $("#delete-account").on("click", function(event) {
 
 $("#confirm-delete").on("click", function(event) {
   var deleteAccount = {
-    accountId: $("#accountId").val(),
-    accountKey: $("#account_password").val()
+    email: $("#emailConfirm").val()
   };
   console.log(deleteAccount);
-  if (deleteAccount.accountId.length > 0 && deleteAccount.accountKey.length > 0) {
-    $.ajax(`/accounts/${deleteAccount.accountId}/${deleteAccount.accountKey}`, {
+  if (deleteAccount.email.length > 0) {
+    $.ajax(`/accounts/${deleteAccount.email}`, {
       type: "DELETE"
     }).then(function() {
-      console.log("deleted account", deleteAccount.accountId);
+      console.log("deleted account");
       // Reload the page to get the updated list
       location.reload();
     });
