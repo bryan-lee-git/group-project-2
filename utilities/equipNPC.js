@@ -13,7 +13,7 @@ module.exports = function equipNPC(id) {
 
     db.Markets.findAll({
       where: {
-        ArenaId: 3
+        ArenaId: 8
       }
     }).then(marketResult => {
       // Build the weapon and armor classes
