@@ -1,6 +1,6 @@
 <main>
   {{!-- the arena battle ground where the images of the user and opponent duke it out --}}
-  <br/>
+  <br />
   <div class="row">
     <div class="col s4 offset-s1 center-align">
       <img src="{{user.image}}" alt="user-combatant" class="responsive-img" id="user-combatant-img">
@@ -10,77 +10,105 @@
       <img src="{{npc.image}}" alt="opponent-combatant" class="responsive-img" id="opponent-combatant-img">
     </div>
   </div>
+  <!--End image row-->
+  <div class="row">
+    <div class="col s4 offset-s1 center-align">
+      <h2 class="rounded-content-box">{{user.name}}</h2>
+    </div>
+    <div class="col s4 offset-s1 center-align">
+      <h2 class="rounded-content-box">{{npc.name}}</h2>
+    </div>
+  </div>
+  <!--End name row-->
+  <div class="row">
+    <div class="col s2 offset-s1 left-align rounded-content-box">
+      <h5> Stamina
+        <p>{{user.stamina}}</p>
+      </h5>
+    </div>
+    <div class="col s2 offset-s8 right-align rounded-content-box">
+      <h5> Stamina
+        <p>{{npc.stamina}}</p>
+      </h5>
+    </div>
+  </div>
+  <!--End display current stamina row-->
+
+
+
 
   {{!-- users stats display table --}}
   <div class="row">
-      <div class="col s4 offset-s1 rounded-content-box">
-        <table class="centered responsive-table striped" id="user-table">
-          <thead>
-            <tr>
-              <th><span id="username-span">USER<td class="center-align">{{user.name}}</td></span></th>
-            </tr>
-          </thead>
+    <div class="col s4 offset-s1 rounded-content-box">
+      <table class="centered responsive-table striped" id="user-table">
+        <thead>
+          <tr>
+            <th><span id="username-span">USER<td class="center-align">{{user.name}}</td></span></th>
+          </tr>
+        </thead>
 
-          <tbody>
-            <tr>
-              <td>Stamina</td>
-              <td><span id="user-stamina-span">{{user.stamina}}</span></td>
-            </tr>
-            <tr>
-              <td>Strength</td>
-              <td><span id="user-strength-span">{{user.strength}}</span></td>
-            </tr>
-            <tr>
-              <td>Speed</td>
-              <td><span id="user-speed-span">{{user.speed}}</span></td>
-            </tr>
-            <tr>
-              <td>Skill</td>
-              <td><span id="user-skill-span">{{user.skill}}</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      
-      {{!-- opponents stats display table --}}
-      <div class="col s4 offset-s2 rounded-content-box">
-        <table class="centered responsive-table striped" id="opponent-table">
-          <thead>
-              <th><span id="opponent-name-span">OPPONENT<td class="center-align">{{npc.name}}</td></span></th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Stamina</td>
-              <td><span id="opponent-stamina-span">{{npc.stamina}}</span></td>
-            </tr>
-            <tr>
-              <td>Strength</td>
-              <td><span id="opponent-strength-span">{{npc.strength}}</span></td>
-            </tr>
-            <tr>
-              <td>Speed</td>
-              <td><span id="opponent-speed-span">{{npc.speed}}</span></td>
-            </tr>
-            <tr>
-              <td>Skill</td>
-              <td><span id="opponent-skill-span">{{npc.skill}}</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <tbody>
+          <tr>
+            <td>Stamina</td>
+            <td><span id="user-stamina-span">{{user.stamina}}</span></td>
+          </tr>
+          <tr>
+            <td>Strength</td>
+            <td><span id="user-strength-span">{{user.strength}}</span></td>
+          </tr>
+          <tr>
+            <td>Speed</td>
+            <td><span id="user-speed-span">{{user.speed}}</span></td>
+          </tr>
+          <tr>
+            <td>Skill</td>
+            <td><span id="user-skill-span">{{user.skill}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    {{!-- opponents stats display table --}}
+    <div class="col s4 offset-s2 rounded-content-box">
+      <table class="centered responsive-table striped" id="opponent-table">
+        <thead>
+          <th><span id="opponent-name-span">OPPONENT<td class="center-align">{{npc.name}}</td></span></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Stamina</td>
+            <td><span id="opponent-stamina-span">{{npc.stamina}}</span></td>
+          </tr>
+          <tr>
+            <td>Strength</td>
+            <td><span id="opponent-strength-span">{{npc.strength}}</span></td>
+          </tr>
+          <tr>
+            <td>Speed</td>
+            <td><span id="opponent-speed-span">{{npc.speed}}</span></td>
+          </tr>
+          <tr>
+            <td>Skill</td>
+            <td><span id="opponent-skill-span">{{npc.skill}}</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
+
   {{!-- Fix action button, where the user will impliment their strategy in between turns --}}
-  <div class="fixed-action-btn" title="attack options">
+  <div class="fixed-action-btn" title="Tactics">
     <a class="btn-floating pulse btn-large">
       <i class="large material-icons">mode_edit</i>
     </a>
     <ul>
-      <li><a class="btn-floating red">4</a></li>
-      <li><a class="btn-floating yellow darken-1">3</a></li>
-      <li><a class="btn-floating green">2</a></li>
-      <li><a class="btn-floating blue">1</a></li>
+
+      <li><a class="btn-floating red">Bull</a></li>
+      <li><a class="btn-floating orange">Crane</a></li>
+      <li><a class="btn-floating yellow darken-1">Panda</a></li>
+      <li><a class="btn-floating green">Bee</a></li>
+      <li><a class="btn-floating blue">Gadfly</a></li>
     </ul>
   </div>
 </main>

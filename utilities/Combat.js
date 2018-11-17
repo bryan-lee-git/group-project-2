@@ -5,7 +5,18 @@ var phaseFour = require("./PhaseFour");
 module.exports = combat = (Arena, playerOne, playerTwo) => {
   var battleResults = {
     playerOne: playerOne,
+    playerOneName: playerOne.name,
+    playerOnePrimary: playerOne.primaryWeapon.name,
+    playerOneSecondary: playerOne.secondaryWeapon.name,
+    playerOneArmor: playerOne.armor.type,
+    playerOneShield: playerOne.armor.shield,
     playerTwo: playerTwo,
+    playerTwoName: playerTwo.name,
+    playerTwoPrimary: playerTwo.primaryWeapon.name,
+    playerTwoSecondary: playerTwo.secondaryWeapon.name,
+    playerTwoArmor: playerTwo.armor.type,
+    playerTwoShield: playerTwo.armor.shield,
+    rounds: rounds,
     winner: ""
   };
 
@@ -16,7 +27,7 @@ module.exports = combat = (Arena, playerOne, playerTwo) => {
 
   while (phaseTwo(playerOne, playerTwo)) {
     rounds++;
-    phaseFour(playerOne, playerTwo);
+    phaseFour(playerOne, playerTwo, rounds);
   }
 
   battleResults.winner =

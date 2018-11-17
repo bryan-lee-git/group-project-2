@@ -20,11 +20,11 @@ for (let index = 1; index < 51; index++) {
             costType: target.cost.unit,
             weight: target.weight
           };
-        }
 
-        db.Weapons.create(item).then(res =>
-          console.log(`${item.name} added to the weapons table`)
-        );
+          db.Weapons.create(item).then(res =>
+            console.log(`${item.name} added to the weapons table`)
+          );
+        }
       }
     } else if (target.equipment_category === "Armor") {
       const item = {

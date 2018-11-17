@@ -15,14 +15,14 @@ module.exports = function(app) {
           id: req.session.passport.user,
           isloggedin: req.isAuthenticated()
         };
-        res.render("view-account", user);
+        res.render("ludus-magnus", user);
       });
     } else {
       var user = {
         id: null,
         isloggedin: req.isAuthenticated()
       };
-      res.redirect("/");
+      res.redirect("/ludus-magnus");
     }
   });
 
@@ -71,11 +71,11 @@ module.exports = function(app) {
     });
   });
 
-	app.delete("/accounts/:email", function(req, res) {
+  app.delete("/accounts/:email", function(req, res) {
     db.Accounts.destroy({
-        where: {
-            email: req.params.email
-        }
+      where: {
+        email: req.params.email
+      }
     }).then(function(dbAccounts) {
       req.session.destroy(function(err) {
         req.logout();
@@ -84,7 +84,7 @@ module.exports = function(app) {
         res.clearCookie("user_id");
       });
     });
-	});
+  });
 
   // process the signup form
   app.post("/signup", function(req, res, next) {

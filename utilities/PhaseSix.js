@@ -1,16 +1,23 @@
-module.exports = function phaseSix(playerOne, playerTwo, count) {
+module.exports = function phaseSix(playerOne, playerTwo, count, round) {
   // Fatigue
   //
   // foreach player ...
   //  if the total number of attacks in PhaseFive was greater than 0, then for each player, add //  their player.currentSpeed to their player.fatigue.
   //
+
+  console.log(`We made it to the end of round ${round}.`);
   if (count > 0) {
     var sum = getAttackSpeedTotal(playerOne);
+    var extra = 0;
 
-    playerOne.fatigue = sum;
+    if (round % 4 === 0) {
+      extra++;
+    }
+
+    playerOne.fatigue = sum + extra;
 
     var sum = getAttackSpeedTotal(playerTwo);
-    playerTwo.fatigue = sum;
+    playerTwo.fatigue = sum + extra;
   }
 
   playerOne.currentStamina = playerOne.setStamina();

@@ -8,7 +8,7 @@ var chooseTactic = require("./chooseTactic");
 var phaseThree = require("./PhaseThree");
 var PhaseFive = require("./PhaseFive");
 
-module.exports = function phaseFour(playerOne, playerTwo) {
+module.exports = function phaseFour(playerOne, playerTwo, round) {
   var speeds = phaseThree(playerOne, playerTwo);
 
   const playerOneSpeed = speeds[0];
@@ -16,8 +16,8 @@ module.exports = function phaseFour(playerOne, playerTwo) {
 
   var playerOneTactic = chooseTactic(playerOne, playerTwo);
   playerOne.defenseSpeed = playerOneTactic.choices.defenseSpeed;
-  console.log(`playerOne tactic is `, playerOneTactic);
-  console.log(`playerOne defense speed is ${playerOne.defenseSpeed}`);
+  console.log(`${playerOne.name} tactic is `, playerOneTactic);
+  console.log(`${playerTwo.name} speed is ${playerOne.defenseSpeed}`);
   var playerTwoTactic = chooseTactic(playerTwo, playerOne);
   playerTwo.defenseSpeed = playerTwoTactic.choices.defenseSpeed;
   console.log(`playerTwo tactic is `, playerTwoTactic);
@@ -26,7 +26,7 @@ module.exports = function phaseFour(playerOne, playerTwo) {
   setAttacks(playerOne, playerOneTactic);
   setAttacks(playerTwo, playerTwoTactic);
 
-  PhaseFive(playerOne, playerTwo);
+  PhaseFive(playerOne, playerTwo, round);
 
   function setAttacks(first, tactics) {
     //console.log(`first player is `, first);
