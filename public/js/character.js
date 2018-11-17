@@ -6,6 +6,13 @@ var strengthLocation = 12;
 var staminaLocation = 12;
 // used to ensure that the user has selected an avatar
 var avatarSelect = false;
+var newName = "";
+
+$("#first-name").on("change", e => {
+  e.preventDefault();
+  console.log(e);
+  newName = e.target.val();
+});
 
 // displays stat point alotment
 $("#skill-points-display").html(globalStatPoints);
@@ -50,27 +57,22 @@ $("#create-speed-slide").change(function() {
 // strength slider functions the same as speed slider
 $("#create-strength-slide").change(function() {
   var newStrengthLocation = $("#create-strength-slide").val();
-  var strengthDiff = strengthLocation - newStrengthLocation;  
-  
-  if(globalStatPoints > 0 || strengthDiff > 0) {
-    
+  var strengthDiff = strengthLocation - newStrengthLocation;
+
+  if (globalStatPoints > 0 || strengthDiff > 0) {
     let checker = globalStatPoints + strengthDiff;
-        
-    if(checker >= 0) {
-     
+
+    if (checker >= 0) {
       globalStatPoints = checker;
       strengthLocation = newStrengthLocation;
       $("#skill-points-display").html(globalStatPoints);
-      
     } else if (checker < 0) {
-     
       strengthLocation = parseInt(newStrengthLocation) + parseInt(checker);
       globalStatPoints = 0;
       $("#create-strength-slide").val(strengthLocation);
       $("#skill-points-display").html(globalStatPoints);
     }
   } else {
-    
     $("#create-strength-slide").val(strengthLocation);
   }
   validation();
@@ -79,27 +81,22 @@ $("#create-strength-slide").change(function() {
 // stamina slider funtions the same as the other sliders
 $("#create-stamina-slide").change(function() {
   var newStaminaLocation = $("#create-stamina-slide").val();
-  var staminaDiff = staminaLocation - newStaminaLocation;  
-  
-  if(globalStatPoints > 0 || staminaDiff > 0) {
-    
+  var staminaDiff = staminaLocation - newStaminaLocation;
+
+  if (globalStatPoints > 0 || staminaDiff > 0) {
     let checker = globalStatPoints + staminaDiff;
-        
-    if(checker >= 0) {
-     
+
+    if (checker >= 0) {
       globalStatPoints = checker;
       staminaLocation = newStaminaLocation;
       $("#skill-points-display").html(globalStatPoints);
-      
     } else if (checker < 0) {
-     
       staminaLocation = parseInt(newStaminaLocation) + parseInt(checker);
       globalStatPoints = 0;
       $("#create-stamina-slide").val(staminaLocation);
       $("#skill-points-display").html(globalStatPoints);
     }
   } else {
-    
     $("#create-stamina-slide").val(staminaLocation);
   }
   validation();
@@ -108,8 +105,10 @@ $("#create-stamina-slide").change(function() {
 // how the user gets the avatar they want, pushes that image down to the selected-avatar-img
 $(".swiper-slide").on("click", function(event) {
   event.preventDefault();
-  
-  var slideSource = $(this).children("img").attr("src");
+
+  var slideSource = $(this)
+    .children("img")
+    .attr("src");
   $("#selected-avatar-img").attr("src", slideSource);
   // sets the avatarSelect to true and runs validaton
   avatarSelect = true;
@@ -120,17 +119,17 @@ $(".swiper-slide").on("click", function(event) {
 // ... validation conditions are met
 $("#create-button").on("click", function(event) {
   event.preventDefault();
-// creates a new character object and grabs its info from the form the user filled out
+  // creates a new character object and grabs its info from the form the user filled out
   var newCharcter = {
-    name: "username", 
+    name: "username",
     gender: $("input[name='gender']:checked").val(),
-    strength:  $("#create-strength-slide").val(),
+    strength: $("#create-strength-slide").val(),
     speed: $("#create-speed-slide").val(),
     stamina: $("#create-stamina-slide").val(),
     // gives a default skill and wallet to 1 and 500 respectively
     skill: 1,
     wallet: 500,
-    image: $("#selected-avatar-img").attr("src"),
+    image: $("#selected-avatar-img").attr("src")
   };
   // ajax POST requests passes the newCharacter object as data
   $.ajax({
@@ -142,8 +141,8 @@ $("#create-button").on("click", function(event) {
 });
 
 // runs a validaton check to make sure the entire form has been filled out before the user can submit
-function validation () {
+function validation() {
   if (globalStatPoints === 0 && avatarSelect) {
     $("#create-button").removeClass("disabled");
   }
-};
+}

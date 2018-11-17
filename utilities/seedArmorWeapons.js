@@ -12,13 +12,15 @@ for (let index = 1; index < 51; index++) {
     console.log(target.equipment_category);
     if (target.equipment_category === "Weapon") {
       if (target.weapon_range === "Melee") {
-        const item = {
-          name: target.name,
-          damage: target.damage.dice_count * target.damage.dice_value,
-          cost: target.cost.quantity,
-          costType: target.cost.unit,
-          weight: target.weight
-        };
+        if (target.name !== "Lance") {
+          const item = {
+            name: target.name,
+            damage: target.damage.dice_count * target.damage.dice_value,
+            cost: target.cost.quantity,
+            costType: target.cost.unit,
+            weight: target.weight
+          };
+        }
 
         db.Weapons.create(item).then(res =>
           console.log(`${item.name} added to the weapons table`)

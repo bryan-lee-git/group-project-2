@@ -4,15 +4,23 @@ module.exports = function(app) {
   // landing page
   app.get("/", function(req, res) {
     if (req.isAuthenticated()) {
-      var user = {
-        id: req.session.passport.user,
-        isloggedin: req.isAuthenticated()
-      };
-      res.render("landing", user);
+      db.Accounts.findOne({
+        where: { uuid: req.session.passport.user }
+      }).then(function(dbUser) {
+        var user = {
+          userInfo: dbUser.dataValues,
+          id: req.session.passport.user,
+          isloggedin: req.isAuthenticated()
+        };
+        console.log(`dbUser.dataValues:`, dbUser.dataValues);
+        console.log(`user:`, user);
+        res.render("character", user);
+      });
     } else {
       res.render("landing");
     }
   });
+
   // create new account page
   app.get("/signup", function(req, res) {
     if (req.isAuthenticated()) {
@@ -100,7 +108,7 @@ module.exports = function(app) {
         db.User.findAll({
           where: { name: "Bobby" }
         }).then(dbChar => {
-          db.NPC.findAll({where: {id: 2}}).then(dbNPC => {
+          db.NPC.findAll({ where: { id: 2 } }).then(dbNPC => {
             var battle = {
               user: dbChar[0].dataValues,
               npc: dbNPC[0].dataValues,
