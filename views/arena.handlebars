@@ -12,24 +12,17 @@
   </div>
   <!--End image row-->
   <div class="row">
-    <div class="col s4 offset-s1 center-align">
-      <h2 class="rounded-content-box">{{user.name}}</h2>
+    <div class="col s4 offset-s1 center-align rounded-content-box">
+      <h2>{{user.name}}</h2>
+      <hr>
+      <h5>Current Stamina: {{user.stamina}}</h5>
+      <br>
     </div>
-    <div class="col s4 offset-s1 center-align">
-      <h2 class="rounded-content-box">{{npc.name}}</h2>
-    </div>
-  </div>
-  <!--End name row-->
-  <div class="row">
-    <div class="col s2 offset-s1 left-align rounded-content-box">
-      <h5> Stamina
-        <p>{{user.stamina}}</p>
-      </h5>
-    </div>
-    <div class="col s2 offset-s8 right-align rounded-content-box">
-      <h5> Stamina
-        <p>{{npc.stamina}}</p>
-      </h5>
+    <div class="col s4 offset-s2 center-align rounded-content-box">
+      <h2>{{npc.name}}</h2>
+      <hr>
+      <h5>Current Stamina: {{npc.stamina}}</h5>
+      <br>
     </div>
   </div>
   <!--End display current stamina row-->
