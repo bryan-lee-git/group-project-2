@@ -6,7 +6,7 @@ var arenas = [];
 
 db.Arenas.findAll({
   where: {
-    id: 8
+    id: 3
   }
 }).then(results => {
   arenas = JSON.stringify(results);
@@ -28,10 +28,10 @@ db.Arenas.findAll({
         `There are ${monthlyBattles} NPCs left to build for ${arena.name}.`
       );
       if (monthlyBattles > 0) {
-        timer = setTimeout(setNPC, 200);
+        timer = setTimeout(setNPC, 300);
       } else {
         clearTimeout(timer);
       }
-    }, 200);
+    }, 300);
   });
 });
