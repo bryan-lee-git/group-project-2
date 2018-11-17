@@ -41,31 +41,24 @@ function Player(name, gender, strength, speed, stamina, skill, img) {
     weight: 0
   };
 
-  function setSpeed() {
+  this.setSpeed = function() {
     this.currentSpeed = this.speed - Math.floor(this.armor.weight / 30);
     return this.currentSpeed > this.currentStamina
       ? this.currentStamina
       : this.currentSpeed;
-  }
+  };
 
-  function setStamina() {
+  this.setStamina = function() {
     this.currentStamina =
       this.currentStamina - this.fatigue - this.wounds + this.recovery;
+    if (this.currentStamina > this.stamina) {
+      this.currentStamina = this.stamina;
+    }
     this.maxStamina = this.stamina - this.wounds;
-
     return this.currentStamina > this.maxStamina
       ? this.maxStamina
       : this.currentStamina;
-  }
-
-  function doDamage(array, index) {
-    var damage = array[index].weapon.damage;
-    if (array[index].attackType) {
-      return array[index].attackSpeed + damage;
-    } else {
-      return 2 * array[index].attackSpeed + damage;
-    }
-  }
+  };
 }
 
 module.exports = Player;

@@ -4,15 +4,23 @@ module.exports = function(app) {
   // landing page
   app.get("/", function(req, res) {
     if (req.isAuthenticated()) {
-      var user = {
-        id: req.session.passport.user,
-        isloggedin: req.isAuthenticated()
-      };
-      res.render("landing", user);
+      db.Accounts.findOne({
+        where: { uuid: req.session.passport.user }
+      }).then(function(dbUser) {
+        var user = {
+          userInfo: dbUser.dataValues,
+          id: req.session.passport.user,
+          isloggedin: req.isAuthenticated()
+        };
+        console.log(`dbUser.dataValues:`, dbUser.dataValues);
+        console.log(`user:`, user);
+        res.render("character", user);
+      });
     } else {
       res.render("landing");
     }
   });
+
   // create new account page
   app.get("/signup", function(req, res) {
     if (req.isAuthenticated()) {

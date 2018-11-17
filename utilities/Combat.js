@@ -1,9 +1,6 @@
-var phaseOne = require("./PhaseOne");
 var phaseTwo = require("./PhaseTwo");
-var phaseThree = require("./PhaseThree");
+
 var phaseFour = require("./PhaseFour");
-var phaseFive = require("./PhaseFive");
-var phaseSix = require("./PhaseSix");
 
 module.exports = combat = (Arena, playerOne, playerTwo) => {
   var battleResults = {
@@ -11,17 +8,26 @@ module.exports = combat = (Arena, playerOne, playerTwo) => {
     playerTwo: playerTwo,
     winner: ""
   };
-  phaseOne(Arena, playerOne, playerTwo);
+
+  console.log(`Inside the combat function. Our Arena is `, Arena);
+  //phaseOne(Arena, playerOne, playerTwo);
+
+  var rounds = 1;
 
   while (phaseTwo(playerOne, playerTwo)) {
-    phaseThree(playerOne, playerTwo);
+    rounds++;
     phaseFour(playerOne, playerTwo);
-    phaseFive(playerOne, playerTwo);
-    phaseSix(playerOne, playerTwo);
   }
 
   battleResults.winner =
     playerOne.currentStamina > 0 ? playerOne.name : playerTwo.name;
+
+  console.log(
+    `The winner of the battle between ${playerOne.name} and ${
+      playerTwo.name
+    } is ${battleResults.winner}.`
+  );
+  console.log(`Battle lasted ${rounds} rounds.`);
 
   return battleResults;
 };
