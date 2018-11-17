@@ -24,10 +24,21 @@
                     <thead>
                       <th>Weapon</th>
                       <th>Damage</th>
-                      <th>Weight</th>
                       <th>Price</th>
+                      <th>Purchase</th>
                     </thead>
-
+                    <tbody>
+                    {{#each weapons}}
+                      {{#unless dataValues.weight}}
+                        <tr>
+                          <td>{{dataValues.name}}</td>
+                          <td>{{dataValues.damage}}</td>
+                          <td>{{dataValues.cost}}</td>
+                          <td><button class="btn"><i class="material-icons">add_shopping_cart</i></button></td>
+                        </tr>
+                      {{/unless}}
+                    {{/each}}
+                  </tbody>
                   </table>
               </div>
             </li>
@@ -40,10 +51,17 @@
                       <tr>
                         <th>Weapon</th>
                         <th>Damage</th>
-                        <th>Weight</th>
                         <th>Price</th>
+                        <th>Purchase</th>
                       </tr>
                     </thead>
+                    <tbody>
+                      {{#each weapons}}
+                        {{#if dataValues.weight}}
+                          {{> Market/marketitem}}
+                        {{/if}}
+                      {{/each}}
+                    </tbody>
                   </table>
               </div>
             </li>
@@ -58,9 +76,20 @@
                       <th>Defense</th>
                       <th>Weight</th>
                       <th>Price</th>
+                      <th>Purchase</th>
                     </tr>
                   </thead>
-
+                  <tbody>
+                    {{#each armor}}
+                      <tr>
+                        <td>{{dataValues.name}}</td>
+                        <td>{{dataValues.strength}}</td>
+                        <td>{{dataValues.weight}}</td>
+                        <td>{{dataValues.cost}}</td>
+                        <td><button class="btn"><i class="material-icons">add_shopping_cart</i></button></td>
+                      </tr>
+                    {{/each}}
+                  </tbody>
                 </table>
               </div>
             </li>
