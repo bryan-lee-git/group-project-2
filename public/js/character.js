@@ -121,15 +121,16 @@ $("#create-button").on("click", function(event) {
   event.preventDefault();
   // creates a new character object and grabs its info from the form the user filled out
   var newCharcter = {
-    name: "username",
-    gender: $("input[name='gender']:checked").val(),
-    strength: $("#create-strength-slide").val(),
+    name: $("#user-name").data("name"), 
+    image: $("#selected-avatar-img").attr("src"),
+    male: $("input[name='gender']:checked").val(),
+    wallet: 500,
+    strength:  $("#create-strength-slide").val(),
     speed: $("#create-speed-slide").val(),
     stamina: $("#create-stamina-slide").val(),
-    // gives a default skill and wallet to 1 and 500 respectively
     skill: 1,
-    wallet: 500,
-    image: $("#selected-avatar-img").attr("src")
+    AccountUuid: $("#uuid").data("uuid")
+
   };
   // ajax POST requests passes the newCharacter object as data
   $.ajax({
@@ -138,6 +139,7 @@ $("#create-button").on("click", function(event) {
     data: newCharcter
   });
   console.log(newCharcter);
+  window.location.href = "/ludus-magnus";
 });
 
 // runs a validaton check to make sure the entire form has been filled out before the user can submit
