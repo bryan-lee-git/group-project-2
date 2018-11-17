@@ -12,9 +12,7 @@ module.exports = function(app) {
           id: req.session.passport.user,
           isloggedin: req.isAuthenticated()
         };
-        console.log(`dbUser.dataValues:`, dbUser.dataValues);
-        console.log(`user:`, user);
-        res.render("character", user);
+        res.render("landing", user);
       });
     } else {
       res.render("landing");
