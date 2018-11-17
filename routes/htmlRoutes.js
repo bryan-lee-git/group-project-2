@@ -75,7 +75,7 @@ module.exports = function(app) {
     }
   });
   // marketplace page
-  app.get("/marketplace", function(req, res) {
+  app.get("/market", function(req, res) {
     if (req.isAuthenticated()) {
       db.Accounts.findOne({
         where: { uuid: req.session.passport.user }
