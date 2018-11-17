@@ -41,7 +41,7 @@
             <img class="responsive-img" src="/img/game-character-images/Crixus.svg" alt="Crixus">
         </div>
         <!-- Slide 8 -->
-         <div class="swiper-slide" id="joan-avatar">
+        <div class="swiper-slide" id="joan-avatar">
             <img class="responsive-img" src="/img/game-character-images/Joan-two.svg" alt="Joan">
         </div>
         <!-- Slide 9 -->
@@ -109,6 +109,8 @@
           <img class="responsive-img" src="/img/game-character-images/Tigris-of-Gaul.svg" alt="Tigris-of-Gaul">
         </div>
     </div>
+    <div class="swiper-button-prev swiper-button-white"></div>
+    <div class="swiper-button-next swiper-button-white"></div>
   </div>
 
   {{!-- where the user can choose the stats of their character --}}
@@ -116,28 +118,15 @@
     <div class="row">
       <div class="col s3">
         <img src="" class="responsive-img" id="selected-avatar-img">
-        <form action="#" id="gender-form">
-          <p>
-            <label>
-              <input name="gender" value="male" type="radio" checked/>
-              <span>Male</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input name="gender" value="female" type="radio" />
-              <span>Female</span>
-            </label>
-          </p>
-        </form>
       </div>
       {{!-- where the user can choose the stats of their character --}}
       <div class="col s6 center-align">
         <h4>Skill Points to Spend</h4>
-        <br>
         <h4 id="skill-points-display"></h4>
         <br>
         <form action="#">
+          <span id="user-name" data-name="{{userInfo.firstName}}"></span>
+          <span id="uuid" data-uuid="{{userInfo.uuid}}"></span>
           <h5>Speed</h5>
           <p class="range-field">
             <input type="range" id="create-speed-slide" min="3" max="10" value="0"/>
@@ -150,11 +139,21 @@
           <p class="range-field">
             <input type="range" id="create-stamina-slide" min="12" max="20" value="0"/>
           </p>
+          <form action="#" id="gender-form">
+          <p>
+            <label>
+              <input name="gender" value="male" type="radio" checked/>
+              <span>Male</span>
+            </label>
+            <label>
+              <input name="gender" value="female" type="radio" />
+              <span>Female</span>
+            </label>
+          </p>
+          <br/>
         </form>
-      </div>
-      {{!-- creates a submit button that is disabled until the requisit portions of the form are complete --}}
-      <div class="col s3">
-        <a class="btn-floating btn-large waves-effect waves-light red disabled" id="create-button"><i class="material-icons">add</i></a>
+          <button id="create-button" class="btn bn-large waves-effect waves-light disabled" type="submit">CREATE CHARACTER</button>
+        </form>
       </div>
     </div>
   </div>

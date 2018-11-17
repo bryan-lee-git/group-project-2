@@ -80,9 +80,40 @@ main {
   color: #b71c1c !important;
 }
 
+input[type=range]::-webkit-slider-thumb {
+  background-color: #b71c1c !important;
+}
+
+input[type=range]::-moz-range-thumb {
+  background-color: #b71c1c !important;
+}
+
+input[type=range]::-ms-thumb {
+  background-color: #b71c1c !important;
+}
+
+/***** These are to edit the thumb and the text inside the thumb *****/
+input[type=range] + .thumb {
+  background-color: #dedede;
+}
+
+input[type=range] + .thumb.active .value {
+  color: #b71c1c !important;
+}
+
+[type="radio"]:checked + span:after, [type="radio"].with-gap:checked + span:after {
+  background-color: #b71c1c !important;
+}
+
+[type="radio"]:checked + span:after, [type="radio"].with-gap:checked + span:before,
+[type="radio"].with-gap:checked + span:after {
+  border: 2px solid #b71c1c !important;
+}
+
 nav {
   background-color: #b71c1c;
   font-family: "Cinzel";
+  z-index: 10;
 }
 
 #nav-secondary {
@@ -97,7 +128,7 @@ nav {
 }
 
 .swiper-container {
-  width: 100%;
+  width: 80%;
   padding-top: 50px;
   padding-bottom: 50px;
 }
@@ -109,11 +140,11 @@ nav {
   height: 300px;
 }
 
-.btn {
+.btn, .btn-floating {
   background-color: #b71c1c;
 }
 
-.btn:hover {
+.btn:hover, .btn-floating:hover {
   background-color: #de2828;
 }
 
@@ -129,7 +160,7 @@ nav {
 
 #landing-title {
   font-size: 900%;
-  text-shadow: 2px 2px 2px white;
+  text-shadow: 2px 2px 1px white;
   font-family: "Cinzel Decorative";
 }
 
@@ -152,7 +183,7 @@ nav {
 }
 
 .page-title {
-  text-shadow: 2px 2px 2px white;
+  text-shadow: 2px 2px 1px white;
   font-size: 550%;
   font-family: "Cinzel Decorative";
 }
@@ -175,6 +206,30 @@ nav {
   }
 }
 
+.page-subtitle {
+  text-shadow: 2px 2px 1px white;
+  font-size: 350%;
+  font-family: "Cinzel Decorative";
+}
+
+@media (max-width: 1250px) {
+  .page-subtitle {
+    font-size: 300%;
+  }
+}
+
+@media (max-width: 680px) {
+  .page-subtitle {
+    font-size: 200%;
+  }
+}
+
+@media (max-width: 450px) {
+  .page-subtitle {
+    font-size: 150%;
+  }
+}
+
 .rounded-content-box {
   color: black;
   padding: 30px;
@@ -188,6 +243,6 @@ nav {
 }
 
 .ludus-btn {
-  height: 250px;
+  height: 200px;
 }
 /*# sourceMappingURL=input.css.map */

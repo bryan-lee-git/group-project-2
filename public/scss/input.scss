@@ -19,12 +19,13 @@ $colors: (
 
 $padding: 50px;
 $line-height: 1.5;
-$text-shadow: 2px 2px 2px white;
+$text-shadow: 2px 2px 1px white;
 $paragraph: 18px;
 $half: 50%;
 $full: 100%;
 $large-text: 900%;
 $medium-text: 550%;
+$subheader: 350%;
 
 // SASS FUNCTIONS -----------------------------------------------
 
@@ -143,11 +144,38 @@ main {
   color: color(primary) !important;
 }
 
+input[type=range]::-webkit-slider-thumb {
+  background-color: color(primary) !important;
+}
+input[type=range]::-moz-range-thumb {
+  background-color: color(primary) !important;
+}
+input[type=range]::-ms-thumb {
+  background-color: color(primary) !important;
+}
+
+/***** These are to edit the thumb and the text inside the thumb *****/
+input[type=range] + .thumb {
+  background-color: #dedede;
+}
+input[type=range] + .thumb.active .value {
+  color: color(primary) !important;
+}
+
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:after {
+  background-color:color(primary) !important;
+}
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:before, 
+[type="radio"].with-gap:checked+span:after {
+  border: 2px solid color(primary) !important;
+}
+
 // NAV STYLES -----------------------------------------------
 
 nav {
   background-color: color(primary);
   font-family: font(decorative-secondary);
+  z-index: 10;
 }
 
 #nav-secondary {
@@ -164,7 +192,7 @@ nav {
 // SWIPER STYLES -----------------------------------------------
 
 .swiper-container {
-  width: $full;
+  width: 80%;
   padding-top: $padding;
   padding-bottom: $padding;
 }
@@ -177,13 +205,14 @@ nav {
 
 // BUTTON STYLES -----------------------------------------------
 
-.btn {
+.btn, .btn-floating {
   background-color: color(primary);
 }
 
-.btn:hover {
+.btn:hover, .btn-floating:hover {
     background-color: color(primary-light);
 }
+
 
 // FIXED ACTION BUTTON STYLES -----------------------------------------------
 
@@ -233,6 +262,22 @@ nav {
   }
 }
 
+.page-subtitle {
+  text-shadow: $text-shadow;
+  font-size: $subheader;
+  font-family: font(decorative-main);
+
+  @include reg-desktop {
+    font-size: 300%;
+  }
+  @include tab {
+    font-size: 200%;
+  }
+  @include mobile {
+    font-size: 150%;
+  }
+}
+
 .rounded-content-box {
   color: black;
   padding: 30px;
@@ -246,5 +291,5 @@ nav {
 }
 
 .ludus-btn {
-  height: 250px;
+  height: 200px;
 }
