@@ -83,13 +83,20 @@ module.exports = function(app) {
         db.User.findAll({
           where: { name: dbUser.dataValues.firstName }
         }).then(dbChar => {
-          var user = {
-            user: dbChar[0].dataValues,
-            userInfo: dbUser.dataValues,
-            id: req.session.passport.user,
-            isloggedin: req.isAuthenticated()
-          };
-          res.render("market", user);
+          db.Weapons.findAll({}).then(dbWeapons => {
+            db.Armor.findAll({}).then(dbArmor => {
+              var user = {
+                weapons: dbWeapons,
+                armor: dbArmor,
+                user: dbChar[0].dataValues,
+                userInfo: dbUser.dataValues,
+                id: req.session.passport.user,
+                isloggedin: req.isAuthenticated()
+              };
+              console.log(user)
+              res.render("market", user);
+            });
+          });
         });
       });
     } else {
