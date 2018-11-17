@@ -49,11 +49,10 @@ module.exports = function(app) {
 	        }
 	    }).then(function(dbAccounts) {
 			req.session.destroy(function(err) {
-				if (err) console.log(err);
+				req.logout();
 				res.clearCookie("user_sid");
 				res.clearCookie("firstName");
 				res.clearCookie("user_id");
-				res.redirect("/");
 			});
 	    });
 	});

@@ -1,5 +1,4 @@
 // Code here handles what happens when a user submits a new account.
-console.log("Accounts.js loaded");
 
 // ADD
 $("#add-account").on("click", function(event) {
@@ -13,14 +12,13 @@ $("#add-account").on("click", function(event) {
     email: $("#inputEmail").val(),
     accountKey: $("#inputPassword").val()
   };
-
   if (newAccount.accountKey.length > 0 && newAccount.email.length > 0 && newAccount.lastName.length > 0 && newAccount.firstName.length > 0) {
     $.ajax({
       type: "post",
       url: "/signup",
       data: newAccount
     }).then(function(data) {
-      window.location.href = "/";
+      window.location.href = "/character";
     });
   } else {
     console.log("**Please fill out entire form**");
@@ -31,7 +29,6 @@ $("#add-account").on("click", function(event) {
 // UPDATE
 $("#update-account").on("click", function(event) {
   event.preventDefault();
-  // capture All changes
   var changeAccount = {
     firstName: $("#inputFirst").val(),
     lastName: $("#inputLast").val(),
@@ -39,8 +36,6 @@ $("#update-account").on("click", function(event) {
     accountKey: $("#inputPassword").val(),
   };
   $("#err-msg").empty("");
-  console.log(changeAccount);
-
   if (changeAccount.accountKey.length > 0 && changeAccount.email.length > 0 && changeAccount.lastName.length > 0 && changeAccount.firstName.length > 0) {
     $.ajax({
       type: "PUT",
@@ -48,7 +43,6 @@ $("#update-account").on("click", function(event) {
       data: changeAccount
     }).then(function() {
       console.log("Updated account", changeAccount);
-      // Reload the page to get the updated list
       location.reload();
     });
   } else {
@@ -64,18 +58,15 @@ $("#delete-account").on("click", function(event) {
   $("#delete-account-modal").modal("show");
 });
 
-$("#confirm-delete").on("click", function(event) {
+$("#confirm-delete").on("click", () => {
   var deleteAccount = {
     email: $("#emailConfirm").val()
   };
-  console.log(deleteAccount);
   if (deleteAccount.email.length > 0) {
     $.ajax(`/accounts/${deleteAccount.email}`, {
       type: "DELETE"
-    }).then(function() {
-      console.log("deleted account");
-      // Reload the page to get the updated list
-      location.reload();
+    }).then((data) => {
+      if (data) window.location.href = "/";
     });
   } else {
     console.log("fill out entire form");

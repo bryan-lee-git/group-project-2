@@ -24,7 +24,7 @@ module.exports = function(app) {
           id: req.session.passport.user,
           isloggedin: req.isAuthenticated()
         };
-        res.render("view-account", user);
+        res.render("ludus-magnus", user);
       });
     } else {
       res.render("accounts");
@@ -68,24 +68,23 @@ module.exports = function(app) {
       res.redirect("/");
     }
   });
-  //training page
-  app.get("/training", function(req, res) {
-    db.Training.findAll({}).then(function(dbTraining) {
-      res.render("training");
-    });
-  });
   // marketplace page
   app.get("/marketplace", function(req, res) {
     if (req.isAuthenticated()) {
       db.Accounts.findOne({
         where: { uuid: req.session.passport.user }
       }).then(function(dbUser) {
-        var user = {
-          userInfo: dbUser.dataValues,
-          id: req.session.passport.user,
-          isloggedin: req.isAuthenticated()
-        };
-        res.render("market", user);
+        db.User.findAll({
+          where: { name: dbUser.dataValues.firstName }
+        }).then(dbChar => {
+          var user = {
+            user: dbChar[0].dataValues,
+            userInfo: dbUser.dataValues,
+            id: req.session.passport.user,
+            isloggedin: req.isAuthenticated()
+          };
+          res.render("market", user);
+        });
       });
     } else {
       res.redirect("/");
@@ -98,9 +97,10 @@ module.exports = function(app) {
         where: { uuid: req.session.passport.user }
       }).then(function(dbUser) {
         db.User.findAll({
-          where: { name: "Bobby" }
+          where: { name: dbUser.dataValues.firstName }
         }).then(dbChar => {
-          db.NPC.findAll({where: {id: 2}}).then(dbNPC => {
+          let randomNumber = Math.floor(Math.random() * 25);
+          db.NPC.findAll({where: {id: randomNumber}}).then(dbNPC => {
             var battle = {
               user: dbChar[0].dataValues,
               npc: dbNPC[0].dataValues,
