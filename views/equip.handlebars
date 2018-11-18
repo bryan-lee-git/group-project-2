@@ -1,0 +1,67 @@
+<br /><br />
+<main>
+  {{!-- marketplace title --}}
+  <div class="container rounded-content-box center-align">
+    <div class="row center-align">
+      <h1 class="page-title col s12">INVENTORY</h1>
+    </div>
+
+    {{!-- weapons and armor collapsables --}}
+    <div class="row">
+      <button id="equipped-items" class="btn col s12 modal-trigger" href="#equipped">View Equipped Items</button>
+      <div class="col s6">
+        <ul class="collapsible">
+          <li class="col s12">
+            <div class="collapsible-header">Weapons In Inventory</div>
+            <div class="collapsible-body">
+              <table class="centered" id="weapon-table">
+                <thead>
+                  <th>Weapon</th>
+                  <th>Damage</th>
+                  <th>Equip</th>
+                  <th>Sell</th>
+                </thead>
+                <tbody>
+                  <span id="character-id" data-id="{{user.id}}"></span>
+                  {{#each purchases}}
+                    {{#if type}}
+                      {{> Inventory/inventory-weapon-block}}
+                    {{/if}}
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col s6">
+        <ul class="collapsible">
+          <li class="col s12">
+            <div class="collapsible-header">Armor In Inventory</div>
+            <div class="collapsible-body">
+              <table class="centered" id="armor-table">
+                <thead>
+                  <tr>
+                    <th>Armor</th>
+                    <th>Defense</th>
+                    <th>Weight</th>
+                    <th>Equip</th>
+                    <th>Sell</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each purchases}}
+                    {{#unless type}}
+                      {{> Inventory/inventory-armor-block}}
+                    {{/unless}}
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
+{{> Modal/equip-block}}

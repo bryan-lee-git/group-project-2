@@ -127,6 +127,24 @@ nav {
   max-height: 64px;
 }
 
+.dropdown-content {
+  width: -webkit-max-content !important;
+  width: -moz-max-content !important;
+  width: max-content !important;
+  height: auto !important;
+}
+
+#ludus-drop {
+  opacity: 1.0;
+  position: fixed;
+  left: 80%;
+  right: 0;
+  text-align: right;
+  padding-left: 0px;
+  padding-right: 0px;
+  z-index: 10;
+}
+
 .swiper-container {
   width: 80%;
   padding-top: 50px;
@@ -144,8 +162,12 @@ nav {
   background-color: #b71c1c;
 }
 
-.btn:hover, .btn-floating:hover {
+.btn:hover, .btn-floating:hover, .btn:active, .btn-floating:active, .btn:target, .btn-floating:target, .btn:focus, .btn-floating:focus {
   background-color: #de2828;
+}
+
+.ludus-btn {
+  height: 250px;
 }
 
 .fixed-action-btn {
@@ -180,6 +202,10 @@ nav {
   #landing-title {
     font-size: 250%;
   }
+}
+
+#equipped-items {
+  margin-bottom: 20px;
 }
 
 .page-title {
@@ -233,16 +259,12 @@ nav {
 .rounded-content-box {
   color: black;
   padding: 30px;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
   margin-bottom: 80px;
 }
 
 .brand-logo {
   margin-left: 10px;
-}
-
-.ludus-btn {
-  height: 200px;
 }
 /*# sourceMappingURL=input.css.map */
