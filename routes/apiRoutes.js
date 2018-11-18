@@ -1,4 +1,5 @@
 var db = require("../models");
+var liveBattle = require("../utilities/liveBattle");
 
 module.exports = function(app) {
   //////////////////////////////////////////////////////////////////
@@ -152,9 +153,35 @@ module.exports = function(app) {
 
   //Update a Battle by id
   app.put("/api/battles/:id", (req, res) => {
-    db.User.update(req.body).then(rssults => {
+    db.User.update(req.body).then(results => {
       res.json(results);
     });
+  });
+
+  app.get("/api/battles/:arenaid/:userid/:npcid", (req, res) => {
+    var user;
+    var npc;
+    var arenaid = req.params.arenaid;
+    db.User.findAll({
+      where: {
+        id: req.params.userid
+      }
+    }).then(dbUser => {
+      user = JSON.parse(JSON.stringify(dbUser));
+      console.log(`here's the user going into the battle`, user);
+
+      db.NPC.findAll({
+        where: {
+          id: req.params.npcid
+        }
+      }).then(dbNPC => {
+        npc = JSON.parse(JSON.stringify(dbNPC));
+        console.log(`here's the npc going into the battle `, npc);
+
+        liveBattle(arenaid, user, npc);
+      });
+    });
+    res.json();
   });
 
   //////////////////////////////////////////////////////////////////
@@ -324,4 +351,3 @@ module.exports = function(app) {
     });
   });
 };
-
