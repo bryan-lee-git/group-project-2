@@ -130,7 +130,7 @@ $("#create-button").on("click", function(event) {
     speed: $("#create-speed-slide").val(),
     stamina: $("#create-stamina-slide").val(),
     skill: 1,
-    AccountUuid: $("#uuid").data("uuid")
+    accountuuid: $("#uuid").data("uuid")
   };
   // ajax POST requests passes the newCharacter object as data
   $.ajax({

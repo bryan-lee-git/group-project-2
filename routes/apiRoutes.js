@@ -8,11 +8,26 @@ module.exports = function(app) {
 
   // Get all Users
   app.get("/api/users", (req, res) => {
-    db.User.findAll({
-      where: {
-        AccountUuid: req.session.body.AccountUuid
-      }
-    }).then(results => {
+    db.User.findAll({}).then(results => {
+      res.json(results);
+    });
+  });
+
+  // Get all Users and equipment
+  app.get("/api/users/:id", (req, res) => {
+    db.User.findAll({ where: { id: req.params.id } }).then(results => {
+      res.json(results);
+    });
+  });
+
+  app.get("/api/users/purchases/:id", (req, res) => {
+    db.User.findAll({ include: db.Purchase, where: { id: req.params.id } }).then(results => {
+      res.json(results);
+    });
+  });
+
+  app.get("/api/users/equipment/:id", (req, res) => {
+    db.User.findAll({ include: db.Equipment, where: { id: req.params.id } }).then(results => {
       res.json(results);
     });
   });
@@ -280,6 +295,46 @@ module.exports = function(app) {
   });
 
   //////////////////////////////////////////////////////////////////
+  /// Purchase routes
+  //////////////////////////////////////////////////////////////////
+
+  // Make a purchase
+  app.post("/api/purchase", (req, res) => {
+    db.Purchase.create({
+      name: req.body.name,
+      statIncrease: req.body.statIncrease,
+      cost: req.body.cost,
+      type: req.body.type,
+      weight: req.body.weight,
+      UserId: req.body.characterId
+    }).then(results => {
+      res.json(results);
+    });
+  });
+
+  //////////////////////////////////////////////////////////////////
+  /// Purchase routes
+  //////////////////////////////////////////////////////////////////
+
+  // Make a equipment
+  app.post("/api/equipment", (req, res) => {
+    equip(req.body.type);
+    function equip(itemType) {
+      db.Equipment.destroy({ where: { type: itemType} }).then(() => {
+        db.Equipment.create({
+          name: req.body.name,
+          statIncrease: req.body.statIncrease,
+          type: req.body.type,
+          weight: req.body.weight,
+          UserId: req.body.characterId
+        }).then(results => {
+          res.json(results);
+        });
+      });
+    }
+  });
+
+  //////////////////////////////////////////////////////////////////
   /// Weapon routes
   //////////////////////////////////////////////////////////////////
 
@@ -307,7 +362,7 @@ module.exports = function(app) {
 
   //Update a Weapons by id - to be used in Development ONLY
   app.put("/api/weapons/:id", (req, res) => {
-    db.Weapons.update(req.body).then(rssults => {
+    db.Weapons.update(req.body).then(results => {
       res.json(results);
     });
   });

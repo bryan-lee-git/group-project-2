@@ -40,17 +40,11 @@ $("#market-speed-slide").change(function() {
   validation();
 });
 
-
-
-
-
-
 // strength slider functions the same as speed slider
 $("#market-strength-slide").change(function() {
   console.log("i was moved");
   var newUserStrength = $("#market-strength-slide").val();
   var strengthDiff = userStrength - newUserStrength;
-  
   if (strengthDiff < 0) {
     let accountCheck = walletCheckTwenty(userWallet, newUserStrength, strengthDiff)
     if (accountCheck.boolean) {
@@ -80,20 +74,8 @@ function walletCheckTwenty(wallet, newslide, difference) {
   }
 };
 
-
-
-
-
-
-
-
-
-
-
-
 function walletCheckTen(wallet, newslide) {
   let trainCost = parseInt(newslide) * 240;
-  
   if (wallet > trainCost) {
     return trainCost; 
   } else {
@@ -101,16 +83,12 @@ function walletCheckTen(wallet, newslide) {
   }
 };
 
-
-
 // stamina slider funtions the same as the other sliders
 $("#market-stamina-slide").change(function() {
   var newStaminaLocation = $("#create-stamina-slide").val();
   var staminaDiff = userStamina - newStaminaLocation;
-
   if (globalStatPoints > 0 || staminaDiff > 0) {
     let checker = globalStatPoints + staminaDiff;
-
     if (checker >= 0) {
       globalStatPoints = checker;
       staminaLocation = newStaminaLocation;
@@ -126,3 +104,17 @@ $("#market-stamina-slide").change(function() {
   }
   validation();
 });
+
+$("body").on("click", ".purchase-weapon, .purchase-armor", function() {
+  let purchase = {
+    name: $(this).data("name"),
+    statIncrease: $(this).data("statincrease"),
+    cost: $(this).data("cost"),
+    type: $(this).data("type"),
+    weight: parseInt($(this).data("weight")),
+    characterId: $("#character-id").data("id")
+  }
+  $.post("/api/purchase", purchase, data => {
+    console.log(data);
+  })
+}); 

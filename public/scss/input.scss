@@ -189,6 +189,22 @@ nav {
   max-height: 64px;
 }
 
+.dropdown-content{
+  width: max-content !important;
+  height:auto !important;
+}
+
+#ludus-drop {
+  opacity:1.0;
+  position:fixed;
+  left:80%;
+  right:0;
+  text-align:right;
+  padding-left:0px;
+  padding-right:0px;
+  z-index:10;
+}
+
 // SWIPER STYLES -----------------------------------------------
 
 .swiper-container {
@@ -209,12 +225,14 @@ nav {
   background-color: color(primary);
 }
 
-.btn:hover, .btn-floating:hover {
+.btn:hover, .btn-floating:hover, .btn:active, .btn-floating:active, .btn:target, .btn-floating:target, .btn:focus, .btn-floating:focus {
     background-color: color(primary-light);
 }
 
 
-// FIXED ACTION BUTTON STYLES -----------------------------------------------
+.ludus-btn {
+  height: 250px;
+}
 
 .fixed-action-btn{
   right: auto; 
@@ -242,6 +260,10 @@ nav {
   @include tab {
     font-size: 250%;
   }
+}
+
+#equipped-items {
+  margin-bottom: 20px;
 }
 
 // CLASS STYLES -----------------------------------------------
@@ -281,15 +303,11 @@ nav {
 .rounded-content-box {
   color: black;
   padding: 30px;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
   margin-bottom: 80px;
 }
 
 .brand-logo {
   margin-left: 10px;
-}
-
-.ludus-btn {
-  height: 200px;
 }
