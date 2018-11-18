@@ -180,6 +180,11 @@ nav {
   bottom: 10%;
 }
 
+.landing-btn {
+  height: 100px;
+  line-height: 1.2;
+}
+
 #landing-title {
   font-size: 900%;
   text-shadow: 2px 2px 1px white;

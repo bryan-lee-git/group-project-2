@@ -15,15 +15,12 @@
           </p>
         </div>
       </div>
-      <br>
 
       <div class="row">
         {{#if isloggedin}}
-          <a href="/accounts/view"><button class="btn btn-large">Your Account</button></a>
-          <a href="/character"><button id="search-item" class="btn btn-large">Create A Character</button></a>
-          <a href="/ludus-magnus"><button id="post-item" class="btn btn-large">Ludus Magnus</button></a>
-          <a href="/marketplace"><button id="post-item" class="btn btn-large">óplo Forum</button></a>
-          <a href="/logout"><button type="btn" class="btn btn-large">Save + Exit</button></a>
+          <a href="/ludus-magnus"><button id="post-item" class="landing-btn col s2 offset-s2 btn btn-large">Ludus<br />Magnus</button></a>
+          <a href="/accounts/view"><button class="landing-btn col s2 offset-s1  btn btn-large">View<br />Account</button></a>
+          <a href="/logout"><button type="btn" class="landing-btn col s2 offset-s1 btn btn-large">Save +<br />Logout</button></a>
         {{else}}
           <button class="btn btn-large modal-trigger" href="#account-info">SIGN-IN</button>
           <button id="sign-up" class="btn btn-large">SIGN-UP</button>
