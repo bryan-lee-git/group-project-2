@@ -42,12 +42,17 @@ module.exports = function(app) {
       db.Accounts.findOne({
         where: { uuid: req.session.passport.user }
       }).then(function(dbUser) {
-        var user = {
-          userInfo: dbUser.dataValues,
-          id: req.session.passport.user,
-          isloggedin: req.isAuthenticated()
-        };
-        res.render("character", user);
+        db.Arena.findAll({
+          where: { id: 1 }
+        }).then(dbArena => {
+          var user = {
+            userInfo: dbUser.dataValues,
+            id: req.session.passport.user,
+            isloggedin: req.isAuthenticated(),
+            arena: dbArena.dataValues
+          };
+          res.render("character", user);
+        });
       });
     } else {
       res.redirect("/");
@@ -93,7 +98,7 @@ module.exports = function(app) {
                 id: req.session.passport.user,
                 isloggedin: req.isAuthenticated()
               };
-              console.log(user)
+              console.log(user);
               res.render("market", user);
             });
           });
@@ -113,7 +118,7 @@ module.exports = function(app) {
           where: { name: dbUser.dataValues.firstName }
         }).then(dbChar => {
           let randomNumber = Math.floor(Math.random() * 25);
-          db.NPC.findAll({where: {id: randomNumber}}).then(dbNPC => {
+          db.NPC.findAll({ where: { id: randomNumber } }).then(dbNPC => {
             var battle = {
               user: dbChar[0].dataValues,
               npc: dbNPC[0].dataValues,

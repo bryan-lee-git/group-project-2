@@ -7,7 +7,8 @@ var staminaLocation = 12;
 // used to ensure that the user has selected an avatar
 var avatarSelect = false;
 var newName = "";
-
+var arena = $("#arena-hook").html();
+console.dir(arena);
 $("#first-name").on("change", e => {
   e.preventDefault();
   console.log(e);
@@ -121,16 +122,15 @@ $("#create-button").on("click", function(event) {
   event.preventDefault();
   // creates a new character object and grabs its info from the form the user filled out
   var newCharcter = {
-    name: $("#user-name").data("name"), 
+    name: $("#user-name").data("name"),
     image: $("#selected-avatar-img").attr("src"),
     male: $("input[name='gender']:checked").val(),
     wallet: 500,
-    strength:  $("#create-strength-slide").val(),
+    strength: $("#create-strength-slide").val(),
     speed: $("#create-speed-slide").val(),
     stamina: $("#create-stamina-slide").val(),
     skill: 1,
     AccountUuid: $("#uuid").data("uuid")
-
   };
   // ajax POST requests passes the newCharacter object as data
   $.ajax({

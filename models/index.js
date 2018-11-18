@@ -51,6 +51,7 @@ db.Accounts = require("./Account")(sequelize, Sequelize);
 db.User.hasMany(db.Weapons);
 db.User.hasMany(db.Armor);
 db.User.hasMany(db.Battle);
+//db.User.hasOne(db.Arenas);
 
 db.NPC.hasMany(db.Battle);
 db.NPC.hasMany(db.Weapons);
