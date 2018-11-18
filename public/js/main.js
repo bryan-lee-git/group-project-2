@@ -1,16 +1,8 @@
-$(".modal").modal();
-
 // collapsable initialization
 $(document).ready(function() {
   $(".collapsible").collapsible();
-});
-// Floating Action Button initialization
-$(document).ready(function() {
+  $(".modal").modal();
   $(".fixed-action-btn").floatingActionButton();
-});
-
-$(document).ready(function() {
-  // carousel functionality (Swiper)
   var swiper = new Swiper(".swiper-container", {
     effect: "coverflow",
     grabCursor: true,

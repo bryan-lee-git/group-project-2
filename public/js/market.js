@@ -140,14 +140,11 @@ function upCost(base, wallet, oldSlideLocation, newSlideLocation) {
 // checks to see if the user has enough money and then returns either true or false
 function walletCheck(wallet, costMath) {
   let trainCost = costMath
-
+ 
   if (wallet > trainCost) {
     return  true;
   } else {
     return false;
   }
 };
-
-
-
 

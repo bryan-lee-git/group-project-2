@@ -1,4 +1,9 @@
 <main>
+  <div id="user-hook" style="postion: absolute; visibility: hidden">{{user.id}}</div>
+  <div id="npc-hook" style="postion: absolute; visibility: hidden">{{npc.id}}</div>
+
+
+
   {{!-- the arena battle ground where the images of the user and opponent duke it out --}}
   <br />
   <div class="row">
@@ -12,93 +17,101 @@
   </div>
   <!--End image row-->
   <div class="row">
-    <div class="col s4 offset-s1 center-align">
-      <h2 class="rounded-content-box">{{user.name}}</h2>
+    <div class="col s4 offset-s1 center-align rounded-content-box">
+      <h2>{{user.name}}</h2>
+      <h5>Current Stamina: {{user.stamina}}</h5>
+      <br>
+      <button class="btn" id="player-stats-btn">VIEW BASE STATS</button>
+      <button class="btn" id="player-gear-btn">VIEW EQUIPMENT</button>
+      <br/>
+      <br/>
+      <div id="player-stats">
+        <hr>
+        <h5>BASE STATS</h5>
+        <table class="highlight responsive-table centered" id="user-table">
+          <thead>
+            <th>Stamina</th>
+            <th>Strength</th>
+            <th>Speed</th>
+            <th>Skill</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span id="user-stamina-span">{{user.stamina}}</span></td>
+              <td><span id="user-strength-span">{{user.strength}}</span></td>
+              <td><span id="user-speed-span">{{user.speed}}</span></td>
+              <td><span id="user-skill-span">{{user.skill}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <br/>
+      </div>
+      <div id="player-gear">
+        <hr>
+        <h5>EQUIPMENT</h5>
+        <table class="highlight responsive-table centered">
+            <thead>
+                <th>Weapon</th>
+                <th>Damage</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{weapon.name}}</td>
+                <td>{{weapon.statIncrease}}</td>
+              </tr>
+            </tbody>
+        </table>
+        <br />
+        <table class="highlight responsive-table centered">
+            <thead>
+                <th>Armor</th>
+                <th>Defense</th>
+                <th>Weight</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{armor.name}}</td>
+                <td>{{armor.statIncrease}}</td>
+                <td>{{armor.weight}}</td>
+              </tr>
+            </tbody>
+        </table>
+        <br/>
+      </div>
     </div>
-    <div class="col s4 offset-s1 center-align">
-      <h2 class="rounded-content-box">{{npc.name}}</h2>
+    <div class="col s4 offset-s2 center-align rounded-content-box">
+      <h2>{{npc.name}}</h2>
+      <h5>Current Stamina: {{npc.stamina}}</h5>
+      <br>
+      <button class="btn" id="npc-stats-btn">VIEW BASE STATS</button>
+      <br/>
+      <br/>
+      <div id="npc-stats">
+        <hr>
+        <h5>BASE STATS</h5>
+        <table class="highlight responsive-table centered" id="opponent-table">
+          <thead>
+            <th>Stamina</th>
+            <th>Strength</th>
+            <th>Speed</th>
+            <th>Skill</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span id="opponent-stamina-span">{{npc.stamina}}</span></td>
+              <td><span id="opponent-strength-span">{{npc.strength}}</span></td>
+              <td><span id="opponent-speed-span">{{npc.speed}}</span></td>
+              <td><span id="opponent-skill-span">{{npc.skill}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <br/>
+      </div>
     </div>
   </div>
-  <!--End name row-->
-  <div class="row">
-    <div class="col s2 offset-s1 left-align rounded-content-box">
-      <h5> Stamina
-        <p>{{user.stamina}}</p>
-      </h5>
-    </div>
-    <div class="col s2 offset-s8 right-align rounded-content-box">
-      <h5> Stamina
-        <p>{{npc.stamina}}</p>
-      </h5>
-    </div>
-  </div>
-  <!--End display current stamina row-->
-
-
-
-
-  {{!-- users stats display table --}}
-  <div class="row">
-    <div class="col s4 offset-s1 rounded-content-box">
-      <table class="centered responsive-table striped" id="user-table">
-        <thead>
-          <tr>
-            <th><span id="username-span">USER<td class="center-align">{{user.name}}</td></span></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>Stamina</td>
-            <td><span id="user-stamina-span">{{user.stamina}}</span></td>
-          </tr>
-          <tr>
-            <td>Strength</td>
-            <td><span id="user-strength-span">{{user.strength}}</span></td>
-          </tr>
-          <tr>
-            <td>Speed</td>
-            <td><span id="user-speed-span">{{user.speed}}</span></td>
-          </tr>
-          <tr>
-            <td>Skill</td>
-            <td><span id="user-skill-span">{{user.skill}}</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    {{!-- opponents stats display table --}}
-    <div class="col s4 offset-s2 rounded-content-box">
-      <table class="centered responsive-table striped" id="opponent-table">
-        <thead>
-          <th><span id="opponent-name-span">OPPONENT<td class="center-align">{{npc.name}}</td></span></th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Stamina</td>
-            <td><span id="opponent-stamina-span">{{npc.stamina}}</span></td>
-          </tr>
-          <tr>
-            <td>Strength</td>
-            <td><span id="opponent-strength-span">{{npc.strength}}</span></td>
-          </tr>
-          <tr>
-            <td>Speed</td>
-            <td><span id="opponent-speed-span">{{npc.speed}}</span></td>
-          </tr>
-          <tr>
-            <td>Skill</td>
-            <td><span id="opponent-skill-span">{{npc.skill}}</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
 
   {{!-- Fix action button, where the user will impliment their strategy in between turns --}}
-  <div class="fixed-action-btn" title="Tactics">
+  <div class="fixed-action-btn modal-trigger" href="#combat-log" title="Tactics">
     <a class="btn-floating pulse btn-large">
       <i class="large material-icons">mode_edit</i>
     </a>
@@ -112,3 +125,5 @@
     </ul>
   </div>
 </main>
+
+{{> Modal/combat-block}}
