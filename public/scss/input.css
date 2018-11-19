@@ -185,6 +185,14 @@ nav {
   line-height: 1.2;
 }
 
+#checkout-btn {
+  margin-top: 20px;
+}
+
+.purchase-weapon, .purchase-armor {
+  font-size: 10px;
+}
+
 #landing-title {
   font-size: 900%;
   text-shadow: 2px 2px 1px white;

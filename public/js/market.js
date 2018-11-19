@@ -63,7 +63,7 @@ $("#market-strength-slide").change(function() {
       userWallet = moneyBack;
       userStrength = newUserStrength;
       $("#lira-display").html(userWallet);
-    } 
+    };
 });
 
 // stamina slide functions the same as the speed slide
@@ -136,15 +136,42 @@ function upCost(base, wallet, oldSlideLocation, newSlideLocation) {
   };
 }
 
-
 // checks to see if the user has enough money and then returns either true or false
 function walletCheck(wallet, costMath) {
-  let trainCost = costMath
- 
+  let trainCost = costMath;
   if (wallet > trainCost) {
-    return  true;
+    return true;
   } else {
     return false;
   }
 };
 
+$("body").on("click", ".purchase-weapon, .purchase-armor", function() {
+  let purchase = {
+    name: $(this).data("name"),
+    statIncrease: $(this).data("statincrease"),
+    cost: $(this).data("cost"),
+    type: $(this).data("type"),
+    weight: parseInt($(this).data("weight")),
+    characterId: $("#character-id").data("id")
+  }
+  let newWallet = parseInt(userWallet) - $(this).data("cost");
+  if (newWallet >= 0) {
+    $(this).addClass("disabled");
+    $(this).html("PURCHASED!");
+    $.post("/api/purchase", purchase, data => {
+      console.log(data);
+    })
+    userWallet = newWallet;
+    $.ajax({
+      method: "PUT",
+      url: `/api/users/wallet/${characterId}`,
+      data: {wallet: newWallet}
+    }).then(data => {
+      console.log(data);
+    });
+    $("#lira-display").html(newWallet);
+  } else {
+    $(this).html("TOO POOR!");
+  }
+}); 

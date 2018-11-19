@@ -70,6 +70,22 @@ module.exports = function(app) {
     });
   });
 
+  //Update User's wallet
+  app.put("/api/users/wallet/:id", (req, res) => {
+    db.User.update(
+      {
+        wallet: req.body.wallet
+      },
+      {
+        where: {
+          id: req.params.id
+        }
+      }
+    ).then(results => {
+      res.json(results);
+    });
+  });
+
   // Delete an User by id
   app.delete("/api/users/:id", (req, res) => {
     db.User.destroy({ where: { id: req.params.id } }).then(results => {
