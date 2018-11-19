@@ -397,7 +397,6 @@ module.exports = function (app) {
   // Make a equipment
   app.post("/api/equipment", (req, res) => {
     equip(req.body.type);
-
     function equip(itemType) {
       db.Equipment.destroy({
         where: {

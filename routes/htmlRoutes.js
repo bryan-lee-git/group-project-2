@@ -5,14 +5,23 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     if (req.isAuthenticated()) {
       db.Accounts.findOne({
-        where: { uuid: req.session.passport.user }
+        where: {
+          uuid: req.session.passport.user
+        }
       }).then(function(dbUser) {
-        var user = {
-          userInfo: dbUser.dataValues,
-          id: req.session.passport.user,
-          isloggedin: req.isAuthenticated()
-        };
-        res.render("landing", user);
+        db.User.findOne({
+          where: {
+            name: dbUser.dataValues.firstName
+          }
+        }).then(function(dbChar) {
+          var user = {
+            user: dbChar.dataValues,
+            userInfo: dbUser.dataValues,
+            id: req.session.passport.user,
+            isloggedin: req.isAuthenticated()
+          };
+          res.render("landing", user);
+        });
       });
     } else {
       res.render("landing");
@@ -23,51 +32,17 @@ module.exports = function(app) {
   app.get("/signup", function(req, res) {
     if (req.isAuthenticated()) {
       db.Accounts.findOne({
-        where: { uuid: req.session.passport.user }
+        where: {
+          uuid: req.session.passport.user
+        }
       }).then(function(dbUser) {
-        var user = {
-          userInfo: dbUser.dataValues,
-          id: req.session.passport.user,
-          isloggedin: req.isAuthenticated()
-        };
-        res.render("ludus-magnus", user);
-      });
-    } else {
-      res.render("accounts");
-    }
-  });
-  // create character page
-  app.get("/character", function(req, res) {
-    if (req.isAuthenticated()) {
-      db.Accounts.findOne({
-        where: { uuid: req.session.passport.user }
-      }).then(function(dbUser) {
-        db.Arena.findAll({
-          where: { id: 1 }
-        }).then(dbArena => {
+        db.User.findOne({
+          where: {
+            name: dbUser.dataValues.firstName
+          }
+        }).then(function(dbChar) {
           var user = {
-            userInfo: dbUser.dataValues,
-            id: req.session.passport.user,
-            isloggedin: req.isAuthenticated(),
-            arena: dbArena.dataValues
-          };
-          res.render("character", user);
-        });
-      });
-    } else {
-      res.redirect("/");
-    }
-  });
-  // character menu page
-  app.get("/ludus-magnus", function(req, res) {
-    if (req.isAuthenticated()) {
-      db.Accounts.findOne({
-        where: { uuid: req.session.passport.user }
-      }).then(function(dbUser) {
-        db.Weapons.findAll({}).then(results => {
-          //console.log(`here's the results: `, results);
-          var user = {
-            weapons: results,
+            user: dbChar.dataValues,
             userInfo: dbUser.dataValues,
             id: req.session.passport.user,
             isloggedin: req.isAuthenticated()
@@ -76,24 +51,93 @@ module.exports = function(app) {
         });
       });
     } else {
+      res.render("accounts");
+    }
+  });
+
+  // character creation page
+  app.get("/character", function(req, res) {
+    if (req.isAuthenticated()) {
+      db.Accounts.findOne({
+        where: {
+          uuid: req.session.passport.user
+        }
+      }).then(function(dbUser) {
+        db.Arena.findAll({
+          where: {
+            id: 1
+          }
+        }).then(function(dbArena) {
+          db.User.findOne({
+            where: {
+              name: dbUser.dataValues.firstName
+            }
+          }).then(function(dbChar) {
+            var user = {
+              user: dbChar.dataValues,
+              userInfo: dbUser.dataValues,
+              id: req.session.passport.user,
+              isloggedin: req.isAuthenticated(),
+              arena: dbArena.dataValues
+            };
+            res.render("character", user);
+          });
+        });
+      });
+    } else {
       res.redirect("/");
     }
   });
-  // marketplace page
+
+  // character menu page
+  app.get("/ludus-magnus", function(req, res) {
+    if (req.isAuthenticated()) {
+      db.Accounts.findOne({
+        where: {
+          uuid: req.session.passport.user
+        }
+      }).then(function(dbUser) {
+        db.Weapons.findAll({}).then(function(results) {
+          db.User.findOne({
+            where: {
+              name: dbUser.dataValues.firstName
+            }
+          }).then(function(dbChar) {
+            var user = {
+              user: dbChar.dataValues,
+              weapons: results,
+              userInfo: dbUser.dataValues,
+              id: req.session.passport.user,
+              isloggedin: req.isAuthenticated()
+            };
+            res.render("ludus-magnus", user);
+          });
+        });
+      });
+    } else {
+      res.redirect("/");
+    }
+  });
+
+  // market/forum/training page
   app.get("/market", function(req, res) {
     if (req.isAuthenticated()) {
       db.Accounts.findOne({
-        where: { uuid: req.session.passport.user }
+        where: {
+          uuid: req.session.passport.user
+        }
       }).then(function(dbUser) {
-        db.User.findAll({
-          where: { name: dbUser.dataValues.firstName }
-        }).then(dbChar => {
-          db.Weapons.findAll({}).then(dbWeapons => {
-            db.Armor.findAll({}).then(dbArmor => {
+        db.User.findOne({
+          where: {
+            name: dbUser.dataValues.firstName
+          }
+        }).then(function(dbChar) {
+          db.Weapons.findAll({}).then(function(dbWeapons) {
+            db.Armor.findAll({}).then(function(dbArmor) {
               var user = {
                 weapons: dbWeapons,
                 armor: dbArmor,
-                user: dbChar[0].dataValues,
+                user: dbChar.dataValues,
                 userInfo: dbUser.dataValues,
                 id: req.session.passport.user,
                 isloggedin: req.isAuthenticated()
@@ -108,15 +152,21 @@ module.exports = function(app) {
       res.redirect("/");
     }
   });
+
   // equipment page
   app.get("/equip", function(req, res) {
     if (req.isAuthenticated()) {
       db.Accounts.findOne({
-        where: { uuid: req.session.passport.user }
+        where: {
+          uuid: req.session.passport.user
+        }
       }).then(function(dbUser) {
         db.User.findOne({
-          include: db.Purchase, where: { AccountUuid: dbUser.dataValues.uuid }
-        }).then(dbChar => {
+          include: db.Purchase,
+          where: {
+            AccountUuid: dbUser.dataValues.uuid
+          }
+        }).then(function(dbChar) {
           var user = {
             user: dbChar.dataValues,
             purchases: dbChar.dataValues.Purchases,
@@ -132,17 +182,27 @@ module.exports = function(app) {
       res.redirect("/");
     }
   });
+
   // arena/battle page
   app.get("/arena", function(req, res) {
     if (req.isAuthenticated()) {
       db.Accounts.findOne({
-        where: { uuid: req.session.passport.user }
+        where: {
+          uuid: req.session.passport.user
+        }
       }).then(function(dbUser) {
         db.User.findOne({
-          include: db.Equipment, where: { AccountUuid: dbUser.dataValues.uuid }
-        }).then(dbChar => {
-          let randomNumber = Math.floor(Math.random() * 50);
-          db.NPC.findOne({where: {id: randomNumber}}).then(dbNPC => {
+          include: db.Equipment,
+          where: {
+            AccountUuid: dbUser.dataValues.uuid
+          }
+        }).then(function(dbChar) {
+          var randomNumber = Math.floor(Math.random() * 50);
+          db.NPC.findOne({
+            where: {
+              id: randomNumber
+            }
+          }).then(function(dbNPC) {
             var battle = {
               user: dbChar.dataValues,
               weapon: dbChar.dataValues.Equipment[0],
@@ -160,35 +220,28 @@ module.exports = function(app) {
       res.redirect("/");
     }
   });
-  // instructions page
-  app.get("/instructions", function(req, res) {
-    if (req.isAuthenticated()) {
-      db.Accounts.findOne({
-        where: { uuid: req.session.passport.user }
-      }).then(function(dbUser) {
-        var user = {
-          userInfo: dbUser.dataValues,
-          id: req.session.passport.user,
-          isloggedin: req.isAuthenticated()
-        };
-        res.render("instructions", user);
-      });
-    } else {
-      res.redirect("/");
-    }
-  });
   // leaderboard page
   app.get("/leaderboard", function(req, res) {
     if (req.isAuthenticated()) {
       db.Accounts.findOne({
-        where: { uuid: req.session.passport.user }
+        where: {
+          uuid: req.session.passport.user
+        }
       }).then(function(dbUser) {
-        var user = {
-          userInfo: dbUser.dataValues,
-          id: req.session.passport.user,
-          isloggedin: req.isAuthenticated()
-        };
-        res.render("leaderboard", user);
+        db.User.findOne({
+          include: db.Purchase,
+          where: {
+            AccountUuid: dbUser.dataValues.uuid
+          }
+        }).then(function(dbChar) {
+          var user = {
+            user: dbChar.dataValues,
+            userInfo: dbUser.dataValues,
+            id: req.session.passport.user,
+            isloggedin: req.isAuthenticated()
+          };
+          res.render("leaderboard", user);
+        });
       });
     } else {
       res.redirect("/");

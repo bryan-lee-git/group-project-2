@@ -1,10 +1,6 @@
-// Code here handles what happens when a user submits a new account.
-
-// ADD
 $("#add-account").on("click", function(event) {
   event.preventDefault();
   console.log("Add account button clicked.");
-  // make a newAccount obj
   console.log($("#inputFirst").val());
   var newAccount = {
     firstName: $("#firstName").val(),
@@ -26,7 +22,6 @@ $("#add-account").on("click", function(event) {
   }
 });
 
-// UPDATE
 $("#update-account").on("click", function(event) {
   event.preventDefault();
   var changeAccount = {
@@ -51,7 +46,6 @@ $("#update-account").on("click", function(event) {
   }
 });
 
-// DELETE   ***************************************************
 $("#delete-account").on("click", function(event) {
   event.preventDefault();
   $("#err-msg").empty("");

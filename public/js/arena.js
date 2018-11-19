@@ -16,7 +16,7 @@ $("#npc-stats-btn").on("click", () => {
   $("#npc-stats").slideToggle(300);
 })
 
-$(document).ready(function () {
+$(document).ready(function() {
   const user = $("#user-hook").html();
   const npc = $("#npc-hook").html();
   $.ajax({

@@ -1,15 +1,16 @@
 var equippedWeapon = [];
 var equippedArmor = [];
 var userWallet = $("#lira-display").html();
+var characterId = $("#character-id").data("id");
 
 $.ajax({
   method: "GET",
-  url: `/api/users/equipment/${$("#character-id").data("id")}`,
-}).then(data => {
+  url: "http://localhost:3000/api/users/equipment/" + characterId
+}).then(function(data) {
   if (data[0].Equipment.length > 0) {
     equippedWeapon.push(data[0].Equipment[0]);
     equippedArmor.push(data[0].Equipment[1]);
-    validation();
+    validate();
   }
 });
 
@@ -24,9 +25,8 @@ $(".equip-weapon").on("click", function() {
   if (equippedWeapon.length === 0) {
     equippedWeapon.push(weapon);
     console.log(`${weapon.name} equipped!`);
-    validation();
-  }
-  else console.log("You already have a weapon equipped.");
+    validate();
+  } else console.log("You already have a weapon equipped.");
 });
 
 $(".equip-armor").on("click", function() {
@@ -39,9 +39,8 @@ $(".equip-armor").on("click", function() {
   if (equippedArmor.length === 0) {
     equippedArmor.push(armor);
     console.log(`${armor.name} equipped!`);
-    validation();
-  }
-  else console.log("You already have armor equipped.");
+    validate();
+  } else console.log("You already have armor equipped.");
 });
 
 $("#equipped-items").on("click", function() {
@@ -79,7 +78,7 @@ $("body").on("click", ".unequip-weapon", function() {
   });
   equippedWeapon = [];
   $("#equipped-weapon-content").empty();
-  validation();
+  validate();
 });
 
 $("body").on("click", ".unequip-armor", function() {
@@ -89,30 +88,34 @@ $("body").on("click", ".unequip-armor", function() {
   });
   equippedArmor = [];
   $("#equipped-armor-content").empty();
-  validation();
+  validate();
 });
 
 $(".submit-equipment").on("click", function() {
-  var weapon = {
-    name: equippedWeapon[0].name,
-    statIncrease: equippedWeapon[0].statIncrease,
-    type: equippedWeapon[0].type,
-    weight: equippedWeapon[0].weight,
-    characterId: $("#character-id").data("id")
-  };
-  var armor = {
-    name: equippedArmor[0].name,
-    statIncrease: equippedArmor[0].statIncrease,
-    type: "armor",
-    weight: equippedArmor[0].weight,
-    characterId: $("#character-id").data("id")
-  };
-  $.post("/api/equipment", weapon, data => {
-    console.log(data);
-  });
-  $.post("/api/equipment", armor, data => {
-    console.log(data);
-  });
+  if (equippedWeapon.length > 0) {
+    var weapon = {
+      name: equippedWeapon[0].name,
+      statIncrease: equippedWeapon[0].statIncrease,
+      type: equippedWeapon[0].type,
+      weight: equippedWeapon[0].weight,
+      characterId: $("#character-id").data("id")
+    };
+    $.post("/api/equipment", weapon, data => {
+      console.log(data);
+    });
+  }
+  if (equippedArmor.length > 0) {
+    var armor = {
+      name: equippedArmor[0].name,
+      statIncrease: equippedArmor[0].statIncrease,
+      type: "armor",
+      weight: equippedArmor[0].weight,
+      characterId: $("#character-id").data("id")
+    };
+    $.post("/api/equipment", armor, data => {
+      console.log(data);
+    });
+  }
   window.location.href = "/ludus-magnus";
 });
 
@@ -126,7 +129,9 @@ $("body").on("click", ".sell-weapon, .sell-armor", function() {
   $.ajax({
     method: "PUT",
     url: `/api/users/wallet/${$("#character-id").data("id")}`,
-    data: { wallet: newWallet }
+    data: {
+      wallet: newWallet
+    }
   }).then(function() {
     $.ajax({
       method: "DELETE",
@@ -137,7 +142,7 @@ $("body").on("click", ".sell-weapon, .sell-armor", function() {
   $(this).closest("tr").remove();
 });
 
-function validation() {
+functionvalidate() {
   if (equippedWeapon.length > 0) {
     $(".equip-weapon").addClass("disabled");
   }
