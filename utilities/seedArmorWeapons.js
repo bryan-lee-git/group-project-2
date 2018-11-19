@@ -16,7 +16,7 @@ for (let index = 1; index < 51; index++) {
           const item = {
             name: target.name,
             damage: target.damage.dice_count * target.damage.dice_value,
-            cost: target.cost.quantity,
+            cost: target.cost.quantity*60,
             costType: target.cost.unit,
             weight: false
           };
@@ -34,7 +34,7 @@ for (let index = 1; index < 51; index++) {
       const item = {
         name: target.name,
         strength: target.armor_class.base,
-        cost: target.cost.quantity,
+        cost: target.cost.quantity*20,
         costType: target.cost.unit,
         weight: target.weight
       };
