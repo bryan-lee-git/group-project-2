@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{!-- styling cdns and files --}}
-    <link rel="icon" type="image/png" href="/img/erics-images/favicon.png">
-    <link rel="stylesheet" href="/styles/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/css/swiper.css">
-    <link rel="stylesheet" href="/scss/input.css">
-    <title>ROAD TO ROME</title>
-  </head>
-  <body>
-    {{!-- navigation injection here --}}
-    {{> Navigation/nav-block search=false post=false account=false signup=true}}
-    {{!-- content injection here --}}
-    {{{body}}}
-    {{!-- script cdns and files here --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.2/js/swiper.min.js"></script>
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/materialize.min.js"></script>
-    <script src="/js/accounts.js"></script>
-    <script src="/js/arena.js"></script>
-    <script src="/js/character.js"></script>
-    <script src="/js/landing.js"></script>
-    <script src="/js/ludus-magnus.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/market.js"></script>
-    <script src="/js/equip.js"></script>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {{!-- styling cdns and files --}}
+  <link rel="icon" type="image/png" href="/img/erics-images/favicon.png">
+  <link rel="stylesheet" href="/styles/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/css/swiper.css">
+  <link rel="stylesheet" href="/scss/input.css">
+  <title>ROAD TO ROME</title>
+</head>
+
+<body>
+  <span id="character-id" data-id="{{user.id}}"></span>
+  {{!-- navigation injection here --}}
+  {{> Navigation/nav-block search=false post=false account=false signup=true}}
+  {{!-- content injection here --}}
+  {{{body}}}
+  {{!-- script cdns and files here --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.2/js/swiper.min.js"></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/materialize.min.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/accounts.js"></script>
+  <script src="/js/arena.js"></script>
+  <script src="/js/character.js"></script>
+  <script src="/js/landing.js"></script>
+  <script src="/js/market.js"></script>
+  <script src="/js/equip.js"></script>
+</body>
+
 </html>

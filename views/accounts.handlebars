@@ -1,39 +1,43 @@
-<div class="center-align container">
-  <header>
-    <h1 class="page-title">New Account</h1>
-    <h3 id="create-err-msg"></h3>
-  </header>
+<br/><br/>
+<main>
+  <div class="center-align container rounded-content-box">
+    <header>
+      <h1 class="page-title">New Account</h1>
+      <h3 id="create-err-msg"></h3>
+    </header>
 
-  <h3 id="err-msg"></h3>
+    <h3 id="err-msg"></h3>
 
-  <form id="create-form" class="rounded-content-box">
-    <div class="row">
-      <div class="input-field col s12 m6">
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstName">
+    <form id="create-form">
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName">
+        </div>
+
+        <div class="input-field col s12 m6">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName">
+        </div>
       </div>
 
-      <div class="input-field col s12 m6">
-        <label for="lastName">Last Name</label>
-        <input type="text" id="lastName">
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <label for="inputEmail">Email</label>
+          <input type="email" id="inputEmail">
+        </div>
+        <div class="input-field col s12 m6">
+          <label for="inputPassword">Password</label>
+          <input type="password" id="inputPassword">
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="input-field col s12 m6">
-        <label for="inputEmail">Email</label>
-        <input type="email" id="inputEmail">
+      <div>
+        <h2 id="message"></h2>
       </div>
-      <div class="input-field col s12 m6">
-        <label for="inputPassword">Password</label>
-        <input type="password" id="inputPassword">
+      <div class="row">
+        <button type="submit" id="add-account" class="col s12 btn btn-primary">Create Account</button>
       </div>
-    </div>
-
-    <div>
-      <h2 id="message"></h2>
-    </div>
-
-    <button type="submit" id="add-account" class="btn btn-primary">Create Account</button>
-  </form>
-</div>
+    </form>
+  </div>
+</main>

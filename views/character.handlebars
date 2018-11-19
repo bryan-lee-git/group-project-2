@@ -1,5 +1,5 @@
 <main>
-
+  <span id="character-id" data-id="{{user.id}}"></span>
   {{!-- Title of the create page --}}
   <div class="container">
     <div class="row center-align">
@@ -9,7 +9,6 @@
     </div>
   </div>
   <div id="arena-hook" style="postion: absolute; visibility: hidden">{{user.arena.name}}</div>
-
   {{!-- the carousel where the user can choose thier hero --}}
   <div class="swiper-container">
     <div class="swiper-wrapper">
@@ -113,8 +112,6 @@
     <div class="swiper-button-prev swiper-button-white"></div>
     <div class="swiper-button-next swiper-button-white"></div>
   </div>
-
-
   {{!-- where the user can choose the stats of their character --}}
   <div class="container rounded-content-box">
     <div class="row">

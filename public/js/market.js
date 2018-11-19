@@ -1,4 +1,3 @@
-// creates variables from the info injected into handlebars from the DB
 var userWallet = $("#lira-display").html();
 var characterId = $("#character-id").data("id");
 var speedCost = parseInt($("#current-speed").html()) * 50;
@@ -11,7 +10,7 @@ $("#stamina-cost").append(staminaCost);
 
 $(".stat-btn").on("click", function() {
   var type = $(this).data("type");
-  var cost = parseInt($(this).data("id")) * 100;
+  var cost = parseInt($(this).data("id")) * 50;
   var newStat = parseInt($(this).data("id")) + 1;
   var newWallet = parseInt(userWallet) - cost;
   if (newWallet >= 0) {
@@ -20,7 +19,9 @@ $(".stat-btn").on("click", function() {
     $.ajax({
       method: "PUT",
       url: `/api/users/wallet/${characterId}`,
-      data: {wallet: newWallet}
+      data: {
+        wallet: newWallet
+      }
     });
     $.ajax({
       method: "PUT",
@@ -35,6 +36,7 @@ $(".stat-btn").on("click", function() {
     });
   } else {
     $(this).html("TOO POOR!");
+    $(this).addClass("disabled");
   }
 });
 
@@ -56,12 +58,15 @@ $("body").on("click", ".purchase-weapon, .purchase-armor", function() {
       $.ajax({
         method: "PUT",
         url: `/api/users/wallet/${characterId}`,
-        data: {wallet: newWallet}
+        data: {
+          wallet: newWallet
+        }
       }).then(() => {
         $("#lira-display").html(newWallet);
       });
     });
   } else {
     $(this).html("TOO POOR!");
+    $(this).addClass("disabled");
   };
-}); 
+});
