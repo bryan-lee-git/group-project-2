@@ -168,7 +168,7 @@ $("body").on("click", ".purchase-weapon, .purchase-armor", function() {
       url: `/api/users/wallet/${characterId}`,
       data: {wallet: newWallet}
     }).then(data => {
-      
+      console.log(data);
     });
     $("#lira-display").html(newWallet);
   } else {
