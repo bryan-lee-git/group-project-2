@@ -128,7 +128,7 @@ $("#create-button").on("click", function(event) {
 });
 
 // runs a validaton check to make sure the entire form has been filled out before the user can submit
-functionvalidation() {
+function validation() {
   if (globalStatPoints === 0 && avatarSelect) {
     $("#create-button").removeClass("disabled");
   }
