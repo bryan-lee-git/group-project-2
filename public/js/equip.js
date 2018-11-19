@@ -142,7 +142,7 @@ $("body").on("click", ".sell-weapon, .sell-armor", function() {
   $(this).closest("tr").remove();
 });
 
-functionvalidate() {
+function validate() {
   if (equippedWeapon.length > 0) {
     $(".equip-weapon").addClass("disabled");
   }
