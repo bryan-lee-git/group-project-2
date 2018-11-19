@@ -13,6 +13,10 @@ module.exports = function(sequelize, DataTypes) {
         min: 1
       }
     },
+    cost: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     type: {
       type: DataTypes.STRING,
       allowNull: true,
