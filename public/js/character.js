@@ -1,19 +1,9 @@
-// how many begining skill points the user gets
 var globalStatPoints = 5;
-// begining location of the slider, set globally and will be changed
 var speedLocation = 3;
 var strengthLocation = 12;
 var staminaLocation = 12;
-// used to ensure that the user has selected an avatar
 var avatarSelect = false;
-var newName = "";
 var arena = $("#arena-hook").html();
-console.dir(arena);
-$("#first-name").on("change", e => {
-  e.preventDefault();
-  console.log(e);
-  newName = e.target.val();
-});
 
 // displays stat point alotment
 $("#skill-points-display").html(globalStatPoints);
@@ -29,7 +19,7 @@ $("#create-speed-slide").change(function() {
   if (globalStatPoints > 0 || speedDiff > 0) {
     // finds the difference between the users points left and how much the slide was moved...
     // ...assigns that a variable
-    let checker = globalStatPoints + speedDiff;
+    var checker = globalStatPoints + speedDiff;
     // another if statement that checks to see if the user has enough points to complete their action
     if (checker >= 0) {
       // if they have pionts it updates the global skill points to the difference between the old skill points...
@@ -59,10 +49,8 @@ $("#create-speed-slide").change(function() {
 $("#create-strength-slide").change(function() {
   var newStrengthLocation = $("#create-strength-slide").val();
   var strengthDiff = strengthLocation - newStrengthLocation;
-
   if (globalStatPoints > 0 || strengthDiff > 0) {
-    let checker = globalStatPoints + strengthDiff;
-
+    var checker = globalStatPoints + strengthDiff;
     if (checker >= 0) {
       globalStatPoints = checker;
       strengthLocation = newStrengthLocation;
@@ -83,10 +71,8 @@ $("#create-strength-slide").change(function() {
 $("#create-stamina-slide").change(function() {
   var newStaminaLocation = $("#create-stamina-slide").val();
   var staminaDiff = staminaLocation - newStaminaLocation;
-
   if (globalStatPoints > 0 || staminaDiff > 0) {
-    let checker = globalStatPoints + staminaDiff;
-
+    var checker = globalStatPoints + staminaDiff;
     if (checker >= 0) {
       globalStatPoints = checker;
       staminaLocation = newStaminaLocation;
@@ -106,7 +92,6 @@ $("#create-stamina-slide").change(function() {
 // how the user gets the avatar they want, pushes that image down to the selected-avatar-img
 $(".swiper-slide").on("click", function(event) {
   event.preventDefault();
-
   var slideSource = $(this)
     .children("img")
     .attr("src");

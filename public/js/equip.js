@@ -1,10 +1,10 @@
 var equippedWeapon = [];
 var equippedArmor = [];
-var characterId = $("#character-id").data("id");
+var userWallet = $("#lira-display").html();
 
 $.ajax({
   method: "GET",
-  url: `/api/users/equipment/${characterId}`,
+  url: `/api/users/equipment/${$("#character-id").data("id")}`,
 }).then(data => {
   if (data[0].Equipment.length > 0) {
     equippedWeapon.push(data[0].Equipment[0]);
@@ -13,8 +13,9 @@ $.ajax({
   }
 });
 
-$(".equip-weapon").on("click", function () {
+$(".equip-weapon").on("click", function() {
   var weapon = {
+    id: $(this).data("id"),
     type: $(this).data("type"),
     name: $(this).data("name"),
     statIncrease: $(this).data("statincrease"),
@@ -28,7 +29,7 @@ $(".equip-weapon").on("click", function () {
   else console.log("You already have a weapon equipped.");
 });
 
-$(".equip-armor").on("click", function () {
+$(".equip-armor").on("click", function() {
   var armor = {
     type: $(this).data("type"),
     name: $(this).data("name"),
@@ -72,12 +73,20 @@ $("#equipped-items").on("click", function() {
 });
 
 $("body").on("click", ".unequip-weapon", function() {
+  $.ajax({
+    method: "DELETE",
+    url: `/api/equipment/${equippedWeapon[0].id}`,
+  });
   equippedWeapon = [];
   $("#equipped-weapon-content").empty();
   validation();
 });
 
 $("body").on("click", ".unequip-armor", function() {
+  $.ajax({
+    method: "DELETE",
+    url: `/api/equipment/${equippedArmor[0].id}`,
+  });
   equippedArmor = [];
   $("#equipped-armor-content").empty();
   validation();
@@ -107,6 +116,27 @@ $(".submit-equipment").on("click", function() {
   window.location.href = "/ludus-magnus";
 });
 
+$("body").on("click", ".sell-weapon, .sell-armor", function() {
+  let soldItem = {
+    name: $(this).data("name"),
+    id: $(this).data("id")
+  };
+  let newWallet = parseInt(userWallet) + $(this).data("cost");
+  userWallet = newWallet;
+  $.ajax({
+    method: "PUT",
+    url: `/api/users/wallet/${$("#character-id").data("id")}`,
+    data: { wallet: newWallet }
+  }).then(function() {
+    $.ajax({
+      method: "DELETE",
+      url: `/api/purchase/${soldItem.id}`,
+    });
+  });
+  $("#lira-display").html(newWallet);
+  $(this).closest("tr").remove();
+});
+
 function validation() {
   if (equippedWeapon.length > 0) {
     $(".equip-weapon").addClass("disabled");
@@ -120,4 +150,4 @@ function validation() {
   if (equippedArmor.length === 0) {
     $(".equip-armor").removeClass("disabled");
   }
-}
+};

@@ -12,6 +12,7 @@ p {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Cinzel Decorative";
+  font-weight: bold;
 }
 
 body {
@@ -160,6 +161,10 @@ nav {
 
 .btn, .btn-floating {
   background-color: #b71c1c;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
 }
 
 .btn:hover, .btn-floating:hover, .btn:active, .btn-floating:active, .btn:target, .btn-floating:target, .btn:focus, .btn-floating:focus {
@@ -185,17 +190,23 @@ nav {
   line-height: 1.2;
 }
 
-#checkout-btn {
-  margin-top: 20px;
-}
-
 .purchase-weapon, .purchase-armor {
   font-size: 10px;
 }
 
+#inventory-view {
+  margin-top: 20px;
+  height: 50px;
+}
+
+#equipped-items {
+  margin-bottom: 20px;
+  height: 50px;
+}
+
 #landing-title {
   font-size: 900%;
-  text-shadow: 2px 2px 1px white;
+  text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.9);
   font-family: "Cinzel Decorative";
 }
 
@@ -217,12 +228,9 @@ nav {
   }
 }
 
-#equipped-items {
-  margin-bottom: 20px;
-}
-
 .page-title {
-  text-shadow: 2px 2px 1px white;
+  text-rendering: optimizeLegibility;
+  text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.9);
   font-size: 550%;
   font-family: "Cinzel Decorative";
 }
@@ -246,7 +254,7 @@ nav {
 }
 
 .page-subtitle {
-  text-shadow: 2px 2px 1px white;
+  text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.9);
   font-size: 350%;
   font-family: "Cinzel Decorative";
 }
@@ -279,5 +287,10 @@ nav {
 
 .brand-logo {
   margin-left: 10px;
+}
+
+.collapsible-header {
+  display: block;
+  text-align: center;
 }
 /*# sourceMappingURL=input.css.map */

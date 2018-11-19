@@ -15,14 +15,14 @@ module.exports = function(app) {
           id: req.session.passport.user,
           isloggedin: req.isAuthenticated()
         };
-        res.render("ludus-magnus", user);
+        res.render("view-account", user);
       });
     } else {
       var user = {
         id: null,
         isloggedin: req.isAuthenticated()
       };
-      res.redirect("/ludus-magnus");
+      res.redirect("/");
     }
   });
 

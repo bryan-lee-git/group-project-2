@@ -1,15 +1,12 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
-
 var passport = require("passport");
 var flash = require("connect-flash");
 var cookieParser = require("cookie-parser");
 var session = require("express-session"); // cookie session
 var db = require("./models");
-
 require("./config/passport.js")(passport); // pass passport for configuration
-
 var app = express();
 var PORT = process.env.PORT || 3000;
 
@@ -22,6 +19,7 @@ app.use(express.static("public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+// Session
 app.use(
   session({
     key: "user_sid",
@@ -32,6 +30,7 @@ app.use(
   })
 );
 
+// More Passport.js config
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash());

@@ -1,7 +1,7 @@
 var db = require("../models");
 var liveBattle = require("../utilities/liveBattle");
 
-module.exports = function(app) {
+module.exports = function (app) {
   //////////////////////////////////////////////////////////////////
   /// User routes
   //////////////////////////////////////////////////////////////////
@@ -13,21 +13,37 @@ module.exports = function(app) {
     });
   });
 
-  // Get all Users and equipment
+  // Get User by id
   app.get("/api/users/:id", (req, res) => {
-    db.User.findAll({ where: { id: req.params.id } }).then(results => {
+    db.User.findAll({
+      where: {
+        id: req.params.id
+      }
+    }).then(results => {
       res.json(results);
     });
   });
 
+  // Get User market purchases by id
   app.get("/api/users/purchases/:id", (req, res) => {
-    db.User.findAll({ include: db.Purchase, where: { id: req.params.id } }).then(results => {
+    db.User.findAll({
+      include: db.Purchase,
+      where: {
+        id: req.params.id
+      }
+    }).then(results => {
       res.json(results);
     });
   });
 
+  // Get User equipped items by id
   app.get("/api/users/equipment/:id", (req, res) => {
-    db.User.findAll({ include: db.Equipment, where: { id: req.params.id } }).then(results => {
+    db.User.findAll({
+      include: db.Equipment,
+      where: {
+        id: req.params.id
+      }
+    }).then(results => {
       res.json(results);
     });
   });
@@ -49,46 +65,79 @@ module.exports = function(app) {
     });
   });
 
-  //Update a User by id
+  // Update a User by id
   app.put("/api/users/:id", (req, res) => {
-    db.User.update(
-      {
-        name: req.body.name,
-        image: req.body.image,
-        strength: req.body.strength,
-        speed: req.body.speed,
-        stamina: req.body.stamina,
-        skill: req.body.skill
-      },
-      {
-        where: {
-          id: req.params.id
-        }
+    db.User.update({
+      name: req.body.name,
+      image: req.body.image,
+      strength: req.body.strength,
+      speed: req.body.speed,
+      stamina: req.body.stamina,
+      skill: req.body.skill
+    }, {
+      where: {
+        id: req.params.id
       }
-    ).then(results => {
+    }).then(results => {
       res.json(results);
     });
   });
 
-  //Update User's wallet
+  //Update User's wallet (selling or buying)
   app.put("/api/users/wallet/:id", (req, res) => {
-    db.User.update(
-      {
-        wallet: req.body.wallet
-      },
-      {
+    db.User.update({
+      wallet: req.body.wallet
+    }, {
+      where: {
+        id: req.params.id
+      }
+    }).then(results => {
+      res.json(results);
+    });
+  });
+
+  // Update User's stats
+  app.put("/api/users/stats/:id/:type", (req, res) => {
+    if (req.body.type === "speed") {
+      db.User.update({
+        speed: req.body.newStat
+      }, {
         where: {
           id: req.params.id
         }
-      }
-    ).then(results => {
-      res.json(results);
-    });
+      }).then(results => {
+        res.json(results);
+      });
+    } else if (req.body.type === "strength") {
+      db.User.update({
+        strength: req.body.newStat
+      }, {
+        where: {
+          id: req.params.id
+        }
+      }).then(results => {
+        res.json(results);
+      });
+    } else if (req.body.type === "stamina") {
+      db.User.update({
+        stamina: req.body.newStat
+      }, {
+        where: {
+          id: req.params.id
+        }
+      }).then(results => {
+        res.json(results);
+      });
+    };
   });
 
   // Delete an User by id
   app.delete("/api/users/:id", (req, res) => {
-    db.User.destroy({ where: { id: req.params.id } }).then(results => {
+    db.User.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(results => {
       res.json(results);
     });
   });
@@ -111,23 +160,20 @@ module.exports = function(app) {
   // Create a new NPC
 
   app.post("/api/npcs/:id", (req, res) => {
-    db.NPC.create(
-      {
-        name: req.body.name,
-        image: req.body.image,
-        male: req.body.male,
-        strength: req.body.strength,
-        speed: req.body.speed,
-        stamina: req.body.stamina,
-        skill: req.body.skill,
+    db.NPC.create({
+      name: req.body.name,
+      image: req.body.image,
+      male: req.body.male,
+      strength: req.body.strength,
+      speed: req.body.speed,
+      stamina: req.body.stamina,
+      skill: req.body.skill,
+      ArenaId: req.params.id
+    }, {
+      where: {
         ArenaId: req.params.id
-      },
-      {
-        where: {
-          ArenaId: req.params.id
-        }
       }
-    ).then(results => {
+    }).then(results => {
       console.log(
         `${results.name} added to the NPC table on row ${results.id}.`
       );
@@ -137,29 +183,30 @@ module.exports = function(app) {
 
   //Update an NPC by id
   app.put("/api/npcs/:id", (req, res) => {
-    db.NPC.update(
-      {
-        name: req.body.name,
-        image: req.body.image,
-        strength: req.body.strength,
-        speed: req.body.speed,
-        stamina: req.body.stamina,
-        skill: req.body.skill,
-        ArenaId: req.body.arenaid
-      },
-      {
-        where: {
-          id: req.params.id
-        }
+    db.NPC.update({
+      name: req.body.name,
+      image: req.body.image,
+      strength: req.body.strength,
+      speed: req.body.speed,
+      stamina: req.body.stamina,
+      skill: req.body.skill,
+      ArenaId: req.body.arenaid
+    }, {
+      where: {
+        id: req.params.id
       }
-    ).then(results => {
+    }).then(results => {
       res.json(results);
     });
   });
 
   // Delete an NPC by id
   app.delete("/api/npcs/:id", (req, res) => {
-    db.User.destroy({ where: { id: req.params.id } }).then(results => {
+    db.User.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(results => {
       res.json(results);
     });
   });
@@ -242,7 +289,11 @@ module.exports = function(app) {
 
   // Delete an NPC by id - to be used in Development ONLY
   app.delete("/api/npcs/:id", (req, res) => {
-    db.Arenas.destroy({ where: { id: req.params.id } }).then(results => {
+    db.Arenas.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(results => {
       res.json(results);
     });
   });
@@ -284,28 +335,29 @@ module.exports = function(app) {
 
   //Update a Markets by id
   app.put("/api/markets/:id", (req, res) => {
-    db.Markets.update(
-      {
-        name: req.body.name,
-        damage: req.body.damage,
-        armor: req.body.armor,
-        weight: req.body.weight,
-        purchased: req.body.purchased,
-        ArenaId: req.body.arenaid
-      },
-      {
-        where: {
-          id: req.params.id
-        }
+    db.Markets.update({
+      name: req.body.name,
+      damage: req.body.damage,
+      armor: req.body.armor,
+      weight: req.body.weight,
+      purchased: req.body.purchased,
+      ArenaId: req.body.arenaid
+    }, {
+      where: {
+        id: req.params.id
       }
-    ).then(results => {
+    }).then(results => {
       res.json(results);
     });
   });
 
   // Delete an Markets by id - to be used in Development ONLY
   app.delete("/api/markets/:id", (req, res) => {
-    db.Markets.destroy({ where: { id: req.params.id } }).then(results => {
+    db.Markets.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(results => {
       res.json(results);
     });
   });
@@ -328,18 +380,34 @@ module.exports = function(app) {
     });
   });
 
+  app.delete("/api/purchase/:id", (req, res) => {
+    db.Purchase.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(() => {}).then(results => {
+      res.json(results);
+    });
+  });
+
   //////////////////////////////////////////////////////////////////
-  /// Purchase routes
+  /// Equipment routes
   //////////////////////////////////////////////////////////////////
 
   // Make a equipment
   app.post("/api/equipment", (req, res) => {
     equip(req.body.type);
+
     function equip(itemType) {
-      db.Equipment.destroy({ where: { type: itemType} }).then(() => {
+      db.Equipment.destroy({
+        where: {
+          type: itemType
+        }
+      }).then(() => {
         db.Equipment.create({
           name: req.body.name,
           statIncrease: req.body.statIncrease,
+          cost: req.body.statIncrease,
           type: req.body.type,
           weight: req.body.weight,
           UserId: req.body.characterId
@@ -348,6 +416,16 @@ module.exports = function(app) {
         });
       });
     }
+  });
+
+  app.delete("/api/equipment/:id", (req, res) => {
+    db.Equipment.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(() => {}).then(results => {
+      res.json(results);
+    });
   });
 
   //////////////////////////////////////////////////////////////////
@@ -385,7 +463,11 @@ module.exports = function(app) {
 
   // Delete a Weapon by id - to be used in Development ONLY
   app.delete("/api/weapons/:id", (req, res) => {
-    db.Weapons.destroy({ where: { id: req.params.id } }).then(results => {
+    db.Weapons.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(results => {
       res.json(results);
     });
   });
@@ -417,7 +499,11 @@ module.exports = function(app) {
 
   // Delete an Armor by id - to be used in Development ONLY
   app.delete("/api/weapons/:id", (req, res) => {
-    db.User.destroy({ where: { id: req.params.id } }).then(results => {
+    db.User.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(results => {
       res.json(results);
     });
   });

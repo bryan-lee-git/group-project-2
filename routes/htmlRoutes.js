@@ -141,7 +141,7 @@ module.exports = function(app) {
         db.User.findOne({
           include: db.Equipment, where: { AccountUuid: dbUser.dataValues.uuid }
         }).then(dbChar => {
-          let randomNumber = Math.floor(Math.random() * 23);
+          let randomNumber = Math.floor(Math.random() * 50);
           db.NPC.findOne({where: {id: randomNumber}}).then(dbNPC => {
             var battle = {
               user: dbChar.dataValues,
