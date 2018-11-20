@@ -38,13 +38,10 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  // methods ======================
-  // generating a hash
+
   Accounts.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
   };
-
-  // checking if password is valid
   Accounts.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.accountKey);
   };

@@ -11,16 +11,20 @@ module.exports = function(app) {
       }).then(function(dbUser) {
         db.User.findOne({
           where: {
-            name: dbUser.dataValues.firstName
+            AccountUuid: dbUser.dataValues.uuid
           }
         }).then(function(dbChar) {
-          var user = {
-            user: dbChar.dataValues,
-            userInfo: dbUser.dataValues,
-            id: req.session.passport.user,
-            isloggedin: req.isAuthenticated()
-          };
-          res.render("landing", user);
+          if (dbChar === null) {
+            res.redirect("/character");
+          } else {
+            var user = {
+              user: dbChar.dataValues,
+              userInfo: dbUser.dataValues,
+              id: req.session.passport.user,
+              isloggedin: req.isAuthenticated()
+            };
+            res.render("landing", user);
+          }
         });
       });
     } else {
@@ -68,20 +72,13 @@ module.exports = function(app) {
             id: 1
           }
         }).then(function(dbArena) {
-          db.User.findOne({
-            where: {
-              name: dbUser.dataValues.firstName
-            }
-          }).then(function(dbChar) {
-            var user = {
-              user: dbChar.dataValues,
-              userInfo: dbUser.dataValues,
-              id: req.session.passport.user,
-              isloggedin: req.isAuthenticated(),
-              arena: dbArena.dataValues
-            };
-            res.render("character", user);
-          });
+          var user = {
+            userInfo: dbUser.dataValues,
+            id: req.session.passport.user,
+            isloggedin: req.isAuthenticated(),
+            arena: dbArena.dataValues
+          };
+          res.render("character", user);
         });
       });
     } else {
@@ -103,14 +100,18 @@ module.exports = function(app) {
               name: dbUser.dataValues.firstName
             }
           }).then(function(dbChar) {
-            var user = {
-              user: dbChar.dataValues,
-              weapons: results,
-              userInfo: dbUser.dataValues,
-              id: req.session.passport.user,
-              isloggedin: req.isAuthenticated()
-            };
-            res.render("ludus-magnus", user);
+            if (dbChar === null) {
+              res.redirect("/character");
+            } else {
+              var user = {
+                user: dbChar.dataValues,
+                weapons: results,
+                userInfo: dbUser.dataValues,
+                id: req.session.passport.user,
+                isloggedin: req.isAuthenticated()
+              };
+              res.render("ludus-magnus", user);
+            }
           });
         });
       });
@@ -132,20 +133,24 @@ module.exports = function(app) {
             name: dbUser.dataValues.firstName
           }
         }).then(function(dbChar) {
-          db.Weapons.findAll({}).then(function(dbWeapons) {
-            db.Armor.findAll({}).then(function(dbArmor) {
-              var user = {
-                weapons: dbWeapons,
-                armor: dbArmor,
-                user: dbChar.dataValues,
-                userInfo: dbUser.dataValues,
-                id: req.session.passport.user,
-                isloggedin: req.isAuthenticated()
-              };
-              console.log(user);
-              res.render("market", user);
+          if (dbChar === null) {
+            res.redirect("/character");
+          } else {
+            db.Weapons.findAll({}).then(function(dbWeapons) {
+              db.Armor.findAll({}).then(function(dbArmor) {
+                var user = {
+                  weapons: dbWeapons,
+                  armor: dbArmor,
+                  user: dbChar.dataValues,
+                  userInfo: dbUser.dataValues,
+                  id: req.session.passport.user,
+                  isloggedin: req.isAuthenticated()
+                };
+                console.log(user);
+                res.render("market", user);
+              });
             });
-          });
+          }
         });
       });
     } else {
@@ -167,15 +172,19 @@ module.exports = function(app) {
             AccountUuid: dbUser.dataValues.uuid
           }
         }).then(function(dbChar) {
-          var user = {
-            user: dbChar.dataValues,
-            purchases: dbChar.dataValues.Purchases,
-            userInfo: dbUser.dataValues,
-            id: req.session.passport.user,
-            isloggedin: req.isAuthenticated()
-          };
-          console.log(user.purchases);
-          res.render("equip", user);
+          if (dbChar === null) {
+            res.redirect("/character");
+          } else {
+            var user = {
+              user: dbChar.dataValues,
+              purchases: dbChar.dataValues.Purchases,
+              userInfo: dbUser.dataValues,
+              id: req.session.passport.user,
+              isloggedin: req.isAuthenticated()
+            };
+            console.log(user.purchases);
+            res.render("equip", user);
+          }
         });
       });
     } else {
@@ -197,23 +206,27 @@ module.exports = function(app) {
             AccountUuid: dbUser.dataValues.uuid
           }
         }).then(function(dbChar) {
-          var randomNumber = Math.floor(Math.random() * 50);
-          db.NPC.findOne({
-            where: {
-              id: randomNumber
-            }
-          }).then(function(dbNPC) {
-            var battle = {
-              user: dbChar.dataValues,
-              weapon: dbChar.dataValues.Equipment[0],
-              armor: dbChar.dataValues.Equipment[1],
-              npc: dbNPC.dataValues,
-              userInfo: dbUser.dataValues,
-              id: req.session.passport.user,
-              isloggedin: req.isAuthenticated()
-            };
-            res.render("arena", battle);
-          });
+          if (dbChar === null) {
+            res.redirect("/character");
+          } else {
+            var randomNumber = Math.floor(Math.random() * 50);
+            db.NPC.findOne({
+              where: {
+                id: randomNumber
+              }
+            }).then(function(dbNPC) {
+              var battle = {
+                user: dbChar.dataValues,
+                weapon: dbChar.dataValues.Equipment[0],
+                armor: dbChar.dataValues.Equipment[1],
+                npc: dbNPC.dataValues,
+                userInfo: dbUser.dataValues,
+                id: req.session.passport.user,
+                isloggedin: req.isAuthenticated()
+              };
+              res.render("arena", battle);
+            });
+          }
         });
       });
     } else {
@@ -234,13 +247,17 @@ module.exports = function(app) {
             AccountUuid: dbUser.dataValues.uuid
           }
         }).then(function(dbChar) {
-          var user = {
-            user: dbChar.dataValues,
-            userInfo: dbUser.dataValues,
-            id: req.session.passport.user,
-            isloggedin: req.isAuthenticated()
-          };
-          res.render("leaderboard", user);
+          if (dbChar === null) {
+            res.redirect("/character");
+          } else {
+            var user = {
+              user: dbChar.dataValues,
+              userInfo: dbUser.dataValues,
+              id: req.session.passport.user,
+              isloggedin: req.isAuthenticated()
+            };
+            res.render("leaderboard", user);
+          }
         });
       });
     } else {
