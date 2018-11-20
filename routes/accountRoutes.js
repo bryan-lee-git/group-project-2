@@ -44,19 +44,29 @@ module.exports = function(app) {
     });
   });
 
+  // app.delete("/accounts/:email", function(req, res) {
+  //   db.Accounts.destroy({
+  //     where: {
+  //       email: req.params.email
+  //     }
+  //   }).then(function(dbAccounts) {
+  //     req.session.destroy(function(err) {
+  //       if (err) console.log(err);
+  //       res.clearCookie("user_sid");
+  //       res.clearCookie("firstName");
+  //       res.clearCookie("user_id");
+  //       res.redirect("/");
+  //     });
+  //   });
+  // });
+
   app.delete("/accounts/:email", function(req, res) {
     db.Accounts.destroy({
-      where: {
-        email: req.params.email
-      }
+        where: {
+          email: req.params.email
+        }
     }).then(function(dbAccounts) {
-      req.session.destroy(function(err) {
-        if (err) console.log(err);
-        res.clearCookie("user_sid");
-        res.clearCookie("firstName");
-        res.clearCookie("user_id");
-        res.redirect("/");
-      });
+        res.redirect("/landing");
     });
   });
 
@@ -68,21 +78,6 @@ module.exports = function(app) {
       res.clearCookie("firstName");
       res.clearCookie("user_id");
       res.redirect("/");
-    });
-  });
-
-  app.delete("/accounts/:email", function(req, res) {
-    db.Accounts.destroy({
-      where: {
-        email: req.params.email
-      }
-    }).then(function(dbAccounts) {
-      req.session.destroy(function(err) {
-        req.logout();
-        res.clearCookie("user_sid");
-        res.clearCookie("firstName");
-        res.clearCookie("user_id");
-      });
     });
   });
 
@@ -109,7 +104,6 @@ module.exports = function(app) {
         console.log("redirecting....");
         res.cookie("firstName", user.firstName);
         res.cookie("user_id", user.uuid);
-
         return res.redirect(200, "/character");
       });
     })(req, res, next);
