@@ -216,6 +216,10 @@ nav {
   line-height: 1.2;
 }
 
+#player-gear-btn {
+  margin-bottom: 20px;
+}
+
 #landing-title {
   font-size: 900%;
   text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.9);
