@@ -1,10 +1,7 @@
 <nav class="navbar">
   <div class="nav-wrapper">
     <div class="container">
-      <!-- Brand/logo -->
       <a class="brand-logo hide-on-med-and-down" href="/">Road To Rome</a>
-      
-      <!-- Links -->
       <ul id="nav-mobile" class="right">
         {{#if isloggedin}}
             <li class="nav-item">
@@ -37,18 +34,26 @@
     </div>
   </div>
 </nav>
-
 <nav id="nav-secondary" class="navbar hide-on-med-and-down">
   <div class="nav-wrapper">
     <div class="container">
       <a class="footer-copyright" href="/">Panda Warriors Dev Group © 2018</a>
       <ul class="right">
+        {{#if isloggedin}}
           <li class="nav-item">
             <a href="/about">ABOUT</a>
           </li>
           <li class="nav-item">
-            <a id="nav-equip" href="/tech">TECH CREDITS</a>
+            <a id="nav-equip" href="/tech">CREDITS</a>
           </li>
+        {{else}}
+          <li class="nav-item">
+            <a class="modal-trigger" href="#account-info">SIGN-IN</a>
+          </li>
+          <li class="nav-item">
+            <a href="/signup">SIGN-UP</a>
+          </li>
+        {{/if}}
       </ul>
     </div>
   </div>
