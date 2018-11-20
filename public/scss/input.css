@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Cinzel|Cinzel+Decorative|Oswald");
+a {
+  color: #b71c1c;
+  font-weight: bolder;
+}
+
 p {
   font-size: 18px;
   font-family: "Oswald";
