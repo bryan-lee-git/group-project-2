@@ -14,20 +14,31 @@
   </div>
   <!--End image row-->
   <div class="row">
-    <div class="col s4 offset-s1 center-align rounded-content-box">
+    <div class="col s4 offset-s1 center-align rounded-content-box z-depth-5">
       <h2 id="user-name">{{user.name}}</h2>
-      <h5 id="user-current-stamina">Current Stamina: {{user.currentStamina}}</h5>
-      <br>
-      <h5 id="user-max-stamina">{{user.maxStamina}}</h5>
-      <br>
-      <h5 id="user-current-speed">{{user.currentSpeed}}</h5>
-      <br>
-      <h5 id="user-defense-speed">{{user.defenseSpeed}}</h5>
-      <br>
-      <button class="btn" id="player-stats-btn">VIEW BASE STATS</button>
-      <button class="btn" id="player-gear-btn">VIEW EQUIPMENT</button>
+      <button class="btn" id="player-current-stats-btn">CURRENT CONDITION</button>
+      <button class="btn" id="player-stats-btn">BASE STATS</button>
+      <button class="btn" id="player-gear-btn">EQUIPMENT</button>
       <br />
       <br />
+      <div id="player-current-stats">
+        <hr>
+        <h5>CURRENT CONDITION</h5>
+        <table class="highlight responsive-table centered" id="user-table">
+          <thead>
+            <th>Current/Max Stamina</th>
+            <th>Current Speed</th>
+            <th>Defense Speed</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span id="user-current-stamina">{{user.stamina}}</span><span id="user-max-stamina">{{user.maxStamina}}</span></td>
+              <td><span id="user-current-speed">{{user.currentSpeed}}</span></td>
+              <td><span id="user-defense-speed">{{user.defenseSpeed}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <div id="player-stats">
         <hr>
         <h5>BASE STATS</h5>
@@ -56,6 +67,9 @@
           <thead>
             <th>Weapon</th>
             <th>Damage</th>
+            {{#if weapon.weight}}
+            <th>Type</th>
+            {{/if}}
           </thead>
           <tbody>
             <tr>
@@ -86,19 +100,30 @@
         <br />
       </div>
     </div>
-    <div class="col s4 offset-s2 center-align rounded-content-box">
+    <div class="col s4 offset-s2 center-align rounded-content-box z-depth-5">
       <h2 id="npc-name">{{npc.name}}</h2>
-      <h5 id="npc-current-stamina">Current Stamina: {{npc.stamina}}</h5>
-      <br>
-      <h5 id="npc-max-stamina">{{npc.maxStamina}}</h5>
-      <br>
-      <h5 id="npc-current-speed">{{npc.currentSpeed}}</h5>
-      <br>
-      <h5 id="npc-defense-speed">{{npc.defenseSpeed}}</h5>
-      <br>
-      <button class="btn" id="npc-stats-btn">VIEW BASE STATS</button>
+      <button class="btn" id="npc-current-stats-btn">CURRENT CONDITION</button>
+      <button class="btn" id="npc-stats-btn">BASE STATS</button>
       <br />
       <br />
+      <div id="npc-current-stats">
+        <hr>
+        <h5>CURRENT CONDITION</h5>
+        <table class="highlight responsive-table centered" id="user-table">
+          <thead>
+            <th>Current/Max Stamina</th>
+            <th>Current Speed</th>
+            <th>Defense Speed</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span id="npc-current-stamina">{{npc.stamina}}</span><span id="npc-max-stamina">{{npc.maxStamina}}</span></td>
+              <td><span id="npc-current-speed">{{npc.currentSpeed}}</span></td>
+              <td><span id="npc-defense-speed">{{npc.defenseSpeed}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <div id="npc-stats">
         <hr>
         <h5>BASE STATS</h5>
@@ -121,10 +146,9 @@
         <br />
       </div>
     </div>
+    <a class="col s2 offset-s5  waves-effect waves-light btn-large btn" id="start-battle">Start Battle</a>
   </div>
-  <div class="row">
-    <a class="waves-effect waves-light btn-large" id="start-battle">Start Battle</a>
-  </div>
+  <br /><br /><br />
   {{!-- Fixed action button, where the user will impliment their strategy in between turns --}}
   <div class="fixed-action-btn modal-trigger" href="#combat-log" title="Tactics">
     <a class="btn-floating pulse btn-large">
