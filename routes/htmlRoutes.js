@@ -283,7 +283,7 @@ module.exports = function(app) {
       res.redirect("/");
     }
   });
-  // tech page
+  // tech credits page
   app.get("/tech", function(req, res) {
     if (req.isAuthenticated()) {
       db.Accounts.findOne({
