@@ -80,6 +80,7 @@ module.exports = function(app) {
           };
           res.render("character", user);
         });
+        // });
       });
     } else {
       res.redirect("/");
@@ -120,7 +121,7 @@ module.exports = function(app) {
     }
   });
 
-  // market/forum/training page
+  // market and training page
   app.get("/market", function(req, res) {
     if (req.isAuthenticated()) {
       db.Accounts.findOne({
@@ -233,6 +234,7 @@ module.exports = function(app) {
       res.redirect("/");
     }
   });
+  
   // leaderboard page
   app.get("/leaderboard", function(req, res) {
     if (req.isAuthenticated()) {
@@ -264,6 +266,7 @@ module.exports = function(app) {
       res.redirect("/");
     }
   });
+  
   // about page
   app.get("/about", function(req, res) {
     if (req.isAuthenticated()) {
@@ -283,6 +286,7 @@ module.exports = function(app) {
       res.redirect("/");
     }
   });
+  
   // tech credits page
   app.get("/tech", function(req, res) {
     if (req.isAuthenticated()) {
@@ -302,6 +306,7 @@ module.exports = function(app) {
       res.redirect("/");
     }
   });
+  
   // 404 for non-existent pages
   app.get("*", function(req, res) {
     res.render("404");

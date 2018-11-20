@@ -1,7 +1,7 @@
 var db = require("../models");
-var liveBattle = require("../utilities/liveBattle");
+var liveCombat = require("../utilities/liveCombat");
 
-module.exports = function (app) {
+module.exports = function(app) {
   //////////////////////////////////////////////////////////////////
   /// User routes
   //////////////////////////////////////////////////////////////////
@@ -42,6 +42,23 @@ module.exports = function (app) {
     } else {
       res.render("401")
     }
+  });
+
+  app.get("/api/users/key", (req, res) => {
+    db.Accounts.findAll({
+      where: {
+        accountKey: req.body.id
+      }
+    }).then(results => {
+      console.log(`here's the account we got from /api/users/key `, results);
+      db.Users.findAll({
+        where: {
+          AccountUuid: results.uuid
+        }
+      }).then(dbUser => {
+        res.json(dbUser);
+      });
+    });
   });
 
   // Get User market purchases by id
@@ -420,12 +437,16 @@ module.exports = function (app) {
             }
           }).then(dbNPC => {
             npc = JSON.parse(JSON.stringify(dbNPC));
-            console.log(`here's the npc going into the battle `, npc);
-
-            liveBattle(arenaid, user, npc);
+            var arenaid = req.params.arenaid;
+            console.log(
+              `inside the api/battles/game get route, here's the incloming request: `,
+              req.body
+            );
+            var game = req.body;
+            var battle = liveCombat(arenaid, game);
+            res.json(battle);
           });
         });
-        res.json();
       });
     } else {
       res.render("401")

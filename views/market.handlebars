@@ -1,4 +1,4 @@
-<br/><br/>
+<br /><br />
 <main>
   {{!-- marketplace title --}}
   <div class="container rounded-content-box z-depth-5">
@@ -14,118 +14,122 @@
     {{!-- weapons and armour collapsables --}}
     <div class="row">
       <div class="col s6">
-          <ul class="collapsible">
-            {{!-- light weapon collapsable --}}
-            <li>
-              <div class="collapsible-header">Light Weapons</div>
-              <div class="collapsible-body">
-                  <table id="light-weapon-table">
-                    <thead>
-                      <tr>
-                        <th>Weapon</th>
-                        <th>Damage</th>
-                        <th>Price</th>
-                        <th>Purchase</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {{#each weapons}}
-                        {{#if dataValues.weight}}
-                          {{> Market/market-weapon}}
-                        {{/if}}
-                      {{/each}}
-                    </tbody>
-                  </table>
-              </div>
-            </li>
-            {{!-- heavy weapon collapsable --}}
-            <li>
-              <div class="collapsible-header">Heavy Weapons</div>
-                <div class="collapsible-body">
-                  <table id="heavy-weapon-table">
-                    <thead>
-                      <th>Weapon</th>
-                      <th>Damage</th>
-                      <th>Price</th>
-                      <th>Purchase</th>
-                    </thead>
-                    <tbody>
-                      <span id="character-id" data-id="{{user.id}}"></span>
-                      {{#each weapons}}
-                        {{#unless dataValues.weight}}
-                          {{> Market/market-weapon}}
-                        {{/unless}}
-                      {{/each}}
-                    </tbody>
-                  </table>
-              </div>
-            </li>
-            {{!-- armour collapsable --}}
-            <li>
-              <div class="collapsible-header">Armor</div>
-              <div class="collapsible-body">
-                <table id="armour-table">
-                  <thead>
-                    <tr>
-                      <th>Armor</th>
-                      <th>Defense</th>
-                      <th>Weight</th>
-                      <th>Price</th>
-                      <th>Purchase</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {{#each armor}}
-                      {{> Market/market-armor}}
-                    {{/each}}
-                  </tbody>
-                </table>
-              </div>
-            </li>
-          </ul>
+        <ul class="collapsible">
+          {{!-- light weapon collapsable --}}
+          <li>
+            <div class="collapsible-header">Light Weapons</div>
+            <div class="collapsible-body">
+              <table id="light-weapon-table">
+                <thead>
+                  <tr>
+                    <th>Weapon</th>
+                    <th>Damage</th>
+                    <th>Price</th>
+                    <th>Purchase</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each weapons}}
+                  {{#if dataValues.weight}}
+                  {{> Market/market-weapon}}
+                  {{/if}}
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </li>
+          {{!-- heavy weapon collapsable --}}
+          <li>
+            <div class="collapsible-header">Heavy Weapons</div>
+            <div class="collapsible-body">
+              <table id="heavy-weapon-table">
+                <thead>
+                  <th>Weapon</th>
+                  <th>Damage</th>
+                  <th>Price</th>
+                  <th>Purchase</th>
+                </thead>
+                <tbody>
+                  <span id="character-id" data-id="{{user.id}}"></span>
+                  {{#each weapons}}
+                  {{#unless dataValues.weight}}
+                  {{> Market/market-weapon}}
+                  {{/unless}}
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </li>
+          {{!-- armour collapsable --}}
+          <li>
+            <div class="collapsible-header">Armor</div>
+            <div class="collapsible-body">
+              <table id="armour-table">
+                <thead>
+                  <tr>
+                    <th>Armor</th>
+                    <th>Defense</th>
+                    <th>Weight</th>
+                    <th>Price</th>
+                    <th>Purchase</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each armor}}
+                  {{> Market/market-armor}}
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </li>
+        </ul>
       </div>
       {{!-- Training collapsable --}}
       <div class="col s6">
-          <ul class="collapsible">
-            {{!-- speed training collapsable --}}
-            <li>
-              <div class="collapsible-header center-align">Speed Training</div>
-                <div class="collapsible-body">
-                  <div class="row center-align">
-                    <h5>Current Speed: <span id="current-speed">{{user.speed}}</span></h5>
-                    <h6>Upgrade Cost: $<span id="speed-cost"></span></h6>
-                    <br/>
-                    <button data-id="{{user.speed}}" data-type="speed" class="btn-large btn stat-btn">PURCHASE SPEED +1</button>
-                  </div>
-                </div>
-            </li>
-            {{!-- strenght training collapsable --}}
-            <li>
-              <div class="collapsible-header">Strength Training</div>
-                <div class="collapsible-body">
-                  <div class="row center-align">
-                    <h5>Current Strength: <span id="current-strength">{{user.strength}}</span></h5>
-                    <h6>Upgrade Cost: $<span id="strength-cost"></span></h6>
-                    <br/>
-                    <button data-id="{{user.strength}}" data-type="strength" class="btn-large btn stat-btn">PURCHASE STRENGTH +1</button>
-                  </div>
-                </div>
-            </li>
-            {{!-- stamina training collapsable --}}
-            <li>
-              <div class="collapsible-header">Stamina Training</div>
-              <div class="collapsible-body">
-                <div class="row center-align">
-                  <h5>Current Stamina: <span id="current-stamina">{{user.stamina}}</span></h5>
-                  <h6>Upgrade Cost: $<span id="stamina-cost"></span></h6>
-                  <br/>
-                  <button data-id="{{user.stamina}}" data-type="stamina" class="btn-large btn stat-btn">PURCHASE STAMINA +1</button>
-                </div>
+        <ul class="collapsible">
+          {{!-- speed training collapsable --}}
+          <li>
+            <div class="collapsible-header center-align">Speed Training</div>
+            <div class="collapsible-body">
+              <div class="row center-align">
+                <h5>Current Speed: <span id="current-speed">{{user.speed}}</span></h5>
+                <h6>Upgrade Cost: $<span id="speed-cost"></span></h6>
+                <br />
+                <button data-id="{{user.speed}}" data-type="speed" class="btn-large btn stat-btn">PURCHASE SPEED +1</button>
               </div>
-            </li>
-          </ul>
+            </div>
+          </li>
+          {{!-- strenght training collapsable --}}
+          <li>
+            <div class="collapsible-header">Strength Training</div>
+            <div class="collapsible-body">
+              <div class="row center-align">
+                <h5>Current Strength: <span id="current-strength">{{user.strength}}</span></h5>
+                <h6>Upgrade Cost: $<span id="strength-cost"></span></h6>
+                <br />
+                <button data-id="{{user.strength}}" data-type="strength" class="btn-large btn stat-btn">PURCHASE
+                  STRENGTH +1</button>
+              </div>
+            </div>
+          </li>
+          {{!-- stamina training collapsable --}}
+          <li>
+            <div class="collapsible-header">Stamina Training</div>
+            <div class="collapsible-body">
+              <div class="row center-align">
+                <h5>Current Stamina: <span id="current-stamina">{{user.stamina}}</span></h5>
+                <h6>Upgrade Cost: $<span id="stamina-cost"></span></h6>
+                <br />
+                <button data-id="{{user.stamina}}" data-type="stamina" class="btn-large btn stat-btn">PURCHASE STAMINA
+                  +1</button>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
       <a href="/equip"><button id="inventory-view" class="btn col s12">GO TO INVENTORY PAGE + EQUIP GEAR</button></a>
     </div>
   </div>
 </main>
+
+<script src="/js/market.js"></script>
