@@ -247,8 +247,13 @@ module.exports = function(app) {
       res.redirect("/");
     }
   });
+  // about page
+  app.get("/about", function(req, res) {
+    res.render("about");
+  });
   // 404 for non-existent pages
   app.get("*", function(req, res) {
     res.render("404");
   });
+  
 };
