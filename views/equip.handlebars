@@ -14,7 +14,8 @@
 
     {{!-- weapons and armor collapsables --}}
     <div class="row">
-      <button id="equipped-items" class="btn col s12 modal-trigger" href="#equipped">VIEW EQUIPPED ITEMS + BRING TO BATTLE</button>
+      <button id="equipped-items" class="btn col s12 modal-trigger" href="#equipped">VIEW EQUIPPED ITEMS + BRING TO
+        BATTLE</button>
       <div class="col s6">
         <ul class="collapsible">
           <li class="col s12">
@@ -30,9 +31,9 @@
                 <tbody>
                   <span id="character-id" data-id="{{user.id}}"></span>
                   {{#each purchases}}
-                    {{#if type}}
-                      {{> Inventory/inventory-weapon-block}}
-                    {{/if}}
+                  {{#if type}}
+                  {{> Inventory/inventory-weapon-block}}
+                  {{/if}}
                   {{/each}}
                 </tbody>
               </table>
@@ -57,9 +58,9 @@
                 </thead>
                 <tbody>
                   {{#each purchases}}
-                    {{#unless type}}
-                      {{> Inventory/inventory-armor-block}}
-                    {{/unless}}
+                  {{#unless type}}
+                  {{> Inventory/inventory-armor-block}}
+                  {{/unless}}
                   {{/each}}
                 </tbody>
               </table>
@@ -71,3 +72,5 @@
   </div>
 </main>
 {{> Modal/equip-block}}
+
+<script src="/js/equip.js"></script>

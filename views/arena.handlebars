@@ -18,13 +18,19 @@
   <!--End image row-->
   <div class="row">
     <div class="col s4 offset-s1 center-align rounded-content-box">
-      <h2>{{user.name}}</h2>
-      <h5>Current Stamina: {{user.stamina}}</h5>
+      <h2 id="user-name">{{user.name}}</h2>
+      <h5 id="user-current-stamina">Current Stamina: {{user.currentStamina}}</h5>
+      <br>
+      <h5 id="user-max-stamina">{{user.maxStamina}}</h5>
+      <br>
+      <h5 id="user-current-speed">{{user.currentSpeed}}</h5>
+      <br>
+      <h5 id="user-defense-speed">{{user.defenseSpeed}}</h5>
       <br>
       <button class="btn" id="player-stats-btn">VIEW BASE STATS</button>
       <button class="btn" id="player-gear-btn">VIEW EQUIPMENT</button>
-      <br/>
-      <br/>
+      <br />
+      <br />
       <div id="player-stats">
         <hr>
         <h5>BASE STATS</h5>
@@ -44,48 +50,58 @@
             </tr>
           </tbody>
         </table>
-        <br/>
+        <br />
       </div>
       <div id="player-gear">
         <hr>
         <h5>EQUIPMENT</h5>
         <table class="highlight responsive-table centered">
-            <thead>
-                <th>Weapon</th>
-                <th>Damage</th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{weapon.name}}</td>
-                <td>{{weapon.statIncrease}}</td>
-              </tr>
-            </tbody>
+          <thead>
+            <th>Weapon</th>
+            <th>Damage</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="user-weapon-name">{{weapon.name}}</td>
+              <td id="user-weapon-damage">{{weapon.statIncrease}}</td>
+              {{#if weapon.weight}}
+              <td id="user-weapon-weight">Heavy</td>
+              {{/if}}
+            </tr>
+          </tbody>
         </table>
         <br />
         <table class="highlight responsive-table centered">
-            <thead>
-                <th>Armor</th>
-                <th>Defense</th>
-                <th>Weight</th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{armor.name}}</td>
-                <td>{{armor.statIncrease}}</td>
-                <td>{{armor.weight}}</td>
-              </tr>
-            </tbody>
+          <thead>
+            <th>Armor</th>
+            <th>Defense</th>
+            <th>Weight</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="user-armor-name">{{armor.name}}</td>
+              <td id="user-armor-strength">{{armor.statIncrease}}</td>
+              <td id="user-armor-weight">{{armor.weight}}</td>
+              <td id="user-shield">{{armor.shield}}</td>
+            </tr>
+          </tbody>
         </table>
-        <br/>
+        <br />
       </div>
     </div>
     <div class="col s4 offset-s2 center-align rounded-content-box">
-      <h2>{{npc.name}}</h2>
-      <h5>Current Stamina: {{npc.stamina}}</h5>
+      <h2 id="npc-name">{{npc.name}}</h2>
+      <h5 id="npc-current-stamina">Current Stamina: {{npc.stamina}}</h5>
+      <br>
+      <h5 id="npc-max-stamina">{{npc.maxStamina}}</h5>
+      <br>
+      <h5 id="npc-current-speed">{{npc.currentSpeed}}</h5>
+      <br>
+      <h5 id="npc-defense-speed">{{npc.defenseSpeed}}</h5>
       <br>
       <button class="btn" id="npc-stats-btn">VIEW BASE STATS</button>
-      <br/>
-      <br/>
+      <br />
+      <br />
       <div id="npc-stats">
         <hr>
         <h5>BASE STATS</h5>
@@ -105,9 +121,13 @@
             </tr>
           </tbody>
         </table>
-        <br/>
+        <br />
       </div>
     </div>
+  </div>
+
+  <div class="row">
+    <a class="waves-effect waves-light btn-large" id="start-battle">Start Battle</a>
   </div>
 
   {{!-- Fix action button, where the user will impliment their strategy in between turns --}}
@@ -127,3 +147,5 @@
 </main>
 
 {{> Modal/combat-block}}
+
+<script src="/js/arena.js"></script>

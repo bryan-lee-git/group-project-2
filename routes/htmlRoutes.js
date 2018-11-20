@@ -68,21 +68,21 @@ module.exports = function(app) {
             id: 1
           }
         }).then(function(dbArena) {
-          db.User.findOne({
+          /* db.User.findOne({
             where: {
               name: dbUser.dataValues.firstName
             }
-          }).then(function(dbChar) {
-            var user = {
-              user: dbChar.dataValues,
-              userInfo: dbUser.dataValues,
-              id: req.session.passport.user,
-              isloggedin: req.isAuthenticated(),
-              arena: dbArena.dataValues
-            };
-            res.render("character", user);
-          });
+          }).then(function(dbChar) {*/
+          var user = {
+            user: dbUser.dataValues,
+            userInfo: dbUser.dataValues,
+            id: req.session.passport.user,
+            isloggedin: req.isAuthenticated(),
+            arena: dbArena.dataValues
+          };
+          res.render("character", user);
         });
+        // });
       });
     } else {
       res.redirect("/");

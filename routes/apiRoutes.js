@@ -1,7 +1,7 @@
 var db = require("../models");
-var liveBattle = require("../utilities/liveBattle");
+var liveCombat = require("../utilities/liveCombat");
 
-module.exports = function (app) {
+module.exports = function(app) {
   //////////////////////////////////////////////////////////////////
   /// User routes
   //////////////////////////////////////////////////////////////////
@@ -21,6 +21,23 @@ module.exports = function (app) {
       }
     }).then(results => {
       res.json(results);
+    });
+  });
+
+  app.get("/api/users/key", (req, res) => {
+    db.Accounts.findAll({
+      where: {
+        accountKey: req.body.id
+      }
+    }).then(results => {
+      console.log(`here's the account we got from /api/users/key `, results);
+      db.Users.findAll({
+        where: {
+          AccountUuid: results.uuid
+        }
+      }).then(dbUser => {
+        res.json(dbUser);
+      });
     });
   });
 
@@ -67,31 +84,37 @@ module.exports = function (app) {
 
   // Update a User by id
   app.put("/api/users/:id", (req, res) => {
-    db.User.update({
-      name: req.body.name,
-      image: req.body.image,
-      strength: req.body.strength,
-      speed: req.body.speed,
-      stamina: req.body.stamina,
-      skill: req.body.skill
-    }, {
-      where: {
-        id: req.params.id
+    db.User.update(
+      {
+        name: req.body.name,
+        image: req.body.image,
+        strength: req.body.strength,
+        speed: req.body.speed,
+        stamina: req.body.stamina,
+        skill: req.body.skill
+      },
+      {
+        where: {
+          id: req.params.id
+        }
       }
-    }).then(results => {
+    ).then(results => {
       res.json(results);
     });
   });
 
   //Update User's wallet (selling or buying)
   app.put("/api/users/wallet/:id", (req, res) => {
-    db.User.update({
-      wallet: req.body.wallet
-    }, {
-      where: {
-        id: req.params.id
+    db.User.update(
+      {
+        wallet: req.body.wallet
+      },
+      {
+        where: {
+          id: req.params.id
+        }
       }
-    }).then(results => {
+    ).then(results => {
       res.json(results);
     });
   });
@@ -99,36 +122,45 @@ module.exports = function (app) {
   // Update User's stats
   app.put("/api/users/stats/:id/:type", (req, res) => {
     if (req.body.type === "speed") {
-      db.User.update({
-        speed: req.body.newStat
-      }, {
-        where: {
-          id: req.params.id
+      db.User.update(
+        {
+          speed: req.body.newStat
+        },
+        {
+          where: {
+            id: req.params.id
+          }
         }
-      }).then(results => {
+      ).then(results => {
         res.json(results);
       });
     } else if (req.body.type === "strength") {
-      db.User.update({
-        strength: req.body.newStat
-      }, {
-        where: {
-          id: req.params.id
+      db.User.update(
+        {
+          strength: req.body.newStat
+        },
+        {
+          where: {
+            id: req.params.id
+          }
         }
-      }).then(results => {
+      ).then(results => {
         res.json(results);
       });
     } else if (req.body.type === "stamina") {
-      db.User.update({
-        stamina: req.body.newStat
-      }, {
-        where: {
-          id: req.params.id
+      db.User.update(
+        {
+          stamina: req.body.newStat
+        },
+        {
+          where: {
+            id: req.params.id
+          }
         }
-      }).then(results => {
+      ).then(results => {
         res.json(results);
       });
-    };
+    }
   });
 
   // Delete an User by id
@@ -160,20 +192,23 @@ module.exports = function (app) {
   // Create a new NPC
 
   app.post("/api/npcs/:id", (req, res) => {
-    db.NPC.create({
-      name: req.body.name,
-      image: req.body.image,
-      male: req.body.male,
-      strength: req.body.strength,
-      speed: req.body.speed,
-      stamina: req.body.stamina,
-      skill: req.body.skill,
-      ArenaId: req.params.id
-    }, {
-      where: {
+    db.NPC.create(
+      {
+        name: req.body.name,
+        image: req.body.image,
+        male: req.body.male,
+        strength: req.body.strength,
+        speed: req.body.speed,
+        stamina: req.body.stamina,
+        skill: req.body.skill,
         ArenaId: req.params.id
+      },
+      {
+        where: {
+          ArenaId: req.params.id
+        }
       }
-    }).then(results => {
+    ).then(results => {
       console.log(
         `${results.name} added to the NPC table on row ${results.id}.`
       );
@@ -183,19 +218,22 @@ module.exports = function (app) {
 
   //Update an NPC by id
   app.put("/api/npcs/:id", (req, res) => {
-    db.NPC.update({
-      name: req.body.name,
-      image: req.body.image,
-      strength: req.body.strength,
-      speed: req.body.speed,
-      stamina: req.body.stamina,
-      skill: req.body.skill,
-      ArenaId: req.body.arenaid
-    }, {
-      where: {
-        id: req.params.id
+    db.NPC.update(
+      {
+        name: req.body.name,
+        image: req.body.image,
+        strength: req.body.strength,
+        speed: req.body.speed,
+        stamina: req.body.stamina,
+        skill: req.body.skill,
+        ArenaId: req.body.arenaid
+      },
+      {
+        where: {
+          id: req.params.id
+        }
       }
-    }).then(results => {
+    ).then(results => {
       res.json(results);
     });
   });
@@ -236,30 +274,19 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/battles/:arenaid/:userid/:npcid", (req, res) => {
-    var user;
-    var npc;
+  app.get("/api/battles/game/:arenaid", (req, res) => {
     var arenaid = req.params.arenaid;
-    db.User.findAll({
-      where: {
-        id: req.params.userid
-      }
-    }).then(dbUser => {
-      user = JSON.parse(JSON.stringify(dbUser));
-      console.log(`here's the user going into the battle`, user);
 
-      db.NPC.findAll({
-        where: {
-          id: req.params.npcid
-        }
-      }).then(dbNPC => {
-        npc = JSON.parse(JSON.stringify(dbNPC));
-        console.log(`here's the npc going into the battle `, npc);
+    console.log(
+      `inside the api/battles/game get route, here's the incloming request: `,
+      req.body
+    );
 
-        liveBattle(arenaid, user, npc);
-      });
-    });
-    res.json();
+    var game = req.body;
+
+    var battle = liveCombat(arenaid, game);
+
+    res.json(battle);
   });
 
   //////////////////////////////////////////////////////////////////
@@ -335,18 +362,21 @@ module.exports = function (app) {
 
   //Update a Markets by id
   app.put("/api/markets/:id", (req, res) => {
-    db.Markets.update({
-      name: req.body.name,
-      damage: req.body.damage,
-      armor: req.body.armor,
-      weight: req.body.weight,
-      purchased: req.body.purchased,
-      ArenaId: req.body.arenaid
-    }, {
-      where: {
-        id: req.params.id
+    db.Markets.update(
+      {
+        name: req.body.name,
+        damage: req.body.damage,
+        armor: req.body.armor,
+        weight: req.body.weight,
+        purchased: req.body.purchased,
+        ArenaId: req.body.arenaid
+      },
+      {
+        where: {
+          id: req.params.id
+        }
       }
-    }).then(results => {
+    ).then(results => {
       res.json(results);
     });
   });
@@ -385,9 +415,11 @@ module.exports = function (app) {
       where: {
         id: req.params.id
       }
-    }).then(() => {}).then(results => {
-      res.json(results);
-    });
+    })
+      .then(() => {})
+      .then(results => {
+        res.json(results);
+      });
   });
 
   //////////////////////////////////////////////////////////////////
@@ -422,9 +454,11 @@ module.exports = function (app) {
       where: {
         id: req.params.id
       }
-    }).then(() => {}).then(results => {
-      res.json(results);
-    });
+    })
+      .then(() => {})
+      .then(results => {
+        res.json(results);
+      });
   });
 
   //////////////////////////////////////////////////////////////////

@@ -18,16 +18,14 @@ db.Arenas.findAll({}).then(arenaResults => {
     weapons.forEach(weapon => {
       console.log(`this weapon is `, weapon);
       arenas.forEach(arena => {
-        if (weapon.cost < arena.frequency * arena.quantity) {
-          db.Markets.create({
-            name: weapon.name,
-            damage: weapon.damage,
-            weight: weapon.weight,
-            ArenaId: arena.id
-          }).then(result => {
-            console.log(`Item ${weapon.name} added to ${arena.name} market. `);
-          });
-        }
+        db.Markets.create({
+          name: weapon.name,
+          damage: weapon.damage,
+          weight: weapon.weight,
+          ArenaId: arena.id
+        }).then(result => {
+          console.log(`Item ${weapon.name} added to ${arena.name} market. `);
+        });
       });
     });
   });
