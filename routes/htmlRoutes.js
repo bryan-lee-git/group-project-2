@@ -42,7 +42,7 @@ module.exports = function(app) {
       }).then(function(dbUser) {
         db.User.findOne({
           where: {
-            name: dbUser.dataValues.firstName
+            AccountUuid: dbUser.dataValues.uuid
           }
         }).then(function(dbChar) {
           var user = {
@@ -97,7 +97,7 @@ module.exports = function(app) {
         db.Weapons.findAll({}).then(function(results) {
           db.User.findOne({
             where: {
-              name: dbUser.dataValues.firstName
+              AccountUuid: dbUser.dataValues.uuid
             }
           }).then(function(dbChar) {
             if (dbChar === null) {
@@ -130,7 +130,7 @@ module.exports = function(app) {
       }).then(function(dbUser) {
         db.User.findOne({
           where: {
-            name: dbUser.dataValues.firstName
+            AccountUuid: dbUser.dataValues.uuid
           }
         }).then(function(dbChar) {
           if (dbChar === null) {
@@ -272,5 +272,4 @@ module.exports = function(app) {
   app.get("*", function(req, res) {
     res.render("404");
   });
-  
 };
