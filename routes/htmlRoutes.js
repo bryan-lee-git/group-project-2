@@ -296,7 +296,7 @@ module.exports = function(app) {
           id: req.session.passport.user,
           isloggedin: req.isAuthenticated()
         };
-        res.render("tech");
+        res.render("tech", user);
       });
     } else {
       res.redirect("/");
