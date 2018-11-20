@@ -73,6 +73,11 @@ $mobile: 450px;
 
 // GENERAL ELEMENT STYLES -----------------------------------------------
 
+a {
+  color: color(primary);
+  font-weight: bolder;
+}
+
 p {
   font-size: $paragraph;
   font-family: font(regular);

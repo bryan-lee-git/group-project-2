@@ -42,36 +42,13 @@
   <div class="nav-wrapper">
     <div class="container">
       <a class="footer-copyright" href="/">Panda Warriors Dev Group © 2018</a>
-      
-      <!-- Links -->
       <ul class="right">
-        {{#if isloggedin}}
           <li class="nav-item">
-            <a href="/market"><i class="material-icons">shopping_cart</i></a>
+            <a href="/about">ABOUT</a>
           </li>
           <li class="nav-item">
-            <a id="nav-equip" href="/ludus-magnus"><img src="/img/erics-images/nav-equipment.png"></a>
+            <a id="nav-equip" href="/tech">TECH CREDITS</a>
           </li>
-          <li class="nav-item">
-            <a href="/accounts/view"><i class="material-icons">person</i></a>
-          </li>
-          <li class="nav-item">
-            <a class="modal-trigger" href="#instructions"><i class="material-icons">contact_support</i></a>
-          </li>
-          <li class="nav-item">
-            <a href="/"><i class="material-icons">home</i></a>
-          </li>
-          <li class="nav-item">
-            <a href="/logout" alt="logout"><i class="material-icons">exit_to_app</i></a>
-          </li>
-        {{else}}
-          <li class="nav-item">
-            <a class="modal-trigger" href="#account-info">SIGN-IN</a>
-          </li>
-          <li class="nav-item">
-            <a href="/signup">SIGN-UP</a>
-          </li>
-        {{/if}}
       </ul>
     </div>
   </div>

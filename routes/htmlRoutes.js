@@ -266,7 +266,41 @@ module.exports = function(app) {
   });
   // about page
   app.get("/about", function(req, res) {
-    res.render("about");
+    if (req.isAuthenticated()) {
+      db.Accounts.findOne({
+        where: {
+          uuid: req.session.passport.user
+        }
+      }).then(function(dbUser) {
+        var user = {
+          userInfo: dbUser.dataValues,
+          id: req.session.passport.user,
+          isloggedin: req.isAuthenticated()
+        };
+        res.render("about", user);
+      });
+    } else {
+      res.redirect("/");
+    }
+  });
+  // tech page
+  app.get("/tech", function(req, res) {
+    if (req.isAuthenticated()) {
+      db.Accounts.findOne({
+        where: {
+          uuid: req.session.passport.user
+        }
+      }).then(function(dbUser) {
+        var user = {
+          userInfo: dbUser.dataValues,
+          id: req.session.passport.user,
+          isloggedin: req.isAuthenticated()
+        };
+        res.render("tech");
+      });
+    } else {
+      res.redirect("/");
+    }
   });
   // 404 for non-existent pages
   app.get("*", function(req, res) {
