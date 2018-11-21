@@ -26,7 +26,7 @@ module.exports = function phaseFour(playerOne, playerTwo, round) {
   setAttacks(playerOne, playerOneTactic);
   setAttacks(playerTwo, playerTwoTactic);
 
-  PhaseFive(playerOne, playerTwo, round);
+  var phaseFiveResults = PhaseFive(playerOne, playerTwo, round);
 
   function setAttacks(first, tactics) {
     //console.log(`first player is `, first);

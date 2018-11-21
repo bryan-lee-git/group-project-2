@@ -413,41 +413,19 @@ module.exports = function(app) {
     }
   });
 
-  app.get("/api/battles/:arenaid/:userid/:npcid", (req, res) => {
+  app.post("/api/battles/game/:arenaid", (req, res) => {
     if (req.isAuthenticated()) {
-      db.Accounts.findOne({
-        where: {
-          uuid: req.session.passport.user
-        }
-      }).then(function(dbUser) {
-        var user;
-        var npc;
         var arenaid = req.params.arenaid;
-        db.User.findAll({
-          where: {
-            id: req.params.userid
-          }
-        }).then(dbUser => {
-          user = JSON.parse(JSON.stringify(dbUser));
-          console.log(`here's the user going into the battle`, user);
-
-          db.NPC.findAll({
-            where: {
-              id: req.params.npcid
-            }
-          }).then(dbNPC => {
-            npc = JSON.parse(JSON.stringify(dbNPC));
-            var arenaid = req.params.arenaid;
-            console.log(
-              `inside the api/battles/game get route, here's the incloming request: `,
-              req.body
-            );
-            var game = req.body;
-            var battle = liveCombat(arenaid, game);
-            res.json(battle);
-          });
-        });
-      });
+        console.log(arenaid);
+    
+        //console.log(req);
+        console.log(req.body)
+        var game = req.body;
+        //console.log(game);
+        //console.log(req.body["user[id]"]);
+        var battle = liveCombat(arenaid, game);
+        res.json(battle);
+        
     } else {
       res.render("401")
     }

@@ -5,19 +5,36 @@ module.exports = function livePhaseFive(game) {
   //  Resolve Attacks
   //
   //  foreach player, the player with the greatest currentSpeed is selected to attack first.
-  const playerOne = game.user;
-  const playerTwo = game.npc;
-  var count1 = playerOne.attacks.length;
-  var count2 = playerTwo.attacks.length;
 
-  if (playerTwo.attacks[0].attack.attackSpeed > 0) {
-    attackOrder(playerTwo, playerOne);
+  console.log(game);
+  const playerOne = {
+    name:  game["user[name]"],
+    attackFirst: game["user[attacks]"][0].attack.attackSpeed,
+    attackSecond: game["user[attacks]"][1].attack.attackSpeed,
+
   }
-  if (playerOne.attacks[0].attack.attackSpeed > 0) {
-    attackOrder(playerOne, playerTwo);
+  
+ 
+  console.log(`${playerOne.name} attacks length is ${playerOne.attackFirst}`);
+ 
+  const playerTwo = {
+    name: game["npc[name]"],
+    attackFirst: game["npc[attacks]"][0].attack.attackSpeed,
+    attackSecond: game["npc[attacks]"][1].attack.attackSpeed,
+    attacks: game["npc[attacks]"].length
   }
 
-  livePhaseSix(game, count2, r);
+  console.log(`${playerTwo.name} first attack attackSpeed= ${playerTwo.attackFirst}, ${playerTwo.attackSecond} and length = ${playerTwo.attacks}`)
+  var count1 = game["user[attacks][length]"];
+  var count2 = game["npc[attacks][length]"];
+
+  if (game["npc[attacks[0]][attack][attackSpeed]"] > game["user[attacks[0]][attack][attackSpeed]"]) {
+
+    attackOrder(game["npc"], game["user"]);
+  } else {attackOrder(game["user"], game["npc"])}
+  
+
+  livePhaseSix(game, count1 + count2);
 
   function d20() {
     let result = Math.floor(Math.random() * 19) + 1;
@@ -27,9 +44,9 @@ module.exports = function livePhaseFive(game) {
 
   function attackOrder(first, second) {
     var number = 0;
-
-    console.log(`${first.name} attacks is `, first.attacks);
-    console.log(`${first.name} has ${first.attacks.length} attack(s).`);
+    console.log(`first is `, first)
+    console.log(`${first["name"]} attacks is `, first["attacks"]);
+    console.log(`${first["name"]} has ${first["attacks"].length} attack(s).`);
 
     let { count, wound } = resolveAttack(first, second);
 
@@ -52,10 +69,10 @@ module.exports = function livePhaseFive(game) {
   function resolveAttack(first, second) {
     var wound = 0;
     var count = 0;
-    for (let i = 0; i < first.attacks.length; i++) {
+    for (let i = 0; i < first[attacks].length; i++) {
       count = i + 1;
       var targetToHit = 10;
-      if (second.armor.shield) {
+      if (second[armor][shield]) {
         targetToHit =
           10 +
           first.defenseSpeed +

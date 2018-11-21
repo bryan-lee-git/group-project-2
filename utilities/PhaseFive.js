@@ -43,12 +43,13 @@ module.exports = function phaseFive(playerOne, playerTwo, round) {
 
   function attackOrder(first, second) {
     var number = 0;
+   
 
     console.log(`${first.name} attacks is `, first.attacks);
     console.log(`${first.name} has ${first.attacks.length} attack(s).`);
 
     let { count, wound } = resolveAttack(first, second);
-
+    
     number = number + count;
 
     if (wound === 0) {
@@ -101,19 +102,19 @@ module.exports = function phaseFive(playerOne, playerTwo, round) {
         );
         console.log(`${first.name} strength is ${first.strength}`);
         console.log(
-          `${first.name} primary weapon damage is ${first.primaryWeapon.damage}`
+          `${first.name} primary weapon damage is ${first.weapon.damage}`
         );
         if (first.attacks[i].attack.attackType) {
           damage =
             (Math.floor(first.strength / 5) + 1) *
               first.attacks[i].attack.attackSpeed +
-            first.primaryWeapon.damage;
+            first.weapon.damage;
         } else {
           damage =
             2 *
             ((Math.floor(first.strength / 5) + 1) *
               first.attacks[i].attack.attackSpeed +
-              first.primaryWeapon.damage);
+              first.weapon.damage);
         }
 
         console.log(

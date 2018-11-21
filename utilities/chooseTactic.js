@@ -88,7 +88,7 @@ function chooseTactic(playerOne, playerTwo) {
   }
 
   // Make sure the minimum attackSpeed for Heavy Weapons is 3. Otherwise, if total speed < 3, attackSpeed = 0.
-  if (playerOne.primaryWeapon.weight > 5 && choices.attackSpeed < 3) {
+  if (playerOne.weapon.weight > 5 && choices.attackSpeed < 3) {
     let total = choices.attackSpeed + choices.defenseSpeed;
     if (total >= 3) {
       choices.attackSpeed = 3;
