@@ -16,16 +16,16 @@ module.exports = function livePhaseFour(game) {
   }
 
   var playerTwoTactic = liveChooseTactic(game);
-  game.npc.defenseSpeed = playerTwoTactic.choices.defenseSpeed;
-  console.log(`${game.npc.name} tactic is `, playerTwoTactic);
-  console.log(`${game.npc.name} defense speed is ${game.npc.defenseSpeed}`);
+  game["npc[defenseSpeed]"] = playerTwoTactic.choices.defenseSpeed;
+  console.log(`${game["npc[name]"]} tactic is `, playerTwoTactic);
+  console.log(`${game["npc[name]"]} defense speed is ${game["npc[defenseSpeed]"]}`);
 
   //setAttacks(playerOne, playerOneTactic);
   //setAttacks(playerTwo, playerTwoTactic);
 
-  game.npc.attacks = setAttacks(game, playerTwoTactic);
+  game["npc[attacks]"] = setAttacks(game, playerTwoTactic);
 
-  livePhaseFive(game, round);
+  var attackResults = livePhaseFive(game);
 
   function setAttacks(first, tactics) {
     //console.log(`first player is `, first);

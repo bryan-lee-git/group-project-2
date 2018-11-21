@@ -2,7 +2,7 @@ var db = require("../models");
 var buildMarketClasses = require("./buildMarketGearClasses");
 var prepNPCForBattle = require("./prepNPCForBattle");
 
-// module.exports = function equipNPC(id) {
+ module.exports = function equipNPC(id) {
   db.NPC.findAll({
     where: {
       ArenaId: 3
@@ -25,4 +25,4 @@ var prepNPCForBattle = require("./prepNPCForBattle");
       });
     });
   });
-// };
+ };

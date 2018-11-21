@@ -4,6 +4,7 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Arena = sequelize.define("Arena", {
+  
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -24,6 +25,8 @@ module.exports = function(sequelize, DataTypes) {
     quantity: {
       type: DataTypes.INTEGER
     }
+  },{
+    timestamps: false,
   });
   return Arena;
 };

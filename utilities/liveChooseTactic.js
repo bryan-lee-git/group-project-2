@@ -1,38 +1,51 @@
-var { bull, bee, turtle, gadFly, panda, crane } = require("./tactics");
+var { bull, bee, turtle, gadFly, panda, crane } = require("./liveTactics");
 
 function chooseTactic(game) {
-  const playerOne = game.user;
-  const playerTwo = game.npc;
-  if (playerOne.currentStamina <= 0 && playerOne.maxStamina > 0) {
+  const playerOne = game;
+  console.log(`inside liveChooseTactics, this is playerOne: `, playerOne)
+  const playerOneCurrentStamina = game["user[currentStamina]"];
+  const playerOneMaxStamina = game["user[maxStamina]"];
+  const playerTwoMaxStamina = game["npc[maxStamina]"];
+  const playerOneStrength = game["user[strength]"];
+  const playerTwoStrength = game["npc[strength]"];
+  const playerTwoStamina = game["npc[stamina]"];
+  const playerOneCurrentSpeed = game["user[currentSpeed]"];
+  const playerTwoSpeed = game["npc[speed]"];
+  const playerTwoArmorWeight = game["npc[armor][weight]"];
+  const playerOneSpeed = game["user[speed]"];
+  const playerTwoCurrentStamina = game["npc[currentStamina]"];
+  const playerOneWeaponWeight = game["user[weapon][weight]"];
+
+  if (playerOneCurrentStamina <= 0 && playerOneMaxStamina > 0) {
     var choices = turtle(playerOne);
     var type = false;
   }
 
-  if (playerOne.strength > playerTwo.strength) {
-    if (playerTwo.maxStamina < playerTwo.stamina) {
+  if (playerOneStrength > playerTwoStrength) {
+    if (playerTwoMaxStamina < playerTwoStamina) {
       var choices = bull(playerOne);
       var type = true;
-    } else if (playerOne.currentSpeed > playerTwo.speed) {
+    } else if (playerOneCurrentSpeed > playerTwoSpeed) {
       var choices = panda(playerOne);
-      var type = playerTwo.armor.weight === 0 ? true : false;
+      var type = playerTwoArmorWeight === 0 ? true : false;
     } else {
       var choices = gadFly(playerOne);
       var type = false;
     }
-  } else if (playerTwo.strength > playerOne.strength) {
-    if (playerTwo.maxStamina < playerTwo.stamina) {
+  } else if (playerTwoStrength > playerOneStrength) {
+    if (playerTwoMaxStamina < playerTwoStamina) {
       var choices = crane(playerOne);
-      var type = playerTwo.armor.weight > 45 ? false : true;
+      var type = playerTwoArmorWeight > 45 ? false : true;
     } else if (
-      playerOne.currentStamina > playerOne.speed &&
-      playerTwo.currentStamina > playerTwo.speed
+      playerOneCurrentStamina > playerOneSpeed &&
+      playerTwoCurrentStamina > playerTwoSpeed
     ) {
-      if (playerTwo.speed > playerOne.speed) {
+      if (playerTwoSpeed > playerOneSpeed) {
         var choices = gadFly(playerOne);
         var type = false;
-      } else if (playerOne.speed > playerTwo.speed) {
+      } else if (playerOneSpeed > playerTwoSpeed) {
         var choices = crane(playerOne);
-        var type = playerTwo.armor.weight > 45 ? false : true;
+        var type = playerTwoArmorWeight > 45 ? false : true;
       } else {
         var choices = gadFly(playerOne);
         var type = false;
@@ -41,56 +54,56 @@ function chooseTactic(game) {
       var choices = gadFly(playerOne);
       var type = false;
     }
-  } else if (playerOne.currentStamina > playerOne.speed) {
-    if (playerTwo.currentStamina < playerTwo.speed) {
-      if (playerTwo.speed > playerOne.speed) {
+  } else if (playerOneCurrentStamina > playerOneSpeed) {
+    if (playerTwoCurrentStamina < playerTwoSpeed) {
+      if (playerTwoSpeed > playerOneSpeed) {
         var choices = gadFly(playerOne);
         var type = false;
-      } else if (playerOne.speed > playerTwo.speed) {
+      } else if (playerOneSpeed > playerTwoSpeed) {
         var choices = crane(playerOne);
-        var type = playerTwo.armor.weight > 45 ? false : true;
+        var type = playerTwoArmorWeight > 45 ? false : true;
       } else {
         var choices = bee(playerOne);
-        var type = playerTwo.armor.weight > 13 ? false : true;
+        var type = playerTwoArmorWeight > 13 ? false : true;
       }
-    } else if (playerTwo.speed > playerOne.speed) {
+    } else if (playerTwoSpeed > playerOneSpeed) {
       var choices = gadFly(playerOne);
       var type = false;
-    } else if (playerOne.speed > playerTwo.speed) {
+    } else if (playerOneSpeed > playerTwoSpeed) {
       var choices = bull(playerOne);
       var type = true;
     } else {
       var choices = crane(playerOne);
-      var type = playerTwo.armor.weight > 45 ? false : true;
+      var type = playerTwoArmorWeight > 45 ? false : true;
     }
-  } else if (playerTwo.maxStamina < playerTwo.stamina) {
+  } else if (playerTwoMaxStamina < playerTwoStamina) {
     var choices = bull(playerOne);
     var type = true;
-  } else if (playerOne.currentStamina < 0) {
+  } else if (playerOneCurrentStamina < 0) {
     var choices = gadFly(playerOne);
     var type = false;
   } else if (
-    playerOne.currentStamina > playerOne.speed &&
-    playerTwo.currentStamina > playerTwo.speed
+    playerOneCurrentStamina > playerOneSpeed &&
+    playerTwoCurrentStamina > playerTwoSpeed
   ) {
     var choices = bee(playerOne);
-    var type = playerTwo.armor.weight > 13 ? false : true;
-  } else if (playerTwo.currentStamina < 0) {
+    var type = playerTwoArmorWeight > 13 ? false : true;
+  } else if (playerTwoCurrentStamina < 0) {
     var choices = bull(playerOne);
     var type = true;
-  } else if (playerTwo.speed > playerOne.speed) {
+  } else if (playerTwoSpeed > playerOneSpeed) {
     var choices = gadFly(playerOne);
     var type = false;
-  } else if (playerOne.speed > playerTwo.speed) {
+  } else if (playerOneSpeed > playerTwoSpeed) {
     var choices = crane(playerOne);
-    var type = playerTwo.armor.weight > 45 ? false : true;
+    var type = playerTwoArmorWeight > 45 ? false : true;
   } else {
     var choices = bee(playerOne);
-    var type = playerTwo.armor.weight > 13 ? false : true;
+    var type = playerTwoArmorWeight > 13 ? false : true;
   }
 
   // Make sure the minimum attackSpeed for Heavy Weapons is 3. Otherwise, if total speed < 3, attackSpeed = 0.
-  if (playerOne.weapon.weight && choices.attackSpeed < 3) {
+  if (playerOneWeaponWeight && choices.attackSpeed < 3) {
     let total = choices.attackSpeed + choices.defenseSpeed;
     if (total >= 3) {
       choices.attackSpeed = 3;

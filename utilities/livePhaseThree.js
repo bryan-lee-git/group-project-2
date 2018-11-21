@@ -7,21 +7,21 @@ module.exports = function phaseThree(game) {
   }
 
   playerOneSpeed = setSpeed(
-    game.user.currentSpeed,
-    game.user.currentStamina,
-    game.user.armor.weight
+    game["user[currentSpeed]"],
+    game["user[currentStamina]"],
+    game["user[armor][weight]"]
   );
 
-  console.log(`the game npc is ${game.npc.name}`);
-  console.log(`the game npc's armor is ${game.npc.armor.name}`);
+  console.log(`the game npc is ${game["npc[name]"]}`);
+  console.log(`the game npc's armor is ${game["npc[armor][name]"]}`);
 
   console.log(
-    `the weight of ${game.npc.name}'s armor is ${game.npc.armor.weight}`
+    `the weight of ${game["npc[name]"]}'s armor is ${game["npc[armor][weight]"]}`
   );
   playerTwoSpeed = setSpeed(
-    game.npc.currentSpeed,
-    game.npc.currentStamina,
-    game.npc.armor.weight
+    game["npc[currentSpeed]"],
+    game["npc[currentStamina]"],
+    game["npc[armor][weight]"]
   );
   speeds.push(playerOneSpeed);
   speeds.push(playerTwoSpeed);
