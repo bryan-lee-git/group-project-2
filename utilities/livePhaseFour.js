@@ -25,7 +25,7 @@ module.exports = function livePhaseFour(game) {
 
   game.npc.attacks = setAttacks(game, playerTwoTactic);
 
-  var livePhaseFive(game, round);
+  livePhaseFive(game, round);
 
   function setAttacks(first, tactics) {
     //console.log(`first player is `, first);

@@ -79,6 +79,11 @@ $("body").on("click", ".unequip-weapon", function() {
   equippedWeapon = [];
   $("#equipped-weapon-content").empty();
   validate();
+  if (equippedArmor.length === 0 && equippedWeapon.length === 0) {
+    $("#equipment-tables").hide();
+    $("#no-equipment").remove();
+    $("#equipped-content").prepend("<h1 id='no-equipment' class='center-align'><br/>NO ITEMS EQUIPPED</h1>");
+  }
 });
 
 $("body").on("click", ".unequip-armor", function() {
@@ -89,6 +94,11 @@ $("body").on("click", ".unequip-armor", function() {
   equippedArmor = [];
   $("#equipped-armor-content").empty();
   validate();
+  if (equippedArmor.length === 0 && equippedWeapon.length === 0) {
+    $("#equipment-tables").hide();
+    $("#no-equipment").remove();
+    $("#equipped-content").prepend("<h1 id='no-equipment' class='center-align'><br/>NO ITEMS EQUIPPED</h1>");
+  }
 });
 
 $(".submit-equipment").on("click", function() {

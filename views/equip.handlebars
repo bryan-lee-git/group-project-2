@@ -5,69 +5,74 @@
     <div class="row center-align">
       <h1 class="page-title col s12">INVENTORY</h1>
     </div>
-
-    <div class="row center-align">
-      <div class="col-s6 offset-3">
-        <h3>Lira: $<span id="lira-display">{{user.wallet}}</span></h3>
-      </div>
+    <div class="col s12">
+      <h3>Lira: $<span id="lira-display">{{user.wallet}}</span></h3>
     </div>
+    <br />
 
     {{!-- weapons and armor collapsables --}}
     <div class="row">
-      <button id="equipped-items" class="btn col s12 modal-trigger" href="#equipped">VIEW EQUIPPED ITEMS + BRING TO
-        BATTLE</button>
-      <div class="col s6">
+      <div class="col s12 m6">
         <ul class="collapsible">
           <li class="col s12">
             <div class="collapsible-header">Weapons In Inventory</div>
             <div class="collapsible-body">
-              <table class="centered" id="weapon-table">
-                <thead>
-                  <th>Weapon</th>
-                  <th>Damage</th>
-                  <th>Equip</th>
-                  <th>Sell</th>
-                </thead>
-                <tbody>
-                  <span id="character-id" data-id="{{user.id}}"></span>
-                  {{#each purchases}}
-                  {{#if type}}
-                  {{> Inventory/inventory-weapon-block}}
-                  {{/if}}
-                  {{/each}}
-                </tbody>
-              </table>
+              {{#if purchases}}
+                <table class="responsive-table centered highlight" id="weapon-table">
+                  <thead>
+                    <th>Weapon</th>
+                    <th>Damage</th>
+                    <th>Equip</th>
+                    <th>Sell</th>
+                  </thead>
+                  <tbody>
+                    <span id="character-id" data-id="{{user.id}}"></span>
+                      {{#each purchases}}
+                        {{#if type}}
+                          {{> Inventory/inventory-weapon-block}}
+                        {{/if}}
+                      {{/each}}
+                  </tbody>
+                </table>
+              {{else}}
+                <h5>NO WEAPONS PURCHASED</h5>
+              {{/if}}
             </div>
           </li>
         </ul>
       </div>
-      <div class="col s6">
+      <div class="col s12 m6">
         <ul class="collapsible">
           <li class="col s12">
             <div class="collapsible-header">Armor In Inventory</div>
             <div class="collapsible-body">
-              <table class="centered" id="armor-table">
-                <thead>
-                  <tr>
-                    <th>Armor</th>
-                    <th>Defense</th>
-                    <th>Weight</th>
-                    <th>Equip</th>
-                    <th>Sell</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each purchases}}
-                  {{#unless type}}
-                  {{> Inventory/inventory-armor-block}}
-                  {{/unless}}
-                  {{/each}}
-                </tbody>
-              </table>
+              {{#if purchases}}
+                <table class="responsive-table centered highlight" id="armor-table">
+                  <thead>
+                    <tr>
+                      <th>Armor</th>
+                      <th>Defense</th>
+                      <th>Weight</th>
+                      <th>Equip</th>
+                      <th>Sell</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each purchases}}
+                      {{#unless type}}
+                        {{> Inventory/inventory-armor-block}}
+                      {{/unless}}
+                    {{/each}}
+                  </tbody>
+                </table>
+              {{else}}
+                <h5>NO ARMOR PURCHASED</h5>
+              {{/if}}
             </div>
           </li>
         </ul>
       </div>
+      <button id="equipped-items" class="btn col s12 modal-trigger" href="#equipped">VIEW EQUIPPED + BRING TO BATTLE</button>
     </div>
   </div>
 </main>
