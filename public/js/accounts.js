@@ -46,13 +46,11 @@ $("#update-account").on("click", function(event) {
   }
 });
 
-$("#delete-account").on("click", function(event) {
-  event.preventDefault();
+$("#delete-account").on("click", function() {
   $("#err-msg").empty("");
-  $("#delete-account-modal").modal("show");
 });
 
-$("#confirm-delete").on("click", () => {
+$("#confirm-delete").on("click", function() {
   var deleteAccount = {
     email: $("#emailConfirm").val()
   };

@@ -228,27 +228,6 @@ module.exports = function(app) {
     }
   });
 
-  // Delete an User by id
-  app.delete("/api/users/:id", (req, res) => {
-    if (req.isAuthenticated()) {
-      db.Accounts.findOne({
-        where: {
-          uuid: req.session.passport.user
-        }
-      }).then(function(dbUser) {
-        db.User.destroy({
-          where: {
-            id: req.params.id
-          }
-        }).then(results => {
-          res.json(results);
-        });
-      });
-    } else {
-      res.render("401")
-    }
-  });
-
   //////////////////////////////////////////////////////////////////
   /// NPC routes
   //////////////////////////////////////////////////////////////////

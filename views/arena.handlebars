@@ -1,130 +1,151 @@
 <main>
   <div id="user-hook" style="postion: absolute; visibility: hidden">{{user.id}}</div>
   <div id="npc-hook" style="postion: absolute; visibility: hidden">{{npc.id}}</div>
-  {{!-- the arena battle ground where the images of the user and opponent duke it out --}}
-  <br />
   <div class="row">
-    <div class="col s4 offset-s1 center-align">
+    <div class="col s12 m4 offset-m1 center-align">
       <img src="{{user.image}}" alt="user-combatant" class="responsive-img" id="user-combatant-img">
-    </div>
-
-    <div class="col s4 offset-s2 center-align">
-      <img src="{{npc.image}}" alt="opponent-combatant" class="responsive-img" id="opponent-combatant-img">
-    </div>
-  </div>
-  <!--End image row-->
-  <div class="row">
-    <div class="col s4 offset-s1 center-align rounded-content-box">
-      <h2 id="user-name">{{user.name}}</h2>
-      <h5 id="user-current-stamina">{{user.currentStamina}}</h5>
-      <br>
-      <h5 id="user-max-stamina">{{user.maxStamina}}</h5>
-      <br>
-      <h5 id="user-current-speed">{{user.currentSpeed}}</h5>
-      <br>
-      <h5 id="user-defense-speed">{{user.defenseSpeed}}</h5>
-      <br>
-      <button class="btn" id="player-stats-btn">VIEW BASE STATS</button>
-      <button class="btn" id="player-gear-btn">VIEW EQUIPMENT</button>
-      <br />
-      <br />
-      <div id="player-stats">
-        <hr>
-        <h5>BASE STATS</h5>
-        <table class="highlight responsive-table centered" id="user-table">
-          <thead>
-            <th>Stamina</th>
-            <th>Strength</th>
-            <th>Speed</th>
-            <th>Skill</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span id="user-stamina-span">{{user.stamina}}</span></td>
-              <td><span id="user-strength-span">{{user.strength}}</span></td>
-              <td><span id="user-speed-span">{{user.speed}}</span></td>
-              <td><span id="user-skill-span">{{user.skill}}</span></td>
-            </tr>
-          </tbody>
-        </table>
+      <br /><br />
+      <div class="rounded-content-box z-depth-5">
+        <h2 id="user-name">{{user.name}}</h2>
+        <button class="btn col s6 m4" id="player-current-stats-btn">CURRENT STATS</button>
+        <button class="btn col s6 m4" id="player-stats-btn">BASE STATS</button>
+        <button class="btn col s12 m4" id="player-gear-btn">EQUIPMENT</button>
         <br />
-      </div>
-      <div id="player-gear">
-        <hr>
-        <h5>EQUIPMENT</h5>
-        <table class="highlight responsive-table centered">
-          <thead>
-            <th>Weapon</th>
-            <th>Damage</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td id="user-weapon-name">{{weapon.name}}</td>
-              <td id="user-weapon-damage">{{weapon.statIncrease}}</td>
+        <br />
+        <div id="player-current-stats">
+          <hr>
+          <h5>CURRENT STATS</h5>
+          <table class="highlight responsive-table centered" id="user-table">
+            <thead>
+              <th>Current/Max Stamina</th>
+              <th>Current Speed</th>
+              <th>Defense Speed</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span id="user-current-stamina">{{user.stamina}}</span><span id="user-max-stamina">{{user.maxStamina}}</span></td>
+                <td><span id="user-current-speed">{{user.currentSpeed}}</span></td>
+                <td><span id="user-defense-speed">{{user.defenseSpeed}}</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+        </div>
+        <div id="player-stats">
+          <hr>
+          <h5>BASE STATS</h5>
+          <table class="highlight responsive-table centered" id="user-table">
+            <thead>
+              <th>Stamina</th>
+              <th>Strength</th>
+              <th>Speed</th>
+              <th>Skill</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span id="user-stamina-span">{{user.stamina}}</span></td>
+                <td><span id="user-strength-span">{{user.strength}}</span></td>
+                <td><span id="user-speed-span">{{user.speed}}</span></td>
+                <td><span id="user-skill-span">{{user.skill}}</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+        </div>
+        <div id="player-gear">
+          <hr>
+          <h5>EQUIPMENT</h5>
+          <table class="highlight responsive-table centered">
+            <thead>
+              <th>Weapon</th>
+              <th>Damage</th>
               {{#if weapon.weight}}
-              <td id="user-weapon-weight">Heavy</td>
+              <th>Type</th>
               {{/if}}
-            </tr>
-          </tbody>
-        </table>
-        <br />
-        <table class="highlight responsive-table centered">
-          <thead>
-            <th>Armor</th>
-            <th>Defense</th>
-            <th>Weight</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td id="user-armor-name">{{armor.name}}</td>
-              <td id="user-armor-strength">{{armor.statIncrease}}</td>
-              <td id="user-armor-weight">{{armor.weight}}</td>
-              <td id="user-shield">{{armor.shield}}</td>
-            </tr>
-          </tbody>
-        </table>
-        <br />
+            </thead>
+            <tbody>
+              <tr>
+                <td id="user-weapon-name">{{weapon.name}}</td>
+                <td id="user-weapon-damage">{{weapon.statIncrease}}</td>
+                {{#if weapon.weight}}
+                <td id="user-weapon-weight">Heavy</td>
+                {{/if}}
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <table class="highlight responsive-table centered">
+            <thead>
+              <th>Armor</th>
+              <th>Defense</th>
+              <th>Weight</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="user-armor-name">{{armor.name}}</td>
+                <td id="user-armor-strength">{{armor.statIncrease}}</td>
+                <td id="user-armor-weight">{{armor.weight}}</td>
+                <td id="user-shield">{{armor.shield}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    <div class="col s4 offset-s2 center-align rounded-content-box">
-      <h2 id="npc-name">{{npc.name}}</h2>
-      <h5 id="npc-current-stamina">{{npc.stamina}}</h5>
-      <br>
-      <h5 id="npc-max-stamina">{{npc.maxStamina}}</h5>
-      <br>
-      <h5 id="npc-current-speed">{{npc.currentSpeed}}</h5>
-      <br>
-      <h5 id="npc-defense-speed">{{npc.defenseSpeed}}</h5>
-      <br>
-      <button class="btn" id="npc-stats-btn">VIEW BASE STATS</button>
-      <br />
-      <br />
-      <div id="npc-stats">
-        <hr>
-        <h5>BASE STATS</h5>
-        <table class="highlight responsive-table centered" id="opponent-table">
-          <thead>
-            <th>Stamina</th>
-            <th>Strength</th>
-            <th>Speed</th>
-            <th>Skill</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span id="opponent-stamina-span">{{npc.stamina}}</span></td>
-              <td><span id="opponent-strength-span">{{npc.strength}}</span></td>
-              <td><span id="opponent-speed-span">{{npc.speed}}</span></td>
-              <td><span id="opponent-skill-span">{{npc.skill}}</span></td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="col s12 m4 offset-m2 center-align">
+      <img src="{{npc.image}}" alt="opponent-combatant" class="responsive-img" id="opponent-combatant-img">
+      <br /><br />
+      <div class="rounded-content-box z-depth-5">
+        <h2 id="npc-name">{{npc.name}}</h2>
+        <button class="btn col s6" id="npc-current-stats-btn">CURRENT STATS</button>
+        <button class="btn col s6" id="npc-stats-btn">BASE STATS</button>
         <br />
+        <br />
+        <div id="npc-current-stats">
+          <hr>
+          <h5>CURRENT STATS</h5>
+          <table class="highlight responsive-table centered" id="user-table">
+            <thead>
+              <th>Current/Max Stamina</th>
+              <th>Current Speed</th>
+              <th>Defense Speed</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span id="npc-current-stamina">{{npc.stamina}}</span><span id="npc-max-stamina">{{npc.maxStamina}}</span></td>
+                <td><span id="npc-current-speed">{{npc.currentSpeed}}</span></td>
+                <td><span id="npc-defense-speed">{{npc.defenseSpeed}}</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+        </div>
+        <div id="npc-stats">
+          <hr>
+          <h5>BASE STATS</h5>
+          <table class="highlight responsive-table centered" id="opponent-table">
+            <thead>
+              <th>Stamina</th>
+              <th>Strength</th>
+              <th>Speed</th>
+              <th>Skill</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span id="opponent-stamina-span">{{npc.stamina}}</span></td>
+                <td><span id="opponent-strength-span">{{npc.strength}}</span></td>
+                <td><span id="opponent-speed-span">{{npc.speed}}</span></td>
+                <td><span id="opponent-skill-span">{{npc.skill}}</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+        </div>
       </div>
     </div>
+    <a class="col s2 offset-s5  waves-effect waves-light btn-large btn" id="start-battle">Start Battle</a>
   </div>
-  <div class="row">
-    <a class="waves-effect waves-light btn-large" id="start-battle">Start Battle</a>
-  </div>
+  <br /><br /><br />
   {{!-- Fixed action button, where the user will impliment their strategy in between turns --}}
   <div class="fixed-action-btn modal-trigger" href="#combat-log" title="Tactics">
     <a class="btn-floating pulse btn-large">
