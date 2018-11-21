@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build-css": "sass --watch /scss/:/styles/ ",
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "lint": "eslint **/*.js --quiet",
     "fix": "eslint --fix .",
     "test": "npm run lint && NODE_ENV=test mocha -u tdd --reporter spec --exit"
