@@ -1,4 +1,5 @@
 var db = require("../models");
+var liveEquipNPC= require("../utilities/liveEquipNPC")
 
 module.exports = function(app) {
   // landing page
@@ -147,7 +148,7 @@ module.exports = function(app) {
                   id: req.session.passport.user,
                   isloggedin: req.isAuthenticated()
                 };
-                console.log(user);
+                //console.log(user);
                 res.render("market", user);
               });
             });
@@ -216,16 +217,23 @@ module.exports = function(app) {
                 id: randomNumber
               }
             }).then(function(dbNPC) {
-              var battle = {
-                user: dbChar.dataValues,
-                weapon: dbChar.dataValues.Equipment[0],
-                armor: dbChar.dataValues.Equipment[1],
-                npc: dbNPC.dataValues,
-                userInfo: dbUser.dataValues,
-                id: req.session.passport.user,
-                isloggedin: req.isAuthenticated()
-              };
-              res.render("arena", battle);
+              console.log(`from inside the arena get html route, here's the data about the NPC: `,dbNPC.dataValues);
+
+              liveEquipNPC(dbNPC.dataValues,1).then(result => {
+                console.log(`inside the arena get html route, here's the equipped npc: `, result);
+                var battle = {
+                  user: dbChar.dataValues,
+                  weapon: dbChar.dataValues.Equipment[1],
+                  armor: dbChar.dataValues.Equipment[0],
+                  npc: dbNPC.dataValues,
+                  npcWeapon: result.primaryWeapon,
+                  npcArmor: result.armor,
+                  userInfo: dbUser.dataValues,
+                  id: req.session.passport.user,
+                  isloggedin: req.isAuthenticated()
+                };
+                res.render("arena", battle);
+              })
             });
           }
         });

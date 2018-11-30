@@ -1,20 +1,7 @@
 var { bull, bee, turtle, gadFly, panda, crane } = require("./liveTactics");
 
-function chooseTactic(game) {
-  const playerOne = game;
-  console.log(`inside liveChooseTactics, this is playerOne: `, playerOne)
-  const playerOneCurrentStamina = game["user[currentStamina]"];
-  const playerOneMaxStamina = game["user[maxStamina]"];
-  const playerTwoMaxStamina = game["npc[maxStamina]"];
-  const playerOneStrength = game["user[strength]"];
-  const playerTwoStrength = game["npc[strength]"];
-  const playerTwoStamina = game["npc[stamina]"];
-  const playerOneCurrentSpeed = game["user[currentSpeed]"];
-  const playerTwoSpeed = game["npc[speed]"];
-  const playerTwoArmorWeight = game["npc[armor][weight]"];
-  const playerOneSpeed = game["user[speed]"];
-  const playerTwoCurrentStamina = game["npc[currentStamina]"];
-  const playerOneWeaponWeight = game["user[weapon][weight]"];
+function chooseTactic(playerOne, playerTwo) {
+  
 
   if (playerOneCurrentStamina <= 0 && playerOneMaxStamina > 0) {
     var choices = turtle(playerOne);

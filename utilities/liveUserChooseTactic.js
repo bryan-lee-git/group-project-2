@@ -1,90 +1,112 @@
 var { bull, bee, turtle, gadfly, panda, crane } = require("./tactics");
 
-function chooseTactic(playerOne, playerTwo) {
+function liveUserChooseTactic(playerOne, playerTwo, userTactic) {
+switch (userTactic) {
+    case "bull":
+    choices = bull(playerOne);
+    break;
+    case "bee":
+    choices = bee(playerOne);
+    break;
+    case "gadfly":
+    choices = gadfly(playerOne);
+    break;
+    case "panda":
+    choices = panda(playerOne);
+    break;
+    case "crane":
+    choices = crane(playerOne);
+    break;
+    default:
+    choice = bull(playerOne)
+    
+}
+var type = false;
+
   if (playerOne.currentStamina <= 0 && playerOne.maxStamina > 0) {
-    var choices = turtle(playerOne);
-    var type = false;
+    
+    type = false;
   }
 
   if (playerOne.strength > playerTwo.strength) {
     if (playerTwo.maxStamina < playerTwo.stamina) {
-      var choices = bull(playerOne);
-      var type = true;
+     
+      type = true;
     } else if (playerOne.currentSpeed > playerTwo.speed) {
-      var choices = panda(playerOne);
-      var type = playerTwo.armor.weight === 0 ? true : false;
+      
+      type = playerTwo.armor.weight === 0 ? true : false;
     } else {
-      var choices = gadfly(playerOne);
-      var type = false;
+      
+      type = false;
     }
   } else if (playerTwo.strength > playerOne.strength) {
     if (playerTwo.maxStamina < playerTwo.stamina) {
-      var choices = crane(playerOne);
-      var type = playerTwo.armor.weight > 45 ? false : true;
+      
+      type = playerTwo.armor.weight > 45 ? false : true;
     } else if (
       playerOne.currentStamina > playerOne.speed &&
       playerTwo.currentStamina > playerTwo.speed
     ) {
       if (playerTwo.speed > playerOne.speed) {
-        var choices = gadfly(playerOne);
-        var type = false;
+        
+        type = false;
       } else if (playerOne.speed > playerTwo.speed) {
-        var choices = crane(playerOne);
-        var type = playerTwo.armor.weight > 45 ? false : true;
+        
+        type = playerTwo.armor.weight > 45 ? false : true;
       } else {
-        var choices = gadfly(playerOne);
-        var type = false;
+       
+        type = false;
       }
     } else {
-      var choices = gadfly(playerOne);
-      var type = false;
+      
+      type = false;
     }
   } else if (playerOne.currentStamina > playerOne.speed) {
     if (playerTwo.currentStamina < playerTwo.speed) {
       if (playerTwo.speed > playerOne.speed) {
-        var choices = gadfly(playerOne);
-        var type = false;
+        
+        type = false;
       } else if (playerOne.speed > playerTwo.speed) {
-        var choices = crane(playerOne);
-        var type = playerTwo.armor.weight > 45 ? false : true;
+       
+        type = playerTwo.armor.weight > 45 ? false : true;
       } else {
-        var choices = bee(playerOne);
-        var type = playerTwo.armor.weight > 13 ? false : true;
+        
+        type = playerTwo.armor.weight > 13 ? false : true;
       }
     } else if (playerTwo.speed > playerOne.speed) {
-      var choices = gadfly(playerOne);
+     
       var type = false;
     } else if (playerOne.speed > playerTwo.speed) {
-      var choices = bull(playerOne);
-      var type = true;
+    
+      type = true;
     } else {
-      var choices = crane(playerOne);
-      var type = playerTwo.armor.weight > 45 ? false : true;
+     
+      type = playerTwo.armor.weight > 45 ? false : true;
     }
   } else if (playerTwo.maxStamina < playerTwo.stamina) {
-    var choices = bull(playerOne);
-    var type = true;
+    
+    type = true;
   } else if (playerOne.currentStamina < 0) {
-    var choices = gadfly(playerOne);
-    var type = false;
+   
+    type = false;
   } else if (
     playerOne.currentStamina > playerOne.speed &&
     playerTwo.currentStamina > playerTwo.speed
   ) {
-    var choices = bee(playerOne);
-    var type = playerTwo.armor.weight > 13 ? false : true;
+   
+    type = playerTwo.armor.weight > 13 ? false : true;
   } else if (playerTwo.currentStamina < 0) {
-    var choices = bull(playerOne);
-    var type = true;
+   
+    type = true;
   } else if (playerTwo.speed > playerOne.speed) {
-    var choices = gadfly(playerOne);
-    var type = false;
+   
+    type = false;
   } else if (playerOne.speed > playerTwo.speed) {
-    var choices = crane(playerOne);
-    var type = playerTwo.armor.weight > 45 ? false : true;
+    
+    type = playerTwo.armor.weight > 45 ? false : true;
   } else {
-    var choices = bee(playerOne);
-    var type = playerTwo.armor.weight > 13 ? false : true;
+    
+    type = playerTwo.armor.weight > 13 ? false : true;
   }
 
   // Make sure the minimum attackSpeed for Heavy Weapons is 3. Otherwise, if total speed < 3, attackSpeed = 0.
@@ -110,4 +132,4 @@ function chooseTactic(playerOne, playerTwo) {
   return { choices, type };
 }
 
-module.exports = chooseTactic;
+module.exports = liveUserChooseTactic;

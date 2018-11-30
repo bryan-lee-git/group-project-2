@@ -4,28 +4,22 @@ var bull,
   gadFly,
   panda,
   crane = require("./tactics");
-var liveChooseTactic = require("./liveChooseTactic");
-var livePhaseThree = require("./livePhaseThree");
-var livePhaseFive = require("./livePhaseFive");
 
-module.exports = function livePhaseFour(game) {
-  var speeds = livePhaseThree(game);
+var phaseThree = require("./PhaseThree");
+var PhaseFive = require("./PhaseFive");
 
-  function d6() {
-    return Math.floor(Math.random() * 5) + 1;
-  }
+module.exports = function phaseFour(playerOne, playerTwo, playerOneTactic, playerTwoTactic, round) {
 
-  var playerTwoTactic = liveChooseTactic(game);
-  game["npc[defenseSpeed]"] = playerTwoTactic.choices.defenseSpeed;
-  console.log(`${game["npc[name]"]} tactic is `, playerTwoTactic);
-  console.log(`${game["npc[name]"]} defense speed is ${game["npc[defenseSpeed]"]}`);
+  var speeds = phaseThree(playerOne, playerTwo);
 
-  //setAttacks(playerOne, playerOneTactic);
-  //setAttacks(playerTwo, playerTwoTactic);
+  const playerOneSpeed = speeds[0];
+  const playerTwoSpeed = speeds[1];
 
-  game["npc[attacks]"] = setAttacks(game, playerTwoTactic);
 
-  var attackResults = livePhaseFive(game);
+  setAttacks(playerOne, playerOneTactic);
+  setAttacks(playerTwo, playerTwoTactic);
+
+  PhaseFive(playerOne, playerTwo, round);
 
   function setAttacks(first, tactics) {
     //console.log(`first player is `, first);
@@ -42,23 +36,27 @@ module.exports = function livePhaseFour(game) {
       attack = {
         attackSpeed: tactics.choices.attackSpeed,
         attackType: tactics.type,
-        weapon: first.primaryWeapon
+        weapon: first.weapon
       };
       attacks.push({ attack });
     } else {
       attack = {
         attackSpeed: 5,
         attackType: tactics.type,
-        weapon: firts.primaryWeapon
+        weapon: firts.weapon
       };
       attacks.push({ attack });
       attack = {
         attackSpeed: tactics.choices.attackSpeed - 5,
         attackType: tactics.type,
-        weapon: firts.primaryWeapon
+        weapon: firts.weapon
       };
       attacks.push({ attack });
     }
-    return attacks;
+    first.attacks = attacks;
   }
+  
+  console.log(`from inside livephasefour, here is ${playerOne.name}: `, playerOne)
+  console.log(`from inside livephasefour, here is ${playerTwo.name}: `, playerTwo)
+  return { playerOne, playerTwo }
 };

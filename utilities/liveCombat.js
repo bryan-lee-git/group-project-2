@@ -1,4 +1,4 @@
-var livePhaseTwo = require("./livePhaseTwo");
+var PhaseTwo = require("./PhaseTwo");
 
 var PhaseFour = require("./PhaseFour");
 
@@ -63,15 +63,13 @@ module.exports = combat = (Arena, game) => {
       playerTwo: playerTwo,
       winner: ""
     }
-    
-  
 
   console.log(`Inside the combat function. Our Arena is `, Arena);
   //phaseOne(Arena, playerOne, playerTwo);
 
   var attacks = PhaseFour(playerOne, playerTwo, round);
 
-  var gameOn = livePhaseTwo(game);
+  var gameOn = PhaseTwo(game);
 
   if (!gameOn) {
     battleResults.winner =

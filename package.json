@@ -4,7 +4,7 @@
   "description": "Group Project #2 for the University of Utah Full Stack Coding Bootcamp. Project initialized on November 8th, 2018.",
   "main": "server.js",
   "scripts": {
-    "build-css": "sass --watch /scss/:/styles/ ",
+    "build-css": "sass --watch /public/scss/:/public/styles/ ",
     "start": "nodemon server.js",
     "lint": "eslint **/*.js --quiet",
     "fix": "eslint --fix .",

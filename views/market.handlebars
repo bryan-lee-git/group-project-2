@@ -15,7 +15,8 @@
     <div class="row">
       <div class="col s6">
         <ul class="collapsible">
-          {{!-- light weapon collapsable --}}
+          {{!--Just all the weapons--}}
+
           <li>
             <div class="collapsible-header">Light Weapons</div>
             <div class="collapsible-body">
@@ -30,36 +31,16 @@
                 </thead>
                 <tbody>
                   {{#each weapons}}
-                  {{#if dataValues.weight}}
+                 
                   {{> Market/market-weapon}}
-                  {{/if}}
+               
                   {{/each}}
                 </tbody>
               </table>
             </div>
           </li>
-          {{!-- heavy weapon collapsable --}}
-          <li>
-            <div class="collapsible-header">Heavy Weapons</div>
-            <div class="collapsible-body">
-              <table id="heavy-weapon-table">
-                <thead>
-                  <th>Weapon</th>
-                  <th>Damage</th>
-                  <th>Price</th>
-                  <th>Purchase</th>
-                </thead>
-                <tbody>
-                  <span id="character-id" data-id="{{user.id}}"></span>
-                  {{#each weapons}}
-                  {{#unless dataValues.weight}}
-                  {{> Market/market-weapon}}
-                  {{/unless}}
-                  {{/each}}
-                </tbody>
-              </table>
-            </div>
-          </li>
+
+      
           {{!-- armour collapsable --}}
           <li>
             <div class="collapsible-header">Armor</div>

@@ -13,16 +13,29 @@
     </div>
   </div>
   <!--End image row-->
+<div class="row">
+  <div id = "billboard-container" class="col s4 offset-s4 center-align rounded-content-box">
+    <h4>Battle Results</h4>
+    <p id="billboard"></p>
+
+  </div>
+
+  </div>
+
   <div class="row">
     <div class="col s4 offset-s1 center-align rounded-content-box">
       <h2 id="user-name">{{user.name}}</h2>
-      <h5 id="user-current-stamina">{{user.currentStamina}}</h5>
+      <p id=>Current Stamina:</p>
+      <p id="user-current-stamina">{{user.currentStamina}}</p>
       <br>
-      <h5 id="user-max-stamina">{{user.maxStamina}}</h5>
+      <p id=>Stamina - Wounds:</p>
+      <p id="user-max-stamina">{{user.maxStamina}}</p>
       <br>
-      <h5 id="user-current-speed">{{user.currentSpeed}}</h5>
+      <p id=>Current Speed:</p>
+      <p id="user-current-speed">{{user.currentSpeed}}</p>
       <br>
-      <h5 id="user-defense-speed">{{user.defenseSpeed}}</h5>
+      <p id=>Defense Speed:</p>
+      <p id="user-defense-speed">{{user.defenseSpeed}}</p>
       <br>
       <button class="btn" id="player-stats-btn">VIEW BASE STATS</button>
       <button class="btn" id="player-gear-btn">VIEW EQUIPMENT</button>
@@ -73,30 +86,40 @@
             <th>Armor</th>
             <th>Defense</th>
             <th>Weight</th>
+            <th>Shield</th>
           </thead>
           <tbody>
             <tr>
               <td id="user-armor-name">{{armor.name}}</td>
               <td id="user-armor-strength">{{armor.statIncrease}}</td>
               <td id="user-armor-weight">{{armor.weight}}</td>
-              <td id="user-shield">{{armor.shield}}</td>
+              {{#if armor.shield}}
+              <td id="user-shield">Yes</td>
+              {{/if}}
             </tr>
           </tbody>
         </table>
         <br />
       </div>
     </div>
+
     <div class="col s4 offset-s2 center-align rounded-content-box">
       <h2 id="npc-name">{{npc.name}}</h2>
-      <h5 id="npc-current-stamina">{{npc.stamina}}</h5>
+      <p id="npc-ready" ></p>
+      <p id=>Current Stamina:</p>
+      <p id="npc-current-stamina">{{npc.currentStamina}}</p>
       <br>
-      <h5 id="npc-max-stamina">{{npc.maxStamina}}</h5>
+      <p id=>Stamina - Wounds:</p>
+      <p id="npc-max-stamina">{{npc.maxStamina}}</p>
       <br>
-      <h5 id="npc-current-speed">{{npc.currentSpeed}}</h5>
+      <p id=>Current Speed:</p>
+      <p id="npc-current-speed">{{npc.currentSpeed}}</p>
       <br>
-      <h5 id="npc-defense-speed">{{npc.defenseSpeed}}</h5>
+      <p id=>Defense Speed:</p>
+      <p id="npc-defense-speed">{{npc.defenseSpeed}}</p>
       <br>
       <button class="btn" id="npc-stats-btn">VIEW BASE STATS</button>
+      <button class="btn" id="npc-gear-btn">VIEW EQUIPMENT</button>
       <br />
       <br />
       <div id="npc-stats">
@@ -120,24 +143,86 @@
         </table>
         <br />
       </div>
-    </div>
+
+        <div id="npc-gear">
+        <hr>
+        <h5>EQUIPMENT</h5>
+        <table class="highlight responsive-table centered">
+          <thead>
+            <th>Weapon</th>
+            <th>Damage</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="npc-weapon-name">{{npcWeapon.name}}</td>
+              <td id="npc-weapon-damage">{{npcWeapon.damage}}</td>
+              {{#if npcWeapon.weight}}
+              <td id="npc-weapon-weight">Heavy</td>
+              {{/if}}
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <table class="highlight responsive-table centered">
+          <thead>
+            <th>Armor</th>
+            <th>Defense</th>
+            <th>Weight</th>
+            <th>Shield</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="npc-armor-name">{{npcArmor.type}}</td>
+              <td id="npc-armor-strength">{{npcArmor.strength}}</td>
+              <td id="npc-armor-weight">{{npcArmor.weight}}</td>
+              {{#if npcArmor.shield}}
+              <td id="npc-shield">Yes</td>
+              {{/if}}
+            </tr>
+          </tbody>
+        </table>
+        <br />
+      </div>
   </div>
-  <div class="row">
-    <a class="waves-effect waves-light btn-large" id="start-battle">Start Battle</a>
-  </div>
-  {{!-- Fixed action button, where the user will impliment their strategy in between turns --}}
-  <div class="fixed-action-btn modal-trigger" href="#combat-log" title="Tactics">
+  
+  {{!-- Fixed action button, where the user will implement their strategy in between turns --}}
+  <div class="fixed-action-btn"  title="Tactics">
     <a class="btn-floating pulse btn-large">
       <img src="/img/erics-images/battle-btn.png" alt="">
     </a>
     <ul>
-      <li><a class="btn-floating red">Bull</a></li>
-      <li><a class="btn-floating orange">Crane</a></li>
-      <li><a class="btn-floating yellow darken-1">Panda</a></li>
-      <li><a class="btn-floating green">Bee</a></li>
-      <li><a class="btn-floating blue">Gadfly</a></li>
+      <li>
+       
+        <a class="btn-floating red ">Bull</a>
+        
+      </li>
+      <li>
+     
+        <a class="btn-floating orange">Crane</a>
+        
+      </li>
+      <li>
+     
+        <a class="btn-floating yellow darken-1 ">Panda</a>
+       
+      </li>
+      <li>
+     
+        <a class="btn-floating green ">Bee</a>
+        
+       
+      </li>
+      <li>
+     
+        <a class="btn-floating blue">Gadfly</a>
+        
+       
+      </li>
     </ul>
   </div>
+  <div class= "modal" >
+ {{> Modal/combat-block }}
+  </div>
+ 
 </main>
-{{> Modal/combat-block}}
 <script src="/js/arena.js"></script>

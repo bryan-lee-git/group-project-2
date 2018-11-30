@@ -1,13 +1,7 @@
 module.exports = function phaseSix(playerOne, playerTwo, count, round) {
   // Fatigue
   //
-  // foreach player ...
-  //  if the total number of attacks in PhaseFive was greater than 0, then for each player, add //  their player.currentSpeed to their player.fatigue.
-  //
-
   
-  
-
   console.log(`We made it to the end of round ${round}.`);
   if (count > 0) {
     var sum = getAttackSpeedTotal(playerOne);
@@ -35,11 +29,7 @@ module.exports = function phaseSix(playerOne, playerTwo, count, round) {
       playerTwo.currentStamina
     }.`
   );
-  //  After the fatigue has been added to each player (if any), then call player.setStamina()
-  //
-  //
-  //
-};
+  
 function getAttackSpeedTotal(player) {
   var number = player.attacks.length;
   var sum = 0;
@@ -48,19 +38,20 @@ function getAttackSpeedTotal(player) {
       sum = sum + player.attacks[i].attack.attackSpeed;
     }
   }
-
-  setStamina = function(player) {
-    player.currentStamina =
-      player.currentStamina - player.fatigue - player.wounds + player.recovery;
-    if (player.currentStamina > player.stamina) {
-      player.currentStamina = player.stamina;
-    }
-    player.maxStamina = player.stamina - player.wounds;
-    return player.currentStamina > player.maxStamina
-      ? player.maxStamina
-      : player.currentStamina;
-  };
-
-
   return sum;
 }
+
+function setStamina (player) {
+  player.currentStamina =
+    player.currentStamina - player.fatigue - player.wounds + player.recovery;
+  if (player.currentStamina > player.stamina) {
+    player.currentStamina = player.stamina;
+  }
+  player.maxStamina = player.stamina - player.wounds;
+  return player.currentStamina > player.maxStamina
+    ? player.maxStamina
+    : player.currentStamina;
+};
+
+  return { playerOne, playerTwo }
+};

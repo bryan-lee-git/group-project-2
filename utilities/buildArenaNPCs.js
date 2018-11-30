@@ -6,7 +6,7 @@ var arenas = [];
 
 db.Arenas.findAll({
   where: {
-    id: 1
+    id: 8
   }
 }).then(results => {
   arenas = JSON.stringify(results);
