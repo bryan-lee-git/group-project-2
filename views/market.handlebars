@@ -4,23 +4,20 @@
   <div class="container rounded-content-box z-depth-5">
     <div class="row center-align">
       <h1 class="page-title col s12">óPLO FORUM</h1>
-    </div>
-    {{!-- displays players currency --}}
-    <div class="row center-align">
-      <div class="col-s6 offset-3">
+      <div class="col s12">
         <h3>Lira: $<span id="lira-display">{{user.wallet}}</span></h3>
       </div>
     </div>
     {{!-- weapons and armour collapsables --}}
     <div class="row">
-      <div class="col s6">
+      <div class="col s12 m6">
         <ul class="collapsible">
           {{!--Just all the weapons--}}
 
           <li>
             <div class="collapsible-header">Light Weapons</div>
             <div class="collapsible-body">
-              <table id="light-weapon-table">
+              <table class="responsive-table centered highlight" id="light-weapon-table">
                 <thead>
                   <tr>
                     <th>Weapon</th>
@@ -31,7 +28,33 @@
                 </thead>
                 <tbody>
                   {{#each weapons}}
+<<<<<<< HEAD
                  
+=======
+                  {{#if dataValues.weight}}
+                  {{> Market/market-weapon}}
+                  {{/if}}
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </li>
+          {{!-- heavy weapon collapsable --}}
+          <li>
+            <div class="collapsible-header">Heavy Weapons</div>
+            <div class="collapsible-body">
+              <table class="responsive-table centered highlight" id="heavy-weapon-table">
+                <thead>
+                  <th>Weapon</th>
+                  <th>Damage</th>
+                  <th>Price</th>
+                  <th>Purchase</th>
+                </thead>
+                <tbody>
+                  <span id="character-id" data-id="{{user.id}}"></span>
+                  {{#each weapons}}
+                  {{#unless dataValues.weight}}
+>>>>>>> 4294ee25447211262702b5b13985efecf007d975
                   {{> Market/market-weapon}}
                
                   {{/each}}
@@ -45,7 +68,7 @@
           <li>
             <div class="collapsible-header">Armor</div>
             <div class="collapsible-body">
-              <table id="armour-table">
+              <table class="responsive-table centered highlight" id="armour-table">
                 <thead>
                   <tr>
                     <th>Armor</th>
@@ -66,7 +89,7 @@
         </ul>
       </div>
       {{!-- Training collapsable --}}
-      <div class="col s6">
+      <div class="col s12 m6">
         <ul class="collapsible">
           {{!-- speed training collapsable --}}
           <li>
@@ -108,7 +131,7 @@
           </li>
         </ul>
       </div>
-      <a href="/equip"><button id="inventory-view" class="btn col s12">GO TO INVENTORY PAGE + EQUIP GEAR</button></a>
+      <a href="/equip"><button id="inventory-view" class="btn col s12">VIEW INVENTORY + EQUIP GEAR</button></a>
     </div>
   </div>
 </main>

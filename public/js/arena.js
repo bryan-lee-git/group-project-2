@@ -7,11 +7,19 @@ $("#billboard-container").hide();
 $("#player-stats-btn").on("click", () => {
   $("#player-stats").slideToggle(300);
   $("#player-gear").slideUp(300);
+  $("#player-current-stats").slideUp(300);
 });
 
 $("#player-gear-btn").on("click", () => {
   $("#player-stats").slideUp(300);
+  $("#player-current-stats").slideUp(300);
   $("#player-gear").slideToggle(300);
+});
+
+$("#player-current-stats-btn").on("click", () => {
+  $("#player-stats").slideUp(300);
+  $("#player-current-stats").slideToggle(300);
+  $("#player-gear").slideUp(300);
 });
 
 $("#npc-stats-btn").on("click", () => {

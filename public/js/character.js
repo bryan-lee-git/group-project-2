@@ -45,6 +45,7 @@ $("#create-speed-slide").change(function() {
   // runs a validation check
   validation();
 });
+
 // strength slider functions the same as speed slider
 $("#create-strength-slide").change(function() {
   var newStrengthLocation = $("#create-strength-slide").val();
