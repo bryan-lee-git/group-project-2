@@ -28,9 +28,6 @@
                 </thead>
                 <tbody>
                   {{#each weapons}}
-<<<<<<< HEAD
-                 
-=======
                   {{#if dataValues.weight}}
                   {{> Market/market-weapon}}
                   {{/if}}
@@ -54,9 +51,8 @@
                   <span id="character-id" data-id="{{user.id}}"></span>
                   {{#each weapons}}
                   {{#unless dataValues.weight}}
->>>>>>> 4294ee25447211262702b5b13985efecf007d975
                   {{> Market/market-weapon}}
-               
+                  {{/unless}}
                   {{/each}}
                 </tbody>
               </table>
