@@ -30,8 +30,12 @@ module.exports = function phaseFour(playerOne, playerTwo, round) {
 
   function setAttacks(first, tactics) {
     //console.log(`first player is `, first);
-
-    var number = 1;
+    if (first.currentSpeed > 0) {
+      var number = 1;
+    } else {
+      var number = 0;
+    }
+    
     attack = {};
     attacks = [];
     if (tactics.attackSpeed > 5) {
@@ -39,7 +43,13 @@ module.exports = function phaseFour(playerOne, playerTwo, round) {
       console.log(`number of attacks for ${first.name} is ${number}.`);
     }
     first.attacks = [];
-    if (number === 1) {
+    if (number === 0) {
+      attack = {
+        attackSpeed: 0,
+        attackType: false,
+        weapon: first.primaryWeapon
+      };
+    } else if (number === 1) {
       attack = {
         attackSpeed: tactics.choices.attackSpeed,
         attackType: tactics.type,

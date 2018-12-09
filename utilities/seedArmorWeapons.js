@@ -15,8 +15,14 @@ for (var i = 1; i < 51; i++) {
             damage: target.damage.dice_count * target.damage.dice_value,
             cost: target.cost.quantity*60,
             costType: target.cost.unit,
-            weight: false
+            weight: target.weight
           };
+<<<<<<< HEAD
+          
+          db.Weapons.create(item).then(res =>
+            console.log(`${item.name} added to the weapons table`)
+          );
+=======
           if (target.weight <= 5) {
             item.weight = true;
           } else {
@@ -25,6 +31,7 @@ for (var i = 1; i < 51; i++) {
           db.Weapons.create(item).then(function(res) {
             console.log(`${item.name} added to the weapons table`);
           });
+>>>>>>> 4294ee25447211262702b5b13985efecf007d975
         }
       }
     } else if (target.equipment_category === "Armor") {

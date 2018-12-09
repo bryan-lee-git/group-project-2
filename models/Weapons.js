@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     weight: {
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     }
   });
   return Weapons;

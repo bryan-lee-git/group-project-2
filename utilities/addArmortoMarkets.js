@@ -13,7 +13,7 @@ db.Arenas.findAll({}).then(arenaResults => {
       console.log(`this armor strength is ${armor.strength}`);
       console.log(`this armor strength type is ${typeof armor.strength}`);
       arenas.forEach(arena => {
-        if (armor.cost < 12 * (arena.frequency * arena.quantity)) {
+        if (armor.cost < 240 * (arena.frequency * arena.quantity)) {
           if (armor.name === "Shield") {
             db.Markets.create({
               name: armor.name,

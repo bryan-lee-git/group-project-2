@@ -4,8 +4,13 @@
   "description": "Group Project #2 for the University of Utah Full Stack Coding Bootcamp. Project initialized on November 8th, 2018.",
   "main": "server.js",
   "scripts": {
+<<<<<<< HEAD
+    "build-css": "sass --watch /public/scss/:/public/styles/ ",
+    "start": "nodemon server.js",
+=======
     "build-css": "sass --watch /scss/:/styles/ ",
     "start": "node server.js",
+>>>>>>> 4294ee25447211262702b5b13985efecf007d975
     "lint": "eslint **/*.js --quiet",
     "fix": "eslint --fix .",
     "test": "npm run lint && NODE_ENV=test mocha -u tdd --reporter spec --exit"

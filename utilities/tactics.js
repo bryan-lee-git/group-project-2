@@ -1,11 +1,12 @@
 function bee(player) {
   //console.log(`from bee inside tactics.js, here's player`, player);
   const attackSpeed = Math.floor(player.currentSpeed / 2);
-  const defenseSpeed = player.current.speed - attackSpeed;
+  const defenseSpeed = player.currentSpeed - attackSpeed;
   const speedChoices = {
     attackSpeed: attackSpeed,
     defenseSpeed: defenseSpeed
   };
+  console.log(`inside tactics, ${player.name} has chosen bee.`);
   return speedChoices;
 }
 
@@ -17,6 +18,7 @@ function bull(player) {
     attackSpeed: attackSpeed,
     defenseSpeed: defenseSpeed
   };
+  console.log(`inside tactics, ${player.name} has chosen bull.`);
   return speedChoices;
 }
 
@@ -28,10 +30,11 @@ function turtle(player) {
     attackSpeed: attackSpeed,
     defenseSpeed: defenseSpeed
   };
+  console.log(`inside tactics, ${player.name} has chosen turtle.`);
   return speedChoices;
 }
 
-function gadFly(player) {
+function gadfly(player) {
   //console.log(`from gadfly inside tactics.js, here's player`, player);
   const attackSpeed = 1;
   const defenseSpeed = player.currentSpeed - attackSpeed;
@@ -39,6 +42,7 @@ function gadFly(player) {
     attackSpeed: attackSpeed,
     defenseSpeed: defenseSpeed
   };
+  console.log(`inside tactics, ${player.name} has chosen gadfly.`);
   return speedChoices;
 }
 
@@ -50,6 +54,7 @@ function panda(player) {
     attackSpeed: attackSpeed,
     defenseSpeed: defenseSpeed
   };
+  console.log(`inside tactics, ${player.name} has chosen panda.`);
   return speedChoices;
 }
 function crane(player) {
@@ -60,7 +65,8 @@ function crane(player) {
     attackSpeed: attackSpeed,
     defenseSpeed: defenseSpeed
   };
+  console.log(`inside tactics, ${player.name} has chosen crane.`);
   return speedChoices;
 }
 
-module.exports = { bee, bull, gadFly, turtle, panda, crane };
+module.exports = { bee, bull, gadfly, turtle, panda, crane };

@@ -1,0 +1,46 @@
+{{!-- light weapon collapsable --}}
+          <li>
+            <div class="collapsible-header">Light Weapons</div>
+            <div class="collapsible-body">
+              <table id="light-weapon-table">
+                <thead>
+                  <tr>
+                    <th>Weapon</th>
+                    <th>Damage</th>
+                    <th>Price</th>
+                    <th>Purchase</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each weapons}}
+                  {{#compare dataValues.weight 6 <}}
+                  {{> Market/market-weapon}}
+                  {{/compare}}
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </li>
+          
+          {{!-- heavy weapon collapsable --}}
+          <li>
+            <div class="collapsible-header">Heavy Weapons</div>
+            <div class="collapsible-body">
+              <table id="heavy-weapon-table">
+                <thead>
+                  <th>Weapon</th>
+                  <th>Damage</th>
+                  <th>Price</th>
+                  <th>Purchase</th>
+                </thead>
+                <tbody>
+                  <span id="character-id" data-id="{{user.id}}"></span>
+                  {{#each weapons}}
+                  {{#compare dataValues.weight 5 >}}
+                  {{> Market/market-weapon}}
+                  {{/compare}}
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </li>

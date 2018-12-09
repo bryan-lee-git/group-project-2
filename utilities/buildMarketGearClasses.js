@@ -27,12 +27,12 @@ module.exports = function buildMarketClasses(marketResult) {
       }
     }
   });
-  console.log(`Here's the light weapons: `, lightWeapons);
-  console.log(`Here's the medium weapons: `, mediumWeapons);
-  console.log(`Here's the heavy weapons: `, heavyWeapons);
-  console.log(`Here's the light armors: `, lightArmor);
-  console.log(`Here's the medium armors: `, mediumArmor);
-  console.log(`Here's the heavy armors: `, heavyArmor);
+  //console.log(`Here's the light weapons: `, lightWeapons);
+  //console.log(`Here's the medium weapons: `, mediumWeapons);
+  //console.log(`Here's the heavy weapons: `, heavyWeapons);
+  //console.log(`Here's the light armors: `, lightArmor);
+  //console.log(`Here's the medium armors: `, mediumArmor);
+  //console.log(`Here's the heavy armors: `, heavyArmor);
 
   const classes = {
     lightWeapons: lightWeapons,

@@ -1,5 +1,11 @@
 var db = require("../models");
 var liveCombat = require("../utilities/liveCombat");
+var chooseTactic= require("../utilities/chooseTactic");
+var liveUserChooseTactic = require("../utilities/liveUserChooseTactic");
+var livePhaseFour = require("../utilities/livePhaseFour");
+var PhaseTwo = require("../utilities/PhaseTwo");
+
+
 
 module.exports = function(app) {
   //////////////////////////////////////////////////////////////////
@@ -409,6 +415,238 @@ module.exports = function(app) {
       res.render("401")
     }
   });
+
+  app.post("/api/battles/attacks", (req, res) => {
+    console.log(`inside api battles attacks, here's the req.body: `, req.body)
+
+    var round = parseInt(req.body["round"]);
+
+    var userTactics = {
+      choices: {
+        attackSpeed: parseInt(req.body["userTactics[choices][attackSpeed]"]),
+        defenseSpeed: parseInt(req.body["userTactics[choices][defenseSpeed]"])
+      },
+      type: req.body["userTactics[type]"]
+    };
+
+    var npcTactics = {
+      choices: {
+        attackSpeed: parseInt(req.body["npcTactics[choices][attackSpeed]"]),
+        defenseSpeed: parseInt(req.body["npcTactics[choices][defenseSpeed]"])
+      },
+      type: req.body["npcTactics[type]"]
+    }
+
+    var player = {
+      id: req.body["gameData[user][id]"],
+      name: req.body["gameData[user][name]"],
+      stamina: parseInt(req.body["gameData[user][stamina]"]),
+      strength: parseInt(req.body["gameData[user][strength]"]),
+      speed: parseInt(req.body["gameData[user][speed]"]),
+      skill: parseInt(req.body["gameData[user][skill]"]),
+      recovery: Math.floor((parseInt(req.body["gameData[user][stamina]"]) - 10) / 2) + 1,
+      wounds: 0,
+      currentSpeed: parseInt(req.body["gameData[user][currentSpeed]"]),
+      currentStamina: parseInt(req.body["gameData[user][currentStamina]"]),
+      maxStamina: parseInt(req.body["gameData[user][maxStamina]"]),
+      defenseSpeed: userTactics.choices.defenseSpeed,
+      attacks: [],
+      weapon: {
+        name: req.body["gameData[user][weapon][name]"],
+        damage: parseInt(req.body["gameData[user][weapon][statIncrease]"]),
+        weight: parseInt(req.body["gameData[user][weapon][weight]"])
+      },
+      armor: {
+        name: req.body["gameData[user][armor][name]"],
+        strength: parseInt(req.body["gameData[user][armor][statIncrease]"]),
+        weight: parseInt(req.body["gameData[user][armor][weight]"]),
+        shield: Boolean(req.body["gameData[user][armor][shield]"])
+      }
+    };
+    
+    var npc = {
+      id: req.body["gameData[npc][id]"],
+      name: req.body["gameData[npc][name]"],
+      stamina: parseInt(req.body["gameData[npc][stamina]"]),
+      strength: parseInt(req.body["gameData[npc][strength]"]),
+      speed: parseInt(req.body["gameData[npc][speed]"]),
+      skill: parseInt(req.body["gameData[npc][skill]"]),
+      recovery: Math.floor((parseInt(req.body["gameData[npc][stamina]"]) - 10) / 2) + 1,
+      wounds: 0,
+      currentSpeed: parseInt(req.body["gameData[npc][currentSpeed]"]),
+      currentStamina: parseInt(req.body["gameData[npc][currentStamina]"]),
+      maxStamina: parseInt(req.body["gameData[npc][maxStamina]"]),
+      defenseSpeed: npcTactics.choices.defenseSpeed,
+      attacks: [],
+      weapon: {
+        name: req.body["gameData[npc][weapon][name]"],
+        damage: parseInt(req.body["gameData[npc][weapon][statIncrease]"]),
+        weight: parseInt(req.body["gameData[npc][weapon][weight]"])
+      },
+      armor: {
+        name: req.body["gameData[npc][armor][name]"],
+        strength: parseInt(req.body["gameData[npc][armor][statIncrease]"]),
+        weight: parseInt(req.body["gameData[npc][armor][weight]"]),
+        shield: Boolean(req.body["gameData[npc][armor][shield]"])
+      }
+  }
+
+    var roundResults = livePhaseFour(player, npc, userTactics, npcTactics, round);
+
+    res.json(roundResults);
+
+  });
+
+  app.post(`/api/battles/attacks/phasetwo`, (req, res) => {
+
+    console.log(`here's req.body inside the api battles attacks phase two: `, req.body)
+    
+    
+    const playerOne = {
+      currentStamina: req.body["playerOne[currentStamina]"]
+    }
+    
+    const playerTwo = {
+      currentStamina: req.body["playerTwo[currentStamina]"]
+    }
+
+    console.log(`inside api battles attacks phase two, here's player one current stamina: ${playerOne.currentStamina} and player two current stamina: ${playerTwo.currentStamina}.`)
+
+    const result = PhaseTwo(playerOne, playerTwo)
+    res.json(result)
+  })
+
+  app.post("/api/battles/user/tactic/:userTactic", (req, res) => {
+    
+      const choice = req.params.userTactic.toLowerCase();
+
+      if (req.isAuthenticated()) {
+        console.log(`inside api user tactic, here's the choice: ${choice}`)
+
+        var player = {
+          id: req.body["user[id]"],
+          name: req.body["user[name]"],
+          stamina: req.body["user[stamina]"],
+          strength: req.body["user[strength]"],
+          speed: req.body["user[speed]"],
+          skill: req.body["user[skill]"],
+          currentSpeed: req.body["user[currentSpeed]"],
+          currentStamina: req.body["user[currentStamina]"],
+          maxStamina: req.body["user[maxStamina]"],
+          defenseSpeed: req.body["user[defenseSpeed]"],
+          attacks: [],
+          weapon: {
+            name: req.body["user[weapon][name]"],
+            statIncrease: req.body["user[weapon][statIncrease]"],
+            weight: req.body["user[weapon][weight]"]
+          },
+          armor: {
+            name: req.body["user[armor][name]"],
+            statIncrease: req.body["user[armor][statIncrease]"],
+            weight: req.body["user[armor][weight]"],
+            shield: req.body["user[armor][shield]"]
+          }
+        };
+        
+        var npc = {
+          id: req.body["npc[id]"],
+          name: req.body["npc[name]"],
+          stamina: req.body["npc[stamina]"],
+          strength: req.body["npc[strength]"],
+          speed: req.body["npc[speed]"],
+          skill: req.body["npc[skill]"],
+          currentSpeed: req.body["npc[currentSpeed]"],
+          currentStamina: req.body["npc[currentStamina]"],
+          maxStamina: req.body["npc[maxStamina]"],
+          defenseSpeed: req.body["npc[defenseSpeed]"],
+          attacks: [],
+          weapon: {
+            name: req.body["npc[weapon][name]"],
+            statIncrease: req.body["npc[weapon][statIncrease]"],
+            weight: req.body["npc[weapon][weight]"]
+          },
+          armor: {
+            name: req.body["npc[armor][name]"],
+            statIncrease: req.body["npc[armor][statIncrease]"],
+            weight: req.body["npc[armor][weight]"],
+            shield: req.body["npc[armor][shield]"]
+          }
+      }
+
+      var result = liveUserChooseTactic(player, npc, choice);
+
+      res.json(result)
+    }
+  })
+
+  app.post("/api/battles/npc/tactic/:NPCid", (req,res) => {
+    if (req.isAuthenticated()) {
+      var NPCid = req.params.NPCid;
+
+      console.log(`inside the npc tactic api route, here's the req.body`, req.body)
+
+      var player = {
+        id: req.body["user[id]"],
+        name: req.body["user[name]"],
+        stamina: req.body["user[stamina]"],
+        strength: req.body["user[strength]"],
+        speed: req.body["user[speed]"],
+        skill: req.body["user[skill]"],
+        currentSpeed: req.body["user[currentSpeed]"],
+        currentStamina: req.body["user[currentStamina]"],
+        maxStamina: req.body["user[maxStamina]"],
+        defenseSpeed: req.body["user[defenseSpeed]"],
+        attacks: [],
+        weapon: {
+          name: req.body["user[weapon][name]"],
+          statIncrease: req.body["user[weapon][statIncrease]"],
+          weight: req.body["user[weapon][weight]"]
+        },
+        armor: {
+          name: req.body["user[armor][name]"],
+          statIncrease: req.body["user[armor][statIncrease]"],
+          weight: req.body["user[armor][weight]"],
+          shield: req.body["user[armor][shield]"]
+        }
+      };
+      
+      var npc = {
+        id: req.body["npc[id]"],
+        name: req.body["npc[name]"],
+        stamina: req.body["npc[stamina]"],
+        strength: req.body["npc[strength]"],
+        speed: req.body["npc[speed]"],
+        skill: req.body["npc[skill]"],
+        currentSpeed: req.body["npc[currentSpeed]"],
+        currentStamina: req.body["npc[currentStamina]"],
+        maxStamina: req.body["npc[maxStamina]"],
+        defenseSpeed: req.body["npc[defenseSpeed]"],
+        attacks: [],
+        weapon: {
+          name: req.body["npc[weapon][name]"],
+          statIncrease: req.body["npc[weapon][statIncrease]"],
+          weight: req.body["npc[weapon][weight]"]
+        },
+        armor: {
+          name: req.body["npc[armor][name]"],
+          statIncrease: req.body["npc[armor][statIncrease]"],
+          weight: req.body["npc[armor][weight]"],
+          shield: req.body["npc[armor][shield]"]
+        }
+      };
+      if (npc.currentSpeed !== 0) {
+        var NPCTactic = chooseTactic(npc, player);
+        res.json(NPCTactic)
+      } else {
+        const choices = {
+          attackSpeed: 0,
+          defenseSpeed: 0
+        };
+        res.json(choices)
+      }
+      
+    }
+  })
 
   //////////////////////////////////////////////////////////////////
   /// Arena routes

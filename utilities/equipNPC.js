@@ -2,10 +2,10 @@ var db = require("../models");
 var buildMarketClasses = require("./buildMarketGearClasses");
 var prepNPCForBattle = require("./prepNPCForBattle");
 
- module.exports = function equipNPC(id) {
+ module.exports = function equipNPC(NPCid, arenaID) {
   db.NPC.findAll({
     where: {
-      ArenaId: 3
+      ArenaId: NPCid
     }
   }).then(npcResults => {
     var characters = JSON.parse(JSON.stringify(npcResults));
@@ -13,7 +13,7 @@ var prepNPCForBattle = require("./prepNPCForBattle");
 
     db.Markets.findAll({
       where: {
-        ArenaId: 8
+        ArenaId: arenaID
       }
     }).then(marketResult => {
       // Build the weapon and armor classes
@@ -22,6 +22,8 @@ var prepNPCForBattle = require("./prepNPCForBattle");
       // Build the character
       characters.forEach(character => {
         var player = prepNPCForBattle(character, classes);
+
+        return player
       });
     });
   });

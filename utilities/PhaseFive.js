@@ -1,14 +1,14 @@
 var PhaseSix = require("./PhaseSix");
 
 module.exports = function phaseFive(playerOne, playerTwo, round) {
-  console.log(
-    `${playerOne.name} at the start of phase five is `,
-    JSON.parse(JSON.stringify(playerOne))
-  );
-  console.log(
-    `${playerTwo.name} at the start of phase five is `,
-    JSON.parse(JSON.stringify(playerTwo))
-  );
+  //console.log(
+  //  `${playerOne.name} at the start of phase five is `,
+   // JSON.parse(JSON.stringify(playerOne))
+ // );
+  //console.log(
+   // `${playerTwo.name} at the start of phase five is `,
+  //  JSON.parse(JSON.stringify(playerTwo))
+ // );
   //
   //  Resolve Attacks
   //
@@ -18,22 +18,17 @@ module.exports = function phaseFive(playerOne, playerTwo, round) {
   var count2 = playerTwo.attacks.length;
 
   if (playerOneSpeed > playerTwoSpeed) {
-    if (playerOne.attacks[0].attack.attackSpeed > 0) {
+    
       attackOrder(playerOne, playerTwo);
-    }
-    if (playerTwo.attacks[0].attack.attackSpeed > 0) {
-      attackOrder(playerTwo, playerOne);
-    }
+    
   } else {
-    if (playerTwo.attacks[0].attack.attackSpeed > 0) {
+    
       attackOrder(playerTwo, playerOne);
-    }
-    if (playerOne.attacks[0].attack.attackSpeed > 0) {
-      attackOrder(playerOne, playerTwo);
-    }
+    
   }
   console.log(`the number of attacks in the round is ${count1 + count2}.`);
-  PhaseSix(playerOne, playerTwo, count1 + count2, round);
+
+  var { playerOne, playerTwo} = PhaseSix(playerOne, playerTwo, count1 + count2, round);
 
   function d20() {
     let result = Math.floor(Math.random() * 19) + 1;
@@ -44,19 +39,19 @@ module.exports = function phaseFive(playerOne, playerTwo, round) {
   function attackOrder(first, second) {
     var number = 0;
    
-
     console.log(`${first.name} attacks is `, first.attacks);
     console.log(`${first.name} has ${first.attacks.length} attack(s).`);
 
-    let { count, wound } = resolveAttack(first, second);
+    let { count, wound, hit } = resolveAttack(first, second);
+   
     
     number = number + count;
 
     if (wound === 0) {
       console.log(`${second.name} attacks is `, second.attacks);
-      console.log(`${first.name} has ${first.attacks.length}.`);
+      console.log(`${second.name} has ${second.attacks.length}.`);
 
-      let { count, wound } = resolveAttack(second, first);
+      let { count, wound, hit } = resolveAttack(second, first);
 
       number = number + count;
 
@@ -69,9 +64,14 @@ module.exports = function phaseFive(playerOne, playerTwo, round) {
   function resolveAttack(first, second) {
     var wound = 0;
     var count = 0;
+    var hit = false;
     for (let i = 0; i < first.attacks.length; i++) {
       count = i + 1;
       var targetToHit = 10;
+
+      console.log(`from inside resolveAttack inside phaseFive, here is the value of ${second.name}'s shield value: ${second.armor.shield} `,typeof second.armor.shield);
+      console.log(`from inside resolveAttack inside phaseFive, here is the value of ${second.name}'s defenseSpeed: ${second.defenseSpeed} `);
+      
       if (second.armor.shield) {
         targetToHit =
           10 +
@@ -88,46 +88,66 @@ module.exports = function phaseFive(playerOne, playerTwo, round) {
       console.log(`Number to hit ${second.name} = ${targetToHit}.`);
 
       var damage = 0;
-      var toHitRoll = d20() + first.skill;
+      
+      second.hit = hit;
+
       console.log(
         `${first.name} attackSpeed = ${first.attacks[i].attack.attackSpeed}`
       );
-      console.log(`${first.name} to hit roll is ${toHitRoll}.`);
-      if (toHitRoll > targetToHit) {
-        console.log(`${first.name} HIT ${second.name}!`);
-        console.log(
-          `${first.name} attack type is ${
-            first.attacks[i].attack.attackType ? "Base" : "Attack Weak Spot"
-          }`
-        );
-        console.log(`${first.name} strength is ${first.strength}`);
-        console.log(
-          `${first.name} primary weapon damage is ${first.weapon.damage}`
-        );
-        if (first.attacks[i].attack.attackType) {
-          damage =
-            (Math.floor(first.strength / 5) + 1) *
-              first.attacks[i].attack.attackSpeed +
-            first.weapon.damage;
-        } else {
-          damage =
-            2 *
-            ((Math.floor(first.strength / 5) + 1) *
-              first.attacks[i].attack.attackSpeed +
-              first.weapon.damage);
-        }
 
-        console.log(
-          `Damage from ${first.name} against ${second.name} is ${damage}.`
-        );
-        if (damage - second.armor.strength - second.strength > 0) {
-          wound = damage - second.armor.strength - second.strength;
-          second.wounds = wound;
-          console.log(`${second.name} was wounded for ${second.wounds}!`);
-          return { count, wound };
+      if (first.attacks[i].attack.attackSpeed > 0) {
+        var toHitRoll = d20() + first.skill;
+      } else {
+        var toHitRoll = 0;
+      }
+      
+      console.log(`${first.name} to hit roll is ${toHitRoll}.`);
+
+      if (toHitRoll === 0 ) {
+
+      } else {
+        if (toHitRoll > targetToHit) {
+          hit = true;
+          second.hit = hit;
+          console.log(`${first.name} HIT ${second.name}!`);
+          console.log(
+            `${first.name} attack type is ${
+              first.attacks[i].attack.attackType ? "Base" : "Attack Weak Spot"
+            }`
+          );
+          console.log(`${first.name} strength is ${first.strength}`);
+          console.log(
+            `${first.name} primary weapon damage is ${first.weapon.damage}`
+          );
+          if (first.attacks[i].attack.attackType) {
+            damage =
+              (Math.floor((first.strength / 5) + 1) *
+                first.attacks[i].attack.attackSpeed +
+              first.weapon.damage);
+          } else {
+            damage =
+              2 *
+              ((Math.floor(first.strength / 5) + 1) *
+                first.attacks[i].attack.attackSpeed +
+                first.weapon.damage);
+          }
+  
+          console.log(
+            `Damage from ${first.name} against ${second.name} is ${damage}.`
+          );
+          if (damage - second.armor.strength - second.strength > 0) {
+            wound = damage - second.armor.strength - second.strength;
+            second.wounds = second.wounds + wound;
+            console.log(`${second.name} was wounded for ${second.wounds}!`);
+            return { count, wound, hit };
+          }
         }
       }
+      
     }
-    return { count, wound };
+    return { count, wound, hit };
   }
+  
+
+  return { playerOne, playerTwo}
 };

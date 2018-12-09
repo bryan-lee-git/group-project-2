@@ -4,12 +4,69 @@
   <div class="row">
     <div class="col s12 m4 offset-m1 center-align">
       <img src="{{user.image}}" alt="user-combatant" class="responsive-img" id="user-combatant-img">
+<<<<<<< HEAD
+    </div>
+
+    <div class="col s4 offset-s2 center-align">
+      <img src="{{npc.image}}" alt="opponent-combatant" class="responsive-img" id="opponent-combatant-img">
+    </div>
+  </div>
+  <!--End image row-->
+<div class="row">
+  <div id = "billboard-container" class="col s4 offset-s4 center-align rounded-content-box">
+    <h4>Battle Results</h4>
+    <p id="billboard"></p>
+
+  </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col s4 offset-s1 center-align rounded-content-box">
+      <h2 id="user-name">{{user.name}}</h2>
+      <p id=>Current Stamina:</p>
+      <p id="user-current-stamina">{{user.currentStamina}}</p>
+      <br>
+      <p id=>Stamina - Wounds:</p>
+      <p id="user-max-stamina">{{user.maxStamina}}</p>
+      <br>
+      <p id=>Current Speed:</p>
+      <p id="user-current-speed">{{user.currentSpeed}}</p>
+      <br>
+      <p id=>Defense Speed:</p>
+      <p id="user-defense-speed">{{user.defenseSpeed}}</p>
+      <br>
+      <button class="btn" id="player-stats-btn">VIEW BASE STATS</button>
+      <button class="btn" id="player-gear-btn">VIEW EQUIPMENT</button>
+      <br />
+      <br />
+      <div id="player-stats">
+        <hr>
+        <h5>BASE STATS</h5>
+        <table class="highlight responsive-table centered" id="user-table">
+          <thead>
+            <th>Stamina</th>
+            <th>Strength</th>
+            <th>Speed</th>
+            <th>Skill</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span id="user-stamina-span">{{user.stamina}}</span></td>
+              <td><span id="user-strength-span">{{user.strength}}</span></td>
+              <td><span id="user-speed-span">{{user.speed}}</span></td>
+              <td><span id="user-skill-span">{{user.skill}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+=======
       <br /><br />
       <div class="rounded-content-box z-depth-5">
         <h2 id="user-name">{{user.name}}</h2>
         <button class="btn col s6 m4" id="player-current-stats-btn">CURRENT STATS</button>
         <button class="btn col s6 m4" id="player-stats-btn">BASE STATS</button>
         <button class="btn col s12 m4" id="player-gear-btn">EQUIPMENT</button>
+>>>>>>> 4294ee25447211262702b5b13985efecf007d975
         <br />
         <br />
         <div id="player-current-stats">
@@ -62,6 +119,72 @@
               {{#if weapon.weight}}
               <th>Type</th>
               {{/if}}
+<<<<<<< HEAD
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <table class="highlight responsive-table centered">
+          <thead>
+            <th>Armor</th>
+            <th>Defense</th>
+            <th>Weight</th>
+            <th>Shield</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="user-armor-name">{{armor.name}}</td>
+              <td id="user-armor-strength">{{armor.statIncrease}}</td>
+              <td id="user-armor-weight">{{armor.weight}}</td>
+              {{#if armor.shield}}
+              <td id="user-shield">Yes</td>
+              {{/if}}
+            </tr>
+          </tbody>
+        </table>
+        <br />
+      </div>
+    </div>
+
+    <div class="col s4 offset-s2 center-align rounded-content-box">
+      <h2 id="npc-name">{{npc.name}}</h2>
+      <p id="npc-ready" ></p>
+      <p id=>Current Stamina:</p>
+      <p id="npc-current-stamina">{{npc.currentStamina}}</p>
+      <br>
+      <p id=>Stamina - Wounds:</p>
+      <p id="npc-max-stamina">{{npc.maxStamina}}</p>
+      <br>
+      <p id=>Current Speed:</p>
+      <p id="npc-current-speed">{{npc.currentSpeed}}</p>
+      <br>
+      <p id=>Defense Speed:</p>
+      <p id="npc-defense-speed">{{npc.defenseSpeed}}</p>
+      <br>
+      <button class="btn" id="npc-stats-btn">VIEW BASE STATS</button>
+      <button class="btn" id="npc-gear-btn">VIEW EQUIPMENT</button>
+      <br />
+      <br />
+      <div id="npc-stats">
+        <hr>
+        <h5>BASE STATS</h5>
+        <table class="highlight responsive-table centered" id="opponent-table">
+          <thead>
+            <th>Stamina</th>
+            <th>Strength</th>
+            <th>Speed</th>
+            <th>Skill</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span id="opponent-stamina-span">{{npc.stamina}}</span></td>
+              <td><span id="opponent-strength-span">{{npc.strength}}</span></td>
+              <td><span id="opponent-speed-span">{{npc.speed}}</span></td>
+              <td><span id="opponent-skill-span">{{npc.skill}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+=======
             </thead>
             <tbody>
               <tr>
@@ -99,6 +222,7 @@
         <h2 id="npc-name">{{npc.name}}</h2>
         <button class="btn col s6" id="npc-current-stats-btn">CURRENT STATS</button>
         <button class="btn col s6" id="npc-stats-btn">BASE STATS</button>
+>>>>>>> 4294ee25447211262702b5b13985efecf007d975
         <br />
         <br />
         <div id="npc-current-stats">
@@ -142,23 +266,95 @@
           <br />
         </div>
       </div>
+<<<<<<< HEAD
+
+        <div id="npc-gear">
+        <hr>
+        <h5>EQUIPMENT</h5>
+        <table class="highlight responsive-table centered">
+          <thead>
+            <th>Weapon</th>
+            <th>Damage</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="npc-weapon-name">{{npcWeapon.name}}</td>
+              <td id="npc-weapon-damage">{{npcWeapon.damage}}</td>
+              {{#if npcWeapon.weight}}
+              <td id="npc-weapon-weight">Heavy</td>
+              {{/if}}
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <table class="highlight responsive-table centered">
+          <thead>
+            <th>Armor</th>
+            <th>Defense</th>
+            <th>Weight</th>
+            <th>Shield</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="npc-armor-name">{{npcArmor.type}}</td>
+              <td id="npc-armor-strength">{{npcArmor.strength}}</td>
+              <td id="npc-armor-weight">{{npcArmor.weight}}</td>
+              {{#if npcArmor.shield}}
+              <td id="npc-shield">Yes</td>
+              {{/if}}
+            </tr>
+          </tbody>
+        </table>
+        <br />
+      </div>
+  </div>
+  
+  {{!-- Fixed action button, where the user will implement their strategy in between turns --}}
+  <div class="fixed-action-btn"  title="Tactics">
+=======
     </div>
     <!--<a class="col s2 offset-s5  waves-effect waves-light btn-large btn" id="start-battle">Start Battle</a>-->
   </div>
   <br /><br /><br />
   {{!-- Fixed action button, where the user will impliment their strategy in between turns --}}
   <div class="fixed-action-btn modal-trigger" href="#combat-log" id="start-battle" title="Tactics">
+>>>>>>> 4294ee25447211262702b5b13985efecf007d975
     <a class="btn-floating pulse btn-large">
       <img src="/img/erics-images/battle-btn.png" alt="">
     </a>
     <ul>
-      <li><a class="btn-floating red">Bull</a></li>
-      <li><a class="btn-floating orange">Crane</a></li>
-      <li><a class="btn-floating yellow darken-1">Panda</a></li>
-      <li><a class="btn-floating green">Bee</a></li>
-      <li><a class="btn-floating blue">Gadfly</a></li>
+      <li>
+       
+        <a class="btn-floating red ">Bull</a>
+        
+      </li>
+      <li>
+     
+        <a class="btn-floating orange">Crane</a>
+        
+      </li>
+      <li>
+     
+        <a class="btn-floating yellow darken-1 ">Panda</a>
+       
+      </li>
+      <li>
+     
+        <a class="btn-floating green ">Bee</a>
+        
+       
+      </li>
+      <li>
+     
+        <a class="btn-floating blue">Gadfly</a>
+        
+       
+      </li>
     </ul>
   </div>
+  <div class= "modal" >
+ {{> Modal/combat-block }}
+  </div>
+ 
 </main>
-{{> Modal/combat-block}}
 <script src="/js/arena.js"></script>
