@@ -19,8 +19,8 @@ module.exports = function prepNPCforBattle(character, classes) {
     mediumArmor,
     heavyArmor
   } = classes;
-
-  //console.log(`here's the preliminary character: `, player);
+console.log(`Prepping the NPC, here's the lightWeapons: ${lightWeapons}, mediumWeapons: ${mediumWeapons}, and heavyWeapons: ${heavyWeapons}.`)
+  console.log(`here's the preliminary character: `, player);
   //Set primary and secondary weapons
   var weapon = {};
 

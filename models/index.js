@@ -57,7 +57,7 @@ db.User.hasMany(db.Equipment, {
   onDelete: "cascade"
 });
 db.User.hasMany(db.Battle);
-//db.User.hasOne(db.Arenas);
+db.User.belongsTo(db.Arenas);
 
 db.NPC.hasMany(db.Battle);
 db.NPC.hasMany(db.Weapons);

@@ -15,7 +15,7 @@
           {{!--Just all the weapons--}}
 
           <li>
-            <div class="collapsible-header">Light Weapons</div>
+            <div class="collapsible-header">Weapons</div>
             <div class="collapsible-body">
               <table class="responsive-table centered highlight" id="light-weapon-table">
                 <thead>
@@ -27,37 +27,18 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {{#each weapons}}
-                  {{#if dataValues.weight}}
+                  
+                  {{#each this.market}}
+                  {{#if damage}}
                   {{> Market/market-weapon}}
                   {{/if}}
                   {{/each}}
+              
                 </tbody>
               </table>
             </div>
           </li>
-          {{!-- heavy weapon collapsable --}}
-          <li>
-            <div class="collapsible-header">Heavy Weapons</div>
-            <div class="collapsible-body">
-              <table class="responsive-table centered highlight" id="heavy-weapon-table">
-                <thead>
-                  <th>Weapon</th>
-                  <th>Damage</th>
-                  <th>Price</th>
-                  <th>Purchase</th>
-                </thead>
-                <tbody>
-                  <span id="character-id" data-id="{{user.id}}"></span>
-                  {{#each weapons}}
-                  {{#unless dataValues.weight}}
-                  {{> Market/market-weapon}}
-                  {{/unless}}
-                  {{/each}}
-                </tbody>
-              </table>
-            </div>
-          </li>
+          
 
       
           {{!-- armour collapsable --}}
@@ -75,8 +56,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {{#each armor}}
+                  {{#each this.market}}
+                  {{#if armor}}
                   {{> Market/market-armor}}
+                  {{/if}}
                   {{/each}}
                 </tbody>
               </table>

@@ -12,9 +12,9 @@ function chooseTactic(playerOne, playerTwo) {
       var type = true;
     } else if (playerOne.currentSpeed > playerTwo.speed) {
       var choices = panda(playerOne);
-      var type = playerTwo.armor.weight === 0 ? true : false;
+      var type = playerTwo.armor.weight < 30 ? true : false;
     } else {
-      var choices = gadfly(playerOne);
+      var choices = bee(playerOne);
       var type = false;
     }
   } else if (playerTwo.strength > playerOne.strength) {
@@ -26,7 +26,7 @@ function chooseTactic(playerOne, playerTwo) {
       playerTwo.currentStamina > playerTwo.speed
     ) {
       if (playerTwo.speed > playerOne.speed) {
-        var choices = gadfly(playerOne);
+        var choices = panda(playerOne);
         var type = false;
       } else if (playerOne.speed > playerTwo.speed) {
         var choices = crane(playerOne);
@@ -42,7 +42,7 @@ function chooseTactic(playerOne, playerTwo) {
   } else if (playerOne.currentStamina > playerOne.speed) {
     if (playerTwo.currentStamina < playerTwo.speed) {
       if (playerTwo.speed > playerOne.speed) {
-        var choices = gadfly(playerOne);
+        var choices = panda(playerOne);
         var type = false;
       } else if (playerOne.speed > playerTwo.speed) {
         var choices = crane(playerOne);

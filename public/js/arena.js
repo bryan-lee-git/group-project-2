@@ -166,7 +166,7 @@ $(document).ready(function() {
          console.log(`${game.npc.name} currentStamina after round ${rounds} is ${game.npc.currentStamina}.`);
 
           game.npc.currentSpeed = roundResult.playerTwo.currentSpeed;
-          $("#npc-current-speed").html(game.npc.currentSpeed > game.npc.maxStamina ? game.npc.maxStamina : game.npc.currentStamina);
+          $("#npc-current-speed").html(game.npc.currentSpeed > game.npc.maxStamina ? game.npc.maxStamina : game.npc.currentSpeed);
           console.log(`${game.npc.name} current speed after round ${rounds} is ${game.npc.currentSpeed}.`);
 
           game.npc.defenseSpeed = roundResult.playerTwo.defenseSpeed;

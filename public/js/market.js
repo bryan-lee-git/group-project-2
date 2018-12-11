@@ -73,7 +73,7 @@ $("body").on("click", ".purchase-weapon, .purchase-armor", function() {
   };
 });
 
-Handlebars.registerHelper('compare', function(lvalue, rvalue, options) {
+/*Handlebars.registerHelper('compare', function(lvalue, rvalue, options) {
 
   if (arguments.length < 3)
       throw new Error("Handlebars Helper 'compare' needs 2 parameters");
@@ -102,4 +102,4 @@ Handlebars.registerHelper('compare', function(lvalue, rvalue, options) {
       return options.inverse(this);
   }
 
-});
+});*/
