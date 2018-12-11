@@ -43,13 +43,13 @@ module.exports = function phaseFour(playerOne, playerTwo, playerOneTactic, playe
       attack = {
         attackSpeed: 5,
         attackType: tactics.type,
-        weapon: firts.weapon
+        weapon: first.weapon
       };
       attacks.push({ attack });
       attack = {
         attackSpeed: tactics.choices.attackSpeed - 5,
         attackType: tactics.type,
-        weapon: firts.weapon
+        weapon: first.weapon
       };
       attacks.push({ attack });
     }

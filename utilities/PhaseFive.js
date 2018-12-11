@@ -44,7 +44,6 @@ module.exports = function phaseFive(playerOne, playerTwo, round) {
 
     let { count, wound, hit } = resolveAttack(first, second);
    
-    
     number = number + count;
 
     if (wound === 0) {
@@ -75,13 +74,13 @@ module.exports = function phaseFive(playerOne, playerTwo, round) {
       if (second.armor.shield) {
         targetToHit =
           10 +
-          first.defenseSpeed +
+          second.defenseSpeed +
           2 +
           (first.attacks[i].attack.attackType ? 0 : 5);
       } else {
         targetToHit =
           10 +
-          first.defenseSpeed +
+          second.defenseSpeed +
           (first.attacks[i].attack.attackType ? 0 : 5);
       }
 
@@ -104,7 +103,7 @@ module.exports = function phaseFive(playerOne, playerTwo, round) {
       console.log(`${first.name} to hit roll is ${toHitRoll}.`);
 
       if (toHitRoll === 0 ) {
-
+        console.log(`No attack for ${first.name}.`)
       } else {
         if (toHitRoll > targetToHit) {
           hit = true;

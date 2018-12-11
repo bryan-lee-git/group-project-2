@@ -112,6 +112,7 @@ $("#create-button").on("click", function(event) {
     image: $("#selected-avatar-img").attr("src"),
     male: $("input[name='gender']:checked").val(),
     wallet: 500,
+    ArenaId: 1,
     strength: $("#create-strength-slide").val(),
     speed: $("#create-speed-slide").val(),
     stamina: $("#create-stamina-slide").val(),

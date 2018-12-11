@@ -17,11 +17,7 @@ for (var i = 1; i < 51; i++) {
             costType: target.cost.unit,
             weight: target.weight
           };
-          if (target.weight <= 5) {
-            item.weight = true;
-          } else {
-            item.weight = null;
-          }
+          
           db.Weapons.create(item).then(function(res) {
             console.log(`${item.name} added to the weapons table`);
           });

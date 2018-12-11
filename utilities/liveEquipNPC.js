@@ -5,8 +5,6 @@ var livePrepNPCForBattle = require("./livePrepNPCForBattle");
  module.exports = function equipNPC(npc, arenaID) {
    return new Promise(function(resolve, reject) {
 
-   
-
     db.Markets.findAll({
       where: {
         ArenaId: arenaID

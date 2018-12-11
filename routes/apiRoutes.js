@@ -128,6 +128,7 @@ module.exports = function(app) {
           stamina: req.body.stamina,
           skill: req.body.skill,
           wallet: req.body.wallet,
+          ArenaId: req.body.ArenaId,
           AccountUuid: req.body.accountuuid
         }).then(results => {
           res.json(results);

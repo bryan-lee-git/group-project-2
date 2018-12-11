@@ -35,7 +35,8 @@ function turtle(player) {
 }
 
 function gadfly(player) {
-  //console.log(`from gadfly inside tactics.js, here's player`, player);
+  
+
   const attackSpeed = 1;
   const defenseSpeed = player.currentSpeed - attackSpeed;
   const speedChoices = {
@@ -43,6 +44,9 @@ function gadfly(player) {
     defenseSpeed: defenseSpeed
   };
   console.log(`inside tactics, ${player.name} has chosen gadfly.`);
+  console.log(`${player.name}'s currentSpeed is ${player.currentSpeed}.`)
+  console.log(`from gadfly inside tactics.js, here's ${player.name}'s defenseSpeed: ${player.defenseSpeed}`);
+  console.log(`Speedchoices for ${player.name} are ${speedChoices}.`)
   return speedChoices;
 }
 

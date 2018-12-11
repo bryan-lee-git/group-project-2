@@ -28,6 +28,7 @@ db.Arenas.findAll({}).then(arenaResults => {
               name: armor.name,
               armor: armor.strength - 10,
               weight: armor.weight,
+              cost: armor.cost,
               ArenaId: arena.id
             }).then(result => {
               console.log(`Item ${armor.name} added to ${arena.name} market. `);

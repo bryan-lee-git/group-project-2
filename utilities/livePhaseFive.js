@@ -90,44 +90,45 @@ module.exports = function livePhaseFive(game) {
       var damage = 0;
       var toHitRoll = d20() + first.skill;
       console.log(
-        `${first.name} attackSpeed = ${first.attacks[i].attack.attackSpeed}`
+        `\n${first.name} attackSpeed = ${first.attacks[i].attack.attackSpeed}`
       );
-      console.log(`${first.name} to hit roll is ${toHitRoll}.`);
+      console.log(`\n${first.name} to hit roll is ${toHitRoll}.`);
       if (toHitRoll > targetToHit) {
-        console.log(`${first.name} HIT ${second.name}!`);
+        console.log(`\n${first.name} HIT ${second.name}!`);
         console.log(
-          `${first.name} attack type is ${
+          `\n${first.name} attack type is ${
             first.attacks[i].attack.attackType ? "Base" : "Attack Weak Spot"
           }`
         );
         console.log(`${first.name} strength is ${first.strength}`);
         console.log(
-          `${first.name} primary weapon damage is ${first.primaryWeapon.damage}`
+          `\n${first.name} primary weapon damage is ${first.primaryWeapon.damage}`
         );
-        if (first.attacks[i].attack.attackType) {
-          damage =
-            (Math.floor(first.strength / 5) + 1) *
-              first.attacks[i].attack.attackSpeed +
-            first.primaryWeapon.damage;
-        } else {
-          damage =
-            2 *
-            ((Math.floor(first.strength / 5) + 1) *
-              first.attacks[i].attack.attackSpeed +
-              first.primaryWeapon.damage);
-        }
-
+        damage =
+        (Math.floor(first.strength / 5) + 1) *
+          first.attacks[i].attack.attackSpeed +
+        first.primaryWeapon.damage;
         console.log(
-          `Damage from ${first.name} against ${second.name} is ${damage}.`
+          `\nDamage from ${first.name} against ${second.name} is ${damage}.`
         );
-        if (damage - second.armor.strength - second.strength > 0) {
-          wound = damage - second.armor.strength - second.strength;
-          second.wounds = wound;
-          console.log(`${second.name} was wounded for ${second.wounds}!`);
-          return { count, wound };
+
+        if (first.attacks[i].attack.attackType) {
+          
+          if (damage - second.armor.strength - second.strength > 0) {
+              wound = damage - second.armor.strength - second.strength;
+              second.wounds = wound;
+              console.log(`\n${second.name} was wounded for ${second.wounds}!`);
+        } else {
+            if (damage - (Math.floor(second.strength / 2) +1) > 0) {
+                wound = damage - (Math.floor(second.strength / 2) + 1);
+                second.wounds = wound;
+                console.log(`\n${second.name} was wounded for ${second.wounds}!`);
+            }
+         
+          }
         }
       }
     }
-    return { count, wound };
-  }
+  return { count, wound };
+  };
 };
