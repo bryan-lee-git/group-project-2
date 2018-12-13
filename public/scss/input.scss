@@ -301,7 +301,11 @@ nav {
 
 #billboard {
   height: 200px;
-  overflow: hidden;
+  overflow: scroll;
+}
+
+#user-combatant-img, #opponent-combatant-img {
+  max-height: 400px !important;
 }
 
 // CLASS STYLES -----------------------------------------------

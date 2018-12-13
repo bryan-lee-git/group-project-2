@@ -244,6 +244,15 @@ nav {
   }
 }
 
+#billboard {
+  height: 200px;
+  overflow: scroll;
+}
+
+#user-combatant-img, #opponent-combatant-img {
+  max-height: 400px !important;
+}
+
 .page-title {
   text-rendering: optimizeLegibility;
   text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.9);
