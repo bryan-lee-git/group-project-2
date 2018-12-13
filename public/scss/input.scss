@@ -5,16 +5,16 @@
 // SASS VARIABLES -----------------------------------------------
 
 $fonts: (
-	decorative-main: "Cinzel Decorative",
+  decorative-main: "Cinzel Decorative",
   decorative-secondary: "Cinzel",
   regular: "Oswald"
 );
 
 $colors: (
-	primary: #b71c1c,
-	primary-light: lighten(#b71c1c, 10%),
-	primary-dark: darken(#b71c1c, 40%),
-	accent: #ff5252
+  primary: #b71c1c,
+  primary-light: lighten(#b71c1c, 10%),
+  primary-dark: darken(#b71c1c, 40%),
+  accent: #ff5252
 );
 
 $padding: 50px;
@@ -30,11 +30,11 @@ $subheader: 350%;
 // SASS FUNCTIONS -----------------------------------------------
 
 @function font($font-name) {
-	@return map-get($fonts, $font-name);
+  @return map-get($fonts, $font-name);
 }
 
 @function color($color-name) {
-	@return map-get($colors, $color-name);
+  @return map-get($colors, $color-name);
 }
 
 // SASS MIXINS -----------------------------------------------
@@ -42,33 +42,33 @@ $subheader: 350%;
 $large-desktop: 1550px;
 
 @mixin large-desktop {
-	@media (max-width: #{$large-desktop}) {
-		@content;
-	}
+  @media (max-width: #{$large-desktop}) {
+    @content;
+  }
 }
 
 $reg-desktop: 1250px;
 
 @mixin reg-desktop {
-	@media (max-width: #{$reg-desktop}) {
-		@content;
-	}
+  @media (max-width: #{$reg-desktop}) {
+    @content;
+  }
 }
 
 $tab: 680px;
 
 @mixin tab {
-	@media (max-width: #{$tab}) {
-		@content;
-	}
+  @media (max-width: #{$tab}) {
+    @content;
+  }
 }
 
 $mobile: 450px;
 
 @mixin mobile {
-	@media (max-width: #{$mobile}) {
-		@content;
-	}
+  @media (max-width: #{$mobile}) {
+    @content;
+  }
 }
 
 // GENERAL ELEMENT STYLES -----------------------------------------------
@@ -87,7 +87,12 @@ p {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: font(decorative-main);
   font-weight: bold;
 }
@@ -109,7 +114,7 @@ body {
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;  
+  z-index: -1;
 }
 
 main {
@@ -120,7 +125,7 @@ main {
 
 ::-webkit-input-placeholder {
   color: black;
-  opacity: 1.0 !important;
+  opacity: 1 !important;
 }
 
 .input-field label {
@@ -150,29 +155,31 @@ main {
   color: color(primary) !important;
 }
 
-input[type=range]::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   background-color: color(primary) !important;
 }
-input[type=range]::-moz-range-thumb {
+input[type="range"]::-moz-range-thumb {
   background-color: color(primary) !important;
 }
-input[type=range]::-ms-thumb {
+input[type="range"]::-ms-thumb {
   background-color: color(primary) !important;
 }
 
 /***** These are to edit the thumb and the text inside the thumb *****/
-input[type=range] + .thumb {
+input[type="range"] + .thumb {
   background-color: #dedede;
 }
-input[type=range] + .thumb.active .value {
+input[type="range"] + .thumb.active .value {
   color: color(primary) !important;
 }
 
-[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:after {
-  background-color:color(primary) !important;
+[type="radio"]:checked + span:after,
+[type="radio"].with-gap:checked + span:after {
+  background-color: color(primary) !important;
 }
-[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:before, 
-[type="radio"].with-gap:checked+span:after {
+[type="radio"]:checked + span:after,
+[type="radio"].with-gap:checked + span:before,
+[type="radio"].with-gap:checked + span:after {
   border: 2px solid color(primary) !important;
 }
 
@@ -199,20 +206,20 @@ nav {
   }
 }
 
-.dropdown-content{
+.dropdown-content {
   width: max-content !important;
-  height:auto !important;
+  height: auto !important;
 }
 
 #ludus-drop {
-  opacity:1.0;
-  position:fixed;
-  left:80%;
-  right:0;
-  text-align:right;
-  padding-left:0px;
-  padding-right:0px;
-  z-index:10;
+  opacity: 1;
+  position: fixed;
+  left: 80%;
+  right: 0;
+  text-align: right;
+  padding-left: 0px;
+  padding-right: 0px;
+  z-index: 10;
 }
 
 // SWIPER STYLES -----------------------------------------------
@@ -231,28 +238,35 @@ nav {
 
 // BUTTON STYLES -----------------------------------------------
 
-.btn, .btn-floating {
+.btn,
+.btn-floating {
   background-color: color(primary);
   box-sizing: border-box;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 3px;
 }
 
-.btn:hover, .btn-floating:hover, .btn:active, .btn-floating:active, .btn:target, .btn-floating:target, .btn:focus, .btn-floating:focus {
-    background-color: color(primary-light);
+.btn:hover,
+.btn-floating:hover,
+.btn:active,
+.btn-floating:active,
+.btn:target,
+.btn-floating:target,
+.btn:focus,
+.btn-floating:focus {
+  background-color: color(primary-light);
 }
-
 
 .ludus-btn {
   height: 250px;
 }
 
-.fixed-action-btn{
-  right: auto; 
-  margin-left: 3%; 
+.fixed-action-btn {
+  right: auto;
+  margin-left: 3%;
 }
 
-.fixed-action-btn{
+.fixed-action-btn {
   position: absolute;
   bottom: 10%;
 }
@@ -262,7 +276,8 @@ nav {
   line-height: 1.2;
 }
 
-.purchase-weapon, .purchase-armor {
+.purchase-weapon,
+.purchase-armor {
   font-size: 10px;
 }
 
@@ -271,7 +286,8 @@ nav {
   height: 50px;
 }
 
-#equipped-items, #add-account {
+#equipped-items,
+#add-account {
   margin-top: 30px;
   height: 50px;
   line-height: 1.2;
@@ -279,6 +295,10 @@ nav {
 
 #player-gear-btn {
   margin-bottom: 20px;
+}
+
+#arena-name {
+  margin: 20px;
 }
 
 // ID STYLES -----------------------------------------------
@@ -300,12 +320,13 @@ nav {
 }
 
 #billboard {
-  height: 200px;
+  height: 300px;
   overflow: scroll;
 }
 
-#user-combatant-img, #opponent-combatant-img {
-  max-height: 400px !important;
+#user-combatant-img,
+#opponent-combatant-img {
+  max-height: 300px !important;
 }
 
 // CLASS STYLES -----------------------------------------------

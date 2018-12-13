@@ -1,5 +1,5 @@
 var db = require("../models");
-var liveEquipNPC= require("../utilities/liveEquipNPC")
+var liveEquipNPC = require("../utilities/liveEquipNPC");
 
 module.exports = function(app) {
   // landing page
@@ -68,20 +68,12 @@ module.exports = function(app) {
           uuid: req.session.passport.user
         }
       }).then(function(dbUser) {
-        db.Arena.findAll({
-          where: {
-            id: 1
-          }
-        }).then(function(dbArena) {
-          var user = {
-            userInfo: dbUser.dataValues,
-            id: req.session.passport.user,
-            isloggedin: req.isAuthenticated(),
-            arena: dbArena.dataValues
-          };
-          res.render("character", user);
-        });
-        // });
+        var user = {
+          userInfo: dbUser.dataValues,
+          id: req.session.passport.user,
+          isloggedin: req.isAuthenticated()
+        };
+        res.render("character", user);
       });
     } else {
       res.redirect("/");
@@ -125,7 +117,6 @@ module.exports = function(app) {
   // market and training page
   app.get("/market", function(req, res) {
     if (req.isAuthenticated()) {
-      
       db.Accounts.findOne({
         where: {
           uuid: req.session.passport.user
@@ -144,19 +135,22 @@ module.exports = function(app) {
                 ArenaId: dbChar.ArenaId
               }
             }).then(function(dbMarket) {
-              console.log(JSON.parse(JSON.stringify(dbMarket[0])))
-                var user = {
-                  market: JSON.parse(JSON.stringify(dbMarket)),
-                  
-                  user: dbChar.dataValues,
-                  userInfo: dbUser.dataValues,
-                  id: req.session.passport.user,
-                  isloggedin: req.isAuthenticated()
-                };
-                console.log(`inside the market route, here's the user being sent to the market page: `, user)
-               
-                res.render("market", user);
-              });
+              // console.log(JSON.parse(JSON.stringify(dbMarket[0])));
+              var user = {
+                market: JSON.parse(JSON.stringify(dbMarket)),
+
+                user: dbChar.dataValues,
+                userInfo: dbUser.dataValues,
+                id: req.session.passport.user,
+                isloggedin: req.isAuthenticated()
+              };
+              // console.log(
+              // `inside the market route, here's the user being //sent to the market page: `,
+              // user
+              // );
+
+              res.render("market", user);
+            });
           }
         });
       });
@@ -189,7 +183,7 @@ module.exports = function(app) {
               id: req.session.passport.user,
               isloggedin: req.isAuthenticated()
             };
-            console.log(user.purchases);
+            //console.log(user.purchases);
             res.render("equip", user);
           }
         });
@@ -216,17 +210,19 @@ module.exports = function(app) {
           if (dbChar === null) {
             res.redirect("/character");
           } else {
-            var randomNumber = Math.floor(Math.random() * 40);
-            console.log(`from inside the arena html route, the random number used to get theNPC from the db is ${randomNumber}.`)
+            var randomNumber = Math.floor(Math.random() * 40 + 1);
+            console.log(
+              `from inside the arena html route, the random number used to get theNPC from the db is ${randomNumber}.`
+            );
             db.NPC.findOne({
               where: {
                 id: randomNumber
               }
             }).then(function(dbNPC) {
-              console.log(`from inside the arena get html route, here's the data about the NPC: `,dbNPC.dataValues);
+              // console.log(`from inside the arena get html route, here's the data about the NPC: `,dbNPC.dataValues);
 
-              liveEquipNPC(dbNPC.dataValues,1).then(result => {
-                console.log(`inside the arena get html route, here's the equipped npc: `, result);
+              liveEquipNPC(dbNPC.dataValues, 1).then(result => {
+                // console.log(`inside the arena get html route, here's the equipped npc: `, result);
                 var battle = {
                   user: dbChar.dataValues,
                   weapon: dbChar.dataValues.Equipment[0],
@@ -239,7 +235,7 @@ module.exports = function(app) {
                   isloggedin: req.isAuthenticated()
                 };
                 res.render("arena", battle);
-              })
+              });
             });
           }
         });
@@ -248,7 +244,7 @@ module.exports = function(app) {
       res.redirect("/");
     }
   });
-  
+
   // leaderboard page
   app.get("/leaderboard", function(req, res) {
     if (req.isAuthenticated()) {
@@ -280,7 +276,7 @@ module.exports = function(app) {
       res.redirect("/");
     }
   });
-  
+
   // about page
   app.get("/about", function(req, res) {
     if (req.isAuthenticated()) {
@@ -300,7 +296,7 @@ module.exports = function(app) {
       res.redirect("/");
     }
   });
-  
+
   // tech credits page
   app.get("/tech", function(req, res) {
     if (req.isAuthenticated()) {
@@ -320,7 +316,7 @@ module.exports = function(app) {
       res.redirect("/");
     }
   });
-  
+
   // 404 for non-existent pages
   app.get("*", function(req, res) {
     res.render("404");

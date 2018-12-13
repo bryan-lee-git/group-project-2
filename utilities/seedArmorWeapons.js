@@ -13,11 +13,16 @@ for (var i = 1; i < 51; i++) {
           var item = {
             name: target.name,
             damage: target.damage.dice_count * target.damage.dice_value,
-            cost: target.cost.quantity*60,
+            cost:
+              target.cost.quantity *
+              (target.cost.unit === "gp"
+                ? 1
+                : Math.round(target.cost.quantity / 100)) *
+              20,
             costType: target.cost.unit,
             weight: target.weight
           };
-          
+
           db.Weapons.create(item).then(function(res) {
             console.log(`${item.name} added to the weapons table`);
           });
@@ -27,12 +32,12 @@ for (var i = 1; i < 51; i++) {
       var item = {
         name: target.name,
         strength: target.armor_class.base,
-        cost: target.cost.quantity*20,
+        cost: target.cost.quantity * 10,
         costType: target.cost.unit,
         weight: target.weight
       };
       db.Armor.create(item).then(function(res) {
-        console.log(`${item.name} added to the armor table`)
+        console.log(`${item.name} added to the armor table`);
       });
     }
   });

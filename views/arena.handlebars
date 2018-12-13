@@ -1,27 +1,67 @@
 <main>
   <div id="user-hook" style="postion: absolute; visibility: hidden">{{user.id}}</div>
+  <div id="arena-hook" style="postion: absolute; visibility: hidden">{{user.ArenaId}}</div>
   <div id="npc-hook" style="postion: absolute; visibility: hidden">{{npc.id}}</div>
+  <div id="user-tactic-hook" style="postion: absolute; visibility: hidden"></div>
+
   <div class="row">
-    <div class="col s12 m4 offset-m1 center-align">
+    <h5 class="rounded-content-box col s4 offset-s4 center-align" id="arena-name"></h5>
+  </div>
+
+  <div class="row">
+
+    <div class="col s3 offset-s1 center-align">
       <img src="{{user.image}}" alt="user-combatant" class="responsive-img" id="user-combatant-img">
     </div>
 
-    <div class="col s12 m4 offset-m2 center-align">
-      <img src="{{npc.image}}" alt="opponent-combatant" class="responsive-img" id="opponent-combatant-img">
-    </div>
-  </div>
-  <!--End image row-->
-
-  <!-- Start battle results billboard row-->
-  <div class="row">
-    <div id="billboard-container" class="col s4 offset-s4 center-align rounded-content-box">
+    <!-- Start battle results billboard column-->
+    <div id="billboard-container" class="col s4 m4  center-align rounded-content-box" style="visibility: hidden">
       <h4>Battle Results</h4>
       <p id="billboard"></p>
     </div>
-  </div> 
-<!-- End battle results billboard row-->
+    <!-- End battle results billboard column-->
 
-<!-- Start combatant image row-->
+    <div class="col s3 center-align">
+      <img src="{{npc.image}}" alt="opponent-combatant" class="responsive-img" id="opponent-combatant-img">
+    </div>
+
+
+  </div>
+  <!--End image row-->
+
+  {{!-- Fixed action button, where the user will implement their strategy in between turns --}}
+  <div id="action-btns">
+
+    <div class="fixed-action-btn col s3 offset-s1" id="user-tactics-btn" title="Tactics">
+
+      <a class="floating-action-btn red pulse btn-large">Speed Tactic</a>
+      <ul>
+        <li><a class="btn-floating red ">Bull</a></li>
+        <li><a class="btn-floating orange">Crane</a></li>
+        <li><a class="btn-floating yellow darken-1 ">Panda</a></li>
+        <li><a class="btn-floating green ">Bee</a></li>
+        <li><a class="btn-floating blue">Gadfly</a></li>
+      </ul>
+    </div>
+
+    <div class="fixed-action-btn col s3 offset-s1" id="user-attack-type-btn" title="Attack Type">
+
+      <a class="floating-action-btn red pulse btn-large">Attack Type</a>
+      <ul>
+        <li><a data="1" class="btn-floating red ">Base</a></li>
+        <li><a data="0" class="btn-floating orange">Weak Spot</a></li>
+
+      </ul>
+    </div>
+
+    <div class="fixed-action-btn" id="return-ludus-btn" title="Return">
+      <br /><br /><br />
+      <a class=" green pulse btn-large " href="/ludus-magnus"><i class="large material-icons">exit_to_app</i></a>
+    </div>
+
+  </div>
+
+  <!-- Start combatants data row-->
   <div class="row">
 
     <!-- Start User combatant column-->
@@ -77,12 +117,12 @@
             <th>Weapon</th>
             <th>Damage</th>
             </tr>
-            <tbody>
-              <tr>
-                <td id="user-weapon-name">{{weapon.name}}</td>
-                <td id="user-weapon-damage">{{weapon.statIncrease}}</td>
-                </tr>
-            </tbody>
+          <tbody>
+            <tr>
+              <td id="user-weapon-name">{{weapon.name}}</td>
+              <td id="user-weapon-damage">{{weapon.statIncrease}}</td>
+            </tr>
+          </tbody>
         </table>
         <br />
         <table class="highlight responsive-table centered">
@@ -129,7 +169,7 @@
           </tr>
         </tbody>
       </table>
-      <br/>
+      <br />
       <div class="row">
         <button class="btn col s4 offset-s2" id="npc-stats-btn">VIEW BASE STATS</button>
         <button class="btn col s4" id="npc-gear-btn">VIEW EQUIPMENT</button>
@@ -155,7 +195,7 @@
         </table>
         <br />
       </div> {{!--matches npc-stats--}}
-    
+
       <div id="npc-gear">
         <hr>
         <h5>EQUIPMENT</h5>
@@ -195,19 +235,8 @@
     </div> {{!--matches npc column--}}
   </div>{{!--matches combatants row--}}
 
-  {{!-- Fixed action button, where the user will implement their strategy in between turns --}}
 
-  <div class="fixed-action-btn" title="Tactics">
-  <br /><br /><br />
-    <a class="btn-floating pulse btn-large"><img src="/img/erics-images/battle-btn.png" alt=""></a>
-    <ul>
-      <li><a class="btn-floating red ">Bull</a></li>
-      <li><a class="btn-floating orange">Crane</a></li>
-      <li><a class="btn-floating yellow darken-1 ">Panda</a></li>
-      <li><a class="btn-floating green ">Bee</a></li>
-      <li><a class="btn-floating blue">Gadfly</a></li>
-    </ul>
-  </div>
+
 </main>
 {{> Modal/combat-block }}
 <script src="/js/arena.js"></script>
