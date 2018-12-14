@@ -62,11 +62,11 @@ module.exports = function(app) {
 
   app.delete("/accounts/:email", function(req, res) {
     db.Accounts.destroy({
-        where: {
-          email: req.params.email
-        }
+      where: {
+        email: req.params.email
+      }
     }).then(function(dbAccounts) {
-        res.redirect("/landing");
+      res.redirect("/landing");
     });
   });
 
@@ -111,7 +111,7 @@ module.exports = function(app) {
 
   app.post("/login", function(req, res, next) {
     passport.authenticate("local-login", function(err, user, info) {
-      console.log("\n\n\n########userrrr", user);
+      //console.log("\n\n\n########userrrr", user);
       if (err) {
         console.log("passport err", err);
         return next(err);

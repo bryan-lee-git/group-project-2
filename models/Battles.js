@@ -6,22 +6,21 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Battle = sequelize.define("Battle", {
-    location: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1, 30]
-      }
+    playerOneWeapon: {
+      type: DataTypes.STRING
     },
-    playerOne: {
-      type: DataTypes.INTEGER
+    playerOneArmor: {
+      type: DataTypes.STRING
     },
-    playerTwo: {
-      type: DataTypes.INTEGER
+    playerTwoWeapon: {
+      type: DataTypes.STRING
     },
-
+    playerOneArmor: {
+      type: DataTypes.STRING
+    },
     victor: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   });
   return Battle;

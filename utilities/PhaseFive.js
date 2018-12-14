@@ -3,12 +3,12 @@ var PhaseSix = require("./PhaseSix");
 module.exports = function phaseFive(playerOne, playerTwo, round) {
   //console.log(
   //  `${playerOne.name} at the start of phase five is `,
-   // JSON.parse(JSON.stringify(playerOne))
- // );
+  // JSON.parse(JSON.stringify(playerOne))
+  // );
   //console.log(
-   // `${playerTwo.name} at the start of phase five is `,
+  // `${playerTwo.name} at the start of phase five is `,
   //  JSON.parse(JSON.stringify(playerTwo))
- // );
+  // );
   //
   //  Resolve Attacks
   //
@@ -18,17 +18,18 @@ module.exports = function phaseFive(playerOne, playerTwo, round) {
   var count2 = playerTwo.attacks.length;
 
   if (playerOneSpeed > playerTwoSpeed) {
-    
-      attackOrder(playerOne, playerTwo);
-    
+    attackOrder(playerOne, playerTwo);
   } else {
-    
-      attackOrder(playerTwo, playerOne);
-    
+    attackOrder(playerTwo, playerOne);
   }
   console.log(`the number of attacks in the round is ${count1 + count2}.`);
 
-  var { playerOne, playerTwo} = PhaseSix(playerOne, playerTwo, count1 + count2, round);
+  var { playerOne, playerTwo } = PhaseSix(
+    playerOne,
+    playerTwo,
+    count1 + count2,
+    round
+  );
 
   function d20() {
     let result = Math.floor(Math.random() * 19) + 1;
@@ -38,12 +39,12 @@ module.exports = function phaseFive(playerOne, playerTwo, round) {
 
   function attackOrder(first, second) {
     var number = 0;
-   
+
     console.log(`${first.name} attacks is `, first.attacks);
     console.log(`${first.name} has ${first.attacks.length} attack(s).`);
 
     let { count, wound, hit } = resolveAttack(first, second);
-   
+
     number = number + count;
 
     if (wound === 0) {
@@ -68,26 +69,35 @@ module.exports = function phaseFive(playerOne, playerTwo, round) {
       count = i + 1;
       var targetToHit = 10;
 
-      console.log(`from inside resolveAttack inside phaseFive, here is the value of ${second.name}'s shield value: ${second.armor.shield} `,typeof second.armor.shield);
-      console.log(`from inside resolveAttack inside phaseFive, here is the value of ${second.name}'s defenseSpeed: ${second.defenseSpeed} `);
-      
+      console.log(
+        `from inside resolveAttack inside phaseFive, here is the value of ${
+          second.name
+        }'s shield value: ${second.armor.shield} `,
+        typeof second.armor.shield
+      );
+      console.log(
+        `from inside resolveAttack inside phaseFive, here is the value of ${
+          second.name
+        }'s defenseSpeed: ${second.defenseSpeed} `
+      );
+
       if (second.armor.shield) {
         targetToHit =
           10 +
           second.defenseSpeed +
           2 +
-          (first.attacks[i].attack.attackType ? 0 : 5);
+          (first.attacks[i].attack.attackType === 1 ? 0 : 5);
       } else {
         targetToHit =
           10 +
           second.defenseSpeed +
-          (first.attacks[i].attack.attackType ? 0 : 5);
+          (first.attacks[i].attack.attackType === 1 ? 0 : 5);
       }
 
       console.log(`Number to hit ${second.name} = ${targetToHit}.`);
 
       var damage = 0;
-      
+
       second.hit = hit;
 
       console.log(
@@ -99,11 +109,11 @@ module.exports = function phaseFive(playerOne, playerTwo, round) {
       } else {
         var toHitRoll = 0;
       }
-      
+
       console.log(`${first.name} to hit roll is ${toHitRoll}.`);
 
-      if (toHitRoll === 0 ) {
-        console.log(`No attack for ${first.name}.`)
+      if (toHitRoll === 0) {
+        console.log(`No attack for ${first.name}.`);
       } else {
         if (toHitRoll > targetToHit) {
           hit = true;
@@ -120,9 +130,9 @@ module.exports = function phaseFive(playerOne, playerTwo, round) {
           );
           if (first.attacks[i].attack.attackType) {
             damage =
-              (Math.floor((first.strength / 5) + 1) *
+              Math.floor(first.strength / 5 + 1) *
                 first.attacks[i].attack.attackSpeed +
-              first.weapon.damage);
+              first.weapon.damage;
           } else {
             damage =
               2 *
@@ -130,7 +140,7 @@ module.exports = function phaseFive(playerOne, playerTwo, round) {
                 first.attacks[i].attack.attackSpeed +
                 first.weapon.damage);
           }
-  
+
           console.log(
             `Damage from ${first.name} against ${second.name} is ${damage}.`
           );
@@ -142,11 +152,9 @@ module.exports = function phaseFive(playerOne, playerTwo, round) {
           }
         }
       }
-      
     }
     return { count, wound, hit };
   }
-  
 
-  return { playerOne, playerTwo}
+  return { playerOne, playerTwo };
 };

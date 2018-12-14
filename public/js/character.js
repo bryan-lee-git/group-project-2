@@ -1,9 +1,9 @@
-var globalStatPoints = 5;
+var globalStatPoints = 10;
 var speedLocation = 3;
 var strengthLocation = 12;
 var staminaLocation = 12;
+var skillLocation = 1;
 var avatarSelect = false;
-var arena = $("#arena-hook").html();
 
 // displays stat point alotment
 $("#skill-points-display").html(globalStatPoints);
@@ -90,6 +90,28 @@ $("#create-stamina-slide").change(function() {
   validation();
 });
 
+// skill slider functions the same as the other sliders
+$("#create-skill-slide").change(function() {
+  var newSkillLocation = $("#create-skill-slide").val();
+  var skillDiff = skillLocation - newSkillLocation;
+  if (globalStatPoints > 0 || skillDiff > 0) {
+    var checker = globalStatPoints + skillDiff;
+    if (checker >= 0) {
+      globalStatPoints = checker;
+      skillLocation = newSkillLocation;
+      $("#skill-points-display").html(globalStatPoints);
+    } else if (checker < 0) {
+      skillLocation = parseInt(newSkillLocation) + parseInt(checker);
+      globalStatPoints = 0;
+      $("#create-skill-slide").val(skillLocation);
+      $("#skill-points-display").html(globalStatPoints);
+    }
+  } else {
+    $("#create-skill-slide").val(skillLocation);
+  }
+  validation();
+});
+
 // how the user gets the avatar they want, pushes that image down to the selected-avatar-img
 $(".swiper-slide").on("click", function(event) {
   event.preventDefault();
@@ -107,7 +129,7 @@ $(".swiper-slide").on("click", function(event) {
 $("#create-button").on("click", function(event) {
   event.preventDefault();
   // creates a new character object and grabs its info from the form the user filled out
-  var newCharcter = {
+  var newCharacter = {
     name: $("#user-name").data("name"),
     image: $("#selected-avatar-img").attr("src"),
     male: $("input[name='gender']:checked").val(),
@@ -116,17 +138,18 @@ $("#create-button").on("click", function(event) {
     strength: $("#create-strength-slide").val(),
     speed: $("#create-speed-slide").val(),
     stamina: $("#create-stamina-slide").val(),
-    skill: 1,
+    skill: $("#create-skill-slide").val(),
     accountuuid: $("#uuid").data("uuid")
   };
   // ajax POST requests passes the newCharacter object as data
   $.ajax({
     method: "POST",
     url: "/api/users",
-    data: newCharcter
+    data: newCharacter
+  }).then(response => {
+    console.log(response);
+    window.location.href = "/ludus-magnus";
   });
-  console.log(newCharcter);
-  window.location.href = "/ludus-magnus";
 });
 
 // runs a validaton check to make sure the entire form has been filled out before the user can submit
